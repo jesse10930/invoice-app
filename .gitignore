@@ -22,4 +22,4 @@ dailyJournal.txt
 node_modules/
 
 # mongoURI
-config/default.json
+config
