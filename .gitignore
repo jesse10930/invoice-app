@@ -20,3 +20,6 @@ dailyJournal.txt
 
 # node
 node_modules/
+
+# mongoURI
+config/default.json
