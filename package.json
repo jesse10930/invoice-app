@@ -2,7 +2,7 @@
   "name": "invoice-app",
   "version": "1.0.0",
   "description": "![Design preview for the Invoice app coding challenge](./preview.jpg)",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
