@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
+@import 'styles/config';
+
+// General
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Spartan', sans-serif;
+  background: $light-mode-background;
+}
+
+#main-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  #navbar {
+    position: absolute;
+    background: $light-mode-navbar-bg;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100px;
+    border-radius: 0px 20px 20px 0px;
+
+    #home-icon {
+      position: absolute;
+      height: 100px;
+      width: 100px;
+      border-radius: 0px 20px 20px 0px;
+      background: $home-icon-dark-purp;
+
+      #home-icon-bot {
+        position: absolute;
+        height: 50px;
+        width: 100px;
+        border-radius: 20px 0px 20px 0px;
+        background: $home-icon-light-purp;
+        top: 50px;
+      }
+
+      #home-icon-circle {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      #home-icon-triangle {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid $home-icon-dark-purp;
+        left: 40px;
+        top: 30px;
+      }
+    }
+
+    #mode-toggle {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 40px;
+      bottom: 121px;
+    }
+
+    #horizontal-line {
+      position: absolute;
+      width: 100px;
+      height: 1px;
+      bottom: 88px;
+      background: #494e6e;
+    }
+
+    #prof-pic {
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      left: 30px;
+      bottom: 24px;
+      background-image: url(images/prof-pic.jpg);
+    }
+  }
+
+  #header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 750px;
+    height: 60px;
+    margin-top: 60px;
+
+    #header-left {
+      display: flex;
+      flex-direction: column;
+
+      h1 {
+        font-size: 32px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    #header-right {
+      display: flex;
+      align-items: center;
+
+      #filter-dropdown {
+        display: flex;
+        width: 130px;
+        height: 15px;
+        margin-right: 20px;
+
+        p {
+          font-size: 12px;
+          font-weight: 700;
+          padding-right: 10px;
+        }
+
+        img {
+          border: 2px solid transparent;
+        }
+      }
+
+      #new-invoice-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 140px;
+        height: 45px;
+        border-radius: 24px;
+        background: #7c5dfa;
+        color: #ffffff;
+
+        #new-invoice-icon {
+          height: 32px;
+          width: 32px;
+          background: #ffffff;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 5px;
+
+          img {
+            height: 12px;
+            width: 12px;
+          }
+        }
+
+        p {
+          font-size: 12px;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  #invoices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 120px);
+
+    #empty-container {
+      width: 280px;
+      height: 350px;
+      text-align: center;
+
+      img {
+        margin-bottom: 50px;
+      }
+
+      h2 {
+        margin-bottom: 25px;
+      }
+
+      p {
+        font-size: 12px;
+        font-weight: 500px;
+      }
+    }
+  }
+}
