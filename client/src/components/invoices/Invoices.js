@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
+import InvoiceItem from './InvoiceItem';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const Invoices = () => {
@@ -10,8 +11,10 @@ const Invoices = () => {
     <div id='invoices'>
       {invoices ? (
         <div id='invoice-list'>
-          {invoices.map((invoice) => (
-            <h3>{invoice.id}</h3>
+          {invoices.map((invoice, i) => (
+            <Fragment>
+              <InvoiceItem key={i} invoice={invoice} />
+            </Fragment>
           ))}
         </div>
       ) : (

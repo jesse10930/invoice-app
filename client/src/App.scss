@@ -19,7 +19,7 @@ body {
   justify-content: space-between;
 
   #navbar {
-    position: absolute;
+    position: fixed;
     background: $light-mode-navbar-bg;
     left: 0;
     top: 0;
@@ -173,7 +173,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px);
+    height: auto;
+    margin-top: 5rem;
+    border: 2px solid red;
+
+    #invoice-list {
+      border: 2px solid black;
+
+      .invoice-item {
+        border: 2px solid black;
+      }
+    }
 
     #empty-container {
       width: 280px;
