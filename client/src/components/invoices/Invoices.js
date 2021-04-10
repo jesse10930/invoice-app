@@ -1,27 +1,26 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useContext } from 'react';
 import InvoiceItem from './InvoiceItem';
+import Details from './Details';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const Invoices = () => {
   const invoiceContext = useContext(InvoiceContext);
 
-  const { invoices } = invoiceContext;
+  const { invoices, clicked, invoiceClick, currentUser } = invoiceContext;
 
-  return (
+  return !clicked ? (
     <div id='invoices'>
       {invoices ? (
         <div id='invoice-list'>
           {invoices.map((invoice, i) => (
-            <Fragment>
-              <InvoiceItem key={i} invoice={invoice} />
-            </Fragment>
+            <InvoiceItem key={i} invoice={invoice} onClick={invoiceClick} />
           ))}
         </div>
       ) : (
         <div id='empty-container'>
           <img
             src={require('../../images/illustration-empty.svg').default}
-            alt='icon-moon'
+            alt='emtpy-illustration'
           />
           <h2>There is nothing here</h2>
           <p>
@@ -32,6 +31,8 @@ const Invoices = () => {
         </div>
       )}
     </div>
+  ) : (
+    <Details currentUser={currentUser} />
   );
 };
 

@@ -1,0 +1,37 @@
+// Utilities
+
+#paid {
+  background: rgba(51, 214, 159, 0.06);
+
+  .dot {
+    background-color: #33d69f;
+  }
+
+  .item-status {
+    color: #33d69f;
+  }
+}
+
+#pending {
+  background: rgba(255, 143, 0, 0.06);
+
+  .dot {
+    background-color: #ff8f00;
+  }
+
+  .item-status {
+    color: #ff8f00;
+  }
+}
+
+#draft {
+  background: rgba(55, 59, 83, 0.06);
+
+  .dot {
+    background-color: #373b53;
+  }
+
+  .item-status {
+    color: #373b53;
+  }
+}

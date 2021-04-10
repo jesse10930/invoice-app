@@ -7,13 +7,13 @@ import './App.scss';
 
 const App = () => {
   return (
-    <InvoiceState>
-      <div id='main-app'>
+    <div id='main-app'>
+      <InvoiceState>
         <Navbar />
         <Header />
         <Invoices />
-      </div>
-    </InvoiceState>
+      </InvoiceState>
+    </div>
   );
 };
 
