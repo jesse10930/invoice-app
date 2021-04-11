@@ -28,7 +28,11 @@ const InvoiceItem = ({ invoice, onClick }) => {
       </p>
       <p className='item-client-name'>{clientName}</p>
       <h3 className='item-payment-due'>
-        ${total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        $
+        {total
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </h3>
       <div className='colored-part-and-arrow'>
         <div id={status} className='item-status-container'>

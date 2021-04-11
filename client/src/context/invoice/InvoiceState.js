@@ -241,7 +241,7 @@ const InvoiceState = (props) => {
         total: 3102.04,
       },
     ],
-    clicked: true,
+    clicked: false,
     currentUser: {
       id: 'RT3080',
       createdAt: '2021-08-18',
@@ -266,9 +266,21 @@ const InvoiceState = (props) => {
       items: [
         {
           name: 'Brand Guidelines',
-          quantity: 1,
+          quantity: 2,
           price: 1800.9,
-          total: 1800.9,
+          total: 3601.8,
+        },
+        {
+          name: 'Don Guidelines',
+          quantity: 1,
+          price: 180,
+          total: 360,
+        },
+        {
+          name: 'Brand Guidelines',
+          quantity: 2,
+          price: 1800.9,
+          total: 3601.8,
         },
       ],
       total: 1800.9,

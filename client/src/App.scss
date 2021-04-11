@@ -296,7 +296,7 @@ body {
 
   #details-container {
     width: 750px;
-    height: 800px;
+    height: auto;
     margin-top: 30px;
 
     #back-button {
@@ -307,6 +307,10 @@ body {
       p {
         font-size: 12px;
         font-weight: 700;
+      }
+
+      &:hover {
+        cursor: pointer;
       }
     }
 
@@ -375,6 +379,10 @@ body {
             font-size: 12px;
             font-weight: 700;
           }
+
+          &:hover {
+            cursor: pointer;
+          }
         }
 
         #delete {
@@ -389,6 +397,10 @@ body {
           p {
             font-size: 12px;
             font-weight: 700;
+          }
+
+          &:hover {
+            cursor: pointer;
           }
         }
 
@@ -405,14 +417,152 @@ body {
             font-size: 12px;
             font-weight: 700;
           }
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
 
     #details-card {
+      height: auto;
       background: #ffffff;
       box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
       border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 50px;
+      margin-bottom: 50px;
+
+      #top-details {
+        position: relative;
+        height: 300px;
+
+        #td-group1 {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        #td-group2 {
+          position: absolute;
+          top: 100px;
+          left: 0;
+        }
+        #td-group3 {
+          position: absolute;
+          top: 175px;
+          left: 0;
+        }
+        #td-group4 {
+          position: absolute;
+          top: 100px;
+          left: 200px;
+        }
+        #td-group5 {
+          position: absolute;
+          top: 100px;
+          left: 400px;
+        }
+        #td-group6 {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+      #details-card-items {
+        background: #f9fafe;
+        border-radius: 8px 8px 0px 0px;
+        padding: 30px 30px 0 30px;
+
+        #dc-items-header {
+          display: grid;
+          grid-template-columns: 300px 95px 75px 115px;
+          padding-bottom: 30px;
+
+          p {
+            font-size: 11px;
+            font-weight: 500;
+            color: #7e88c3;
+          }
+
+          #qty {
+            display: flex;
+            justify-content: flex-start;
+          }
+
+          #price {
+            display: flex;
+            justify-content: flex-end;
+            margin-left: -30px;
+          }
+
+          #total {
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+
+        .item-info {
+          display: grid;
+          grid-template-columns: 300px 95px 75px 115px;
+          padding-bottom: 30px;
+
+          .item-info-name {
+            font-weight: 700;
+            font-size: 12px;
+            color: #0c0e16;
+          }
+
+          .item-info-quantity {
+            font-weight: 700;
+            font-size: 12px;
+            color: #7e88c3;
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 10px;
+          }
+
+          .item-info-price {
+            font-weight: 700;
+            font-size: 12px;
+            color: #7e88c3;
+            display: flex;
+            justify-content: flex-end;
+            margin-left: -30px;
+          }
+
+          .item-info-total {
+            font-weight: 700;
+            font-size: 12px;
+            color: #0c0e16;
+            display: flex;
+            justify-content: flex-end;
+          }
+        }
+      }
+      #details-card-total {
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+        background: #373b53;
+        border-radius: 0px 0px 8px 8px;
+
+        #amount-due {
+          font-size: 11px;
+          font-weight: 500;
+          color: #ffffff;
+        }
+
+        #dc-total {
+          font-size: 24px;
+          font-weight: 700;
+          color: #ffffff;
+        }
+      }
     }
   }
 }
