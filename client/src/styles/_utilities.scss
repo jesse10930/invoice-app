@@ -49,3 +49,33 @@
   color: #7e88c3;
   line-height: 24px;
 }
+
+.modal-sec-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #7c5dfa;
+  line-height: 24px;
+}
+
+.modal-big-title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #777f98;
+}
+
+input {
+  height: 50px;
+  border: 1px solid #dfe3fa;
+  border-radius: 4px;
+}
+
+.back-drop {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  transition: all 1.3s;
+}

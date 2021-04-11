@@ -27,6 +27,7 @@ body {
     height: 100vh;
     width: 100px;
     border-radius: 0px 20px 20px 0px;
+    z-index: 9999;
 
     #home-icon {
       position: absolute;
@@ -177,6 +178,205 @@ body {
 
         &:hover {
           cursor: pointer;
+        }
+      }
+    }
+
+    #new-invoice-modal {
+      position: absolute;
+      height: auto;
+      width: 35vw;
+      top: 0;
+      left: 0;
+      background: #ffffff;
+      border-radius: 0px 20px 20px 0px;
+      padding: 50px 50px 50px 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      #new-invoice-title {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+        color: #0c0e16;
+        margin-bottom: 20px;
+      }
+
+      #ni-bill-from {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+
+        #street-address {
+          input {
+            width: 99.8%;
+          }
+        }
+
+        #ni-city-zip-country {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 150px;
+          }
+        }
+      }
+
+      #ni-bill-to {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+
+        #bt-cityzipcountry {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 150px;
+          }
+        }
+
+        #td-date-terms {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 240px;
+          }
+        }
+      }
+
+      #ni-item-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+
+        #modal-item-list-header {
+          display: grid;
+          grid-template-columns: 250px 80px 90px 50px;
+        }
+
+        #modal-item-list-inputs {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+
+          #item-name-input {
+            width: 215px;
+          }
+
+          #qty-input {
+            width: 50px;
+          }
+
+          #price-input {
+            width: 50px;
+          }
+
+          p {
+            width: 80px;
+            text-align: center;
+            font-weight: 700;
+          }
+
+          img:hover {
+            cursor: pointer;
+          }
+        }
+
+        #modal-add-new-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 50px;
+          background: #f9fafe;
+          border-radius: 24px;
+          color: #7e88c3;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      #ni-bot-btns {
+        display: flex;
+        justify-content: space-between;
+
+        #discard-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 50px;
+          width: 100px;
+          background: #f9fafe;
+          border-radius: 24px;
+
+          p {
+            font-size: 12px;
+            font-weight: 700;
+            color: #7e88c3;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        #save-btns {
+          display: flex;
+          justify-content: space-between;
+
+          #draft-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 135px;
+            background: #373b53;
+            border-radius: 24px;
+            margin-right: 5px;
+
+            p {
+              font-size: 12px;
+              font-weight: 700;
+              color: #7e88c3;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          #send-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 135px;
+            background: #7c5dfa;
+            border-radius: 24px;
+
+            p {
+              font-size: 12px;
+              font-weight: 700;
+              color: #ffffff;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
         }
       }
     }
@@ -561,6 +761,180 @@ body {
           font-size: 24px;
           font-weight: 700;
           color: #ffffff;
+        }
+      }
+    }
+
+    #edit-invoice-modal {
+      position: absolute;
+      height: auto;
+      width: 35vw;
+      top: 0;
+      left: 0;
+      background: #ffffff;
+      border-radius: 0px 20px 20px 0px;
+      padding: 50px 50px 50px 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      #new-invoice-title {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+        color: #0c0e16;
+        margin-bottom: 20px;
+      }
+
+      #ni-bill-from {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+
+        #street-address {
+          input {
+            width: 99.8%;
+          }
+        }
+
+        #ni-city-zip-country {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 150px;
+          }
+        }
+      }
+
+      #ni-bill-to {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+
+        #bt-cityzipcountry {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 150px;
+          }
+        }
+
+        #td-date-terms {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 240px;
+          }
+        }
+      }
+
+      #ni-item-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 40px;
+
+        #modal-item-list-header {
+          display: grid;
+          grid-template-columns: 250px 80px 90px 50px;
+        }
+
+        #modal-item-list-inputs {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+
+          #item-name-input {
+            width: 215px;
+          }
+
+          #qty-input {
+            width: 50px;
+          }
+
+          #price-input {
+            width: 50px;
+          }
+
+          p {
+            width: 80px;
+            text-align: center;
+            font-weight: 700;
+          }
+
+          img:hover {
+            cursor: pointer;
+          }
+        }
+
+        #modal-add-new-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 50px;
+          background: #f9fafe;
+          border-radius: 24px;
+          color: #7e88c3;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      #ni-bot-btns {
+        display: flex;
+        justify-content: flex-end;
+
+        #cancel-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 50px;
+          width: 135px;
+          background: #f9fafe;
+          border-radius: 24px;
+          margin-right: 5px;
+
+          p {
+            font-size: 12px;
+            font-weight: 700;
+            color: #7e88c3;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        #save-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 50px;
+          width: 135px;
+          background: #7c5dfa;
+          border-radius: 24px;
+
+          p {
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }

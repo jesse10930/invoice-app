@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import NewInvoice from './NewInvoice';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const Header = () => {
@@ -6,9 +7,12 @@ const Header = () => {
 
   const { invoices, clicked } = invoiceContext;
 
+  const [newInvoiceClicked, setNewInvoiceClicked] = useState(true);
+
   return (
     !clicked && (
       <div id='header'>
+        {newInvoiceClicked ? <div className='back-drop'></div> : null}
         <div id='header-left'>
           <h1>Invoices</h1>
           {invoices ? (
@@ -35,6 +39,7 @@ const Header = () => {
             <p>New Invoice</p>
           </div>
         </div>
+        {newInvoiceClicked && <NewInvoice />}
       </div>
     )
   );

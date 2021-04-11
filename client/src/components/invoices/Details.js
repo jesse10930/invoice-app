@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import EditInvoice from '../layouts/EditInvoice';
 
 const Details = ({ currentUser }) => {
   const [year, setYear] = useState('');
@@ -7,6 +8,7 @@ const Details = ({ currentUser }) => {
   const [dueYear, setDueYear] = useState('');
   const [dueMonth, setDueMonth] = useState('');
   const [dueDay, setDueDay] = useState('');
+  const [editInvoiceClicked, setEditInvoiceClicked] = useState(true);
 
   useEffect(() => {
     const year = createdAt.substring(0, 4);
@@ -42,6 +44,7 @@ const Details = ({ currentUser }) => {
 
   return (
     <div id='details-container'>
+      {editInvoiceClicked ? <div className='back-drop'></div> : null}
       <div id='back-button'>
         <img
           src={require('../../images/icon-arrow-left.svg').default}
@@ -171,6 +174,7 @@ const Details = ({ currentUser }) => {
           </div>
         </div>
       </div>
+      {editInvoiceClicked && <EditInvoice />}
     </div>
   );
 };

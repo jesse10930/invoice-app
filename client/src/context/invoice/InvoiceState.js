@@ -241,7 +241,7 @@ const InvoiceState = (props) => {
         total: 3102.04,
       },
     ],
-    clicked: false,
+    clicked: true,
     currentUser: {
       id: 'RT3080',
       createdAt: '2021-08-18',
