@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import NewInvoice from './NewInvoice';
+import NewInvoice from '../modals/NewInvoice';
+import FilterModal from '../modals/FilterModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const Header = () => {
@@ -28,6 +29,7 @@ const Header = () => {
               src={require('../../images/icon-arrow-down.svg').default}
               alt='icon-arrow-down'
             />
+            <FilterModal />
           </div>
           <div id='new-invoice-container'>
             <div id='new-invoice-icon'>

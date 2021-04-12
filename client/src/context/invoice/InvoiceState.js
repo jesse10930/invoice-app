@@ -241,7 +241,7 @@ const InvoiceState = (props) => {
         total: 3102.04,
       },
     ],
-    clicked: true,
+    clicked: false,
     currentUser: {
       id: 'RT3080',
       createdAt: '2021-08-18',
@@ -290,6 +290,10 @@ const InvoiceState = (props) => {
   const [state, dispatch] = useReducer(invoiceReducer, initialState);
 
   // Add Invoice
+  const addInvoice = (invoice) => {
+    invoice.id = 'AB1234';
+    dispatch({ type: ADD_INVOICE, payload: invoice });
+  };
 
   // Delete Invoice
 
@@ -311,6 +315,7 @@ const InvoiceState = (props) => {
         clicked: state.clicked,
         currentUser: state.currentUser,
         invoiceClick,
+        addInvoice,
       }}
     >
       {props.children}
