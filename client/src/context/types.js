@@ -2,3 +2,6 @@ export const ADD_INVOICE = 'ADD_INVOICE';
 export const DELETE_INVOICE = 'DELETE_INVOICE';
 export const SET_INVOICE = 'SET_INVOICE';
 export const UPDATE_INVOICE = 'UPDATE_INVOICE';
+export const NEW_INVOICE_FORM = 'NEW_INVOICE_FORM';
+export const INVOICE_DETAILS = 'INVOICE_DETAILS';
+export const GO_BACK = 'GO_BACK';

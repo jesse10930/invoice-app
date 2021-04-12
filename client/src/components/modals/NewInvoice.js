@@ -75,6 +75,7 @@ const NewInvoice = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(e.target);
     invoiceContext.addInvoice(invoice);
   };
 
@@ -252,15 +253,22 @@ const NewInvoice = () => {
           </div>
         </div>
         <div id='ni-bot-btns'>
-          <input type='submit' value='Discard' className='form-btn discard' />
+          <input
+            type='submit'
+            name='discard'
+            value='Discard'
+            className='form-btn discard'
+          />
           <div id='save-btns'>
             <input
               type='submit'
+              name='draft'
               value='Save as Draft'
               className='form-btn draft'
             />
             <input
               type='submit'
+              name='pending'
               value='Save & Send'
               className='form-btn send'
             />

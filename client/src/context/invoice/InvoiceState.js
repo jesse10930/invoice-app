@@ -6,6 +6,9 @@ import {
   DELETE_INVOICE,
   SET_INVOICE,
   UPDATE_INVOICE,
+  NEW_INVOICE_FORM,
+  INVOICE_DETAILS,
+  GO_BACK,
 } from '../types';
 
 const InvoiceState = (props) => {
@@ -241,7 +244,8 @@ const InvoiceState = (props) => {
         total: 3102.04,
       },
     ],
-    clicked: false,
+    newInvoiceForm: false,
+    invoiceDetails: false,
     currentUser: {
       id: 'RT3080',
       createdAt: '2021-08-18',
@@ -292,6 +296,9 @@ const InvoiceState = (props) => {
   // Add Invoice
   const addInvoice = (invoice) => {
     invoice.id = 'AB1234';
+    invoice.total = 180;
+    invoice.status = 'paid';
+    invoice.paymentDue = '2021-08-19';
     dispatch({ type: ADD_INVOICE, payload: invoice });
   };
 
@@ -301,21 +308,32 @@ const InvoiceState = (props) => {
 
   // Update Current Invoice
 
-  // Click on Invoice
-  const invoiceClick = () => {
-    initialState.clicked = !initialState.clicked;
+  // Click on New Invoice Button
+  const newInvoiceClick = () => {
+    dispatch({ type: NEW_INVOICE_FORM, payload: true });
+  };
 
-    console.log(initialState.clicked);
+  // Click on an invoice
+  const invoiceDetailsClick = () => {
+    dispatch({ type: INVOICE_DETAILS, payload: true });
+  };
+
+  // Click on Go Back
+  const goBackClick = () => {
+    dispatch({ type: GO_BACK, payload: false });
   };
 
   return (
     <InvoiceContext.Provider
       value={{
         invoices: state.invoices,
-        clicked: state.clicked,
+        newInvoiceForm: state.newInvoiceForm,
         currentUser: state.currentUser,
-        invoiceClick,
+        invoiceDetails: state.invoiceDetails,
+        newInvoiceClick,
         addInvoice,
+        invoiceDetailsClick,
+        goBackClick,
       }}
     >
       {props.children}

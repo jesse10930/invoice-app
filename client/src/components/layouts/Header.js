@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import NewInvoice from '../modals/NewInvoice';
 import FilterModal from '../modals/FilterModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
@@ -6,14 +6,19 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 const Header = () => {
   const invoiceContext = useContext(InvoiceContext);
 
-  const { invoices, clicked } = invoiceContext;
-
-  const [newInvoiceClicked, setNewInvoiceClicked] = useState(true);
+  const {
+    invoices,
+    newInvoiceForm,
+    newInvoiceClick,
+    invoiceDetails,
+  } = invoiceContext;
 
   return (
-    !clicked && (
+    !invoiceDetails && (
       <div id='header'>
-        {newInvoiceClicked ? <div className='back-drop'></div> : null}
+        {newInvoiceForm ? (
+          <div className='back-drop' style={{ position: 'fixed' }}></div>
+        ) : null}
         <div id='header-left'>
           <h1>Invoices</h1>
           {invoices ? (
@@ -31,7 +36,7 @@ const Header = () => {
             />
             <FilterModal />
           </div>
-          <div id='new-invoice-container'>
+          <div id='new-invoice-container' onClick={newInvoiceClick}>
             <div id='new-invoice-icon'>
               <img
                 src={require('../../images/icon-plus.svg').default}
@@ -41,7 +46,7 @@ const Header = () => {
             <p>New Invoice</p>
           </div>
         </div>
-        {newInvoiceClicked && <NewInvoice />}
+        {newInvoiceForm && <NewInvoice />}
       </div>
     )
   );

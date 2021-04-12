@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import EditInvoice from '../modals/EditInvoice';
 import DeleteModal from '../modals/DeleteModal';
+import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const Details = ({ currentUser }) => {
+  const invoiceContext = useContext(InvoiceContext);
+
+  const { goBackClick } = invoiceContext;
+
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
@@ -47,9 +52,9 @@ const Details = ({ currentUser }) => {
   return (
     <div id='details-container'>
       {editInvoiceClicked || deleteInvoiceClicked ? (
-        <div className='back-drop'></div>
+        <div className='back-drop' style={{ position: 'fixed' }}></div>
       ) : null}
-      <div id='back-button'>
+      <div id='back-button' onClick={goBackClick}>
         <img
           src={require('../../images/icon-arrow-left.svg').default}
           alt='icon-arrow-left'
