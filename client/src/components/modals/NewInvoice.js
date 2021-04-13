@@ -1,8 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const NewInvoice = () => {
   const invoiceContext = useContext(InvoiceContext);
+
+  const { addInvoice, discardClick } = invoiceContext;
 
   const [invoice, setInvoice] = useState({
     id: '',
@@ -33,16 +35,27 @@ const NewInvoice = () => {
     itemPrice: '',
   });
 
+  useEffect(() => {
+    let d = new Date();
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    let year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    setInvoice({
+      ...invoice,
+      createdAt: [year, month, day].join('-'),
+    });
+  }, []);
+
   const {
-    id,
     createdAt,
-    paymentDue,
     description,
     paymentTerms,
     clientName,
     clientEmail,
-    status,
-    total,
   } = invoice;
 
   const {
@@ -61,8 +74,36 @@ const NewInvoice = () => {
 
   const { itemName, itemQty, itemPrice } = items;
 
-  const onInvoiceChange = (e) =>
+  const incrementDate = (date, amount) => {
+    let months = {
+      Jan: '01',
+      Feb: '02',
+      Mar: '03',
+      Apr: '04',
+      May: '05',
+      Jun: '06',
+      Jul: '07',
+      Aug: '08',
+      Sep: '09',
+      Oct: '10',
+      Nov: '11',
+      Dec: '12',
+    };
+    let tempDate = new Date(date);
+    tempDate.setDate(tempDate.getDate() + amount);
+    let stringDate = tempDate.toString();
+    let dueString =
+      stringDate.substring(11, 15) +
+      '-' +
+      months[stringDate.substring(4, 7)] +
+      '-' +
+      stringDate.substring(8, 10);
+    return dueString;
+  };
+
+  const onInvoiceChange = (e) => {
     setInvoice({ ...invoice, [e.target.name]: e.target.value });
+  };
 
   const onSenderAddressChange = (e) =>
     setSenderAddress({ ...senderAddress, [e.target.name]: e.target.value });
@@ -73,10 +114,26 @@ const NewInvoice = () => {
   const onItemsChange = (e) =>
     setItems({ ...items, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onMouseOver = (e) => {
+    setInvoice({ ...invoice, status: e.target.name });
+  };
+
+  const onTermsClick = (e) => {
+    const tempPaymentTerms =
+      e.target.id === 'day' ? 1 : e.target.id === 'week' ? 7 : 30;
+
+    const tempPaymentDue = incrementDate(createdAt, tempPaymentTerms + 1);
+
+    setInvoice({
+      ...invoice,
+      paymentTerms: tempPaymentTerms,
+      paymentDue: tempPaymentDue,
+    });
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target);
-    invoiceContext.addInvoice(invoice);
+    invoice.status === 'discard' ? discardClick() : addInvoice(invoice);
   };
 
   return (
@@ -192,12 +249,28 @@ const NewInvoice = () => {
             </div>
             <div>
               <p className='td-beautiful'>Payment Terms</p>
-              <input
-                type='number'
-                name='paymentTerms'
-                value={paymentTerms}
-                onChange={onInvoiceChange}
-              />
+              <div id='payment-terms-drop'>
+                <div id='term-arrow'>
+                  <p>
+                    {paymentTerms === 1
+                      ? 'Net 1 day'
+                      : paymentTerms === 7
+                      ? 'Net 7 days'
+                      : paymentTerms === 30
+                      ? 'Net 30 days'
+                      : ''}
+                  </p>
+                  <img
+                    src={require('../../images/icon-arrow-down.svg').default}
+                    alt='icon-arrow-down'
+                  />
+                </div>
+                <div id='dropdown-items' onClick={onTermsClick}>
+                  <p id='day'>Net 1 day</p>
+                  <p id='week'>Net 7 days</p>
+                  <p id='month'>Net 30 days</p>
+                </div>
+              </div>
             </div>
           </div>
           <p className='td-beautiful'>Project Description</p>
@@ -258,6 +331,7 @@ const NewInvoice = () => {
             name='discard'
             value='Discard'
             className='form-btn discard'
+            onMouseOver={onMouseOver}
           />
           <div id='save-btns'>
             <input
@@ -265,12 +339,14 @@ const NewInvoice = () => {
               name='draft'
               value='Save as Draft'
               className='form-btn draft'
+              onMouseOver={onMouseOver}
             />
             <input
               type='submit'
               name='pending'
               value='Save & Send'
               className='form-btn send'
+              onMouseOver={onMouseOver}
             />
           </div>
         </div>

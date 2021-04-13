@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import InvoiceContext from '../../context/invoice/invoiceContext';
 
-const InvoiceItem = ({ invoice, onClick }) => {
+const InvoiceItem = ({ invoice }) => {
+  const invoiceContext = useContext(InvoiceContext);
+
+  const { invoiceDetailsClick } = invoiceContext;
+
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
 
-  const { id, createdAt, total, clientName, status } = invoice;
+  const { id, paymentDue, total, clientName, status } = invoice;
 
   useEffect(() => {
-    const year = createdAt.substring(0, 4);
-    const month = parseInt(createdAt.substring(5, 7)) - 1;
-    const day = createdAt.substring(8);
+    const year = paymentDue.substring(0, 4);
+    const month = parseInt(paymentDue.substring(5, 7)) - 1;
+    const day = paymentDue.substring(8);
     const d = new Date(year, month, day).toString();
     setYear(d.substring(11, 15));
     setMonth(d.substring(4, 7));
@@ -18,7 +23,7 @@ const InvoiceItem = ({ invoice, onClick }) => {
   });
 
   return (
-    <div className='invoice-item' onClick={onClick}>
+    <div className='invoice-item' onClick={() => invoiceDetailsClick(invoice)}>
       <h3 className='item-id'>
         <span style={{ color: '#7e88c3' }}>#</span>
         {id}

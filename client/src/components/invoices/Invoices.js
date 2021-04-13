@@ -6,23 +6,14 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 const Invoices = () => {
   const invoiceContext = useContext(InvoiceContext);
 
-  const {
-    invoices,
-    currentUser,
-    invoiceDetails,
-    invoiceDetailsClick,
-  } = invoiceContext;
+  const { invoices, currentUser, invoiceDetails } = invoiceContext;
 
   return !invoiceDetails ? (
     <div id='invoices'>
       {invoices ? (
         <div id='invoice-list'>
           {invoices.map((invoice, i) => (
-            <InvoiceItem
-              key={i}
-              invoice={invoice}
-              onClick={invoiceDetailsClick}
-            />
+            <InvoiceItem key={i} invoice={invoice} />
           ))}
         </div>
       ) : (

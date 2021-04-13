@@ -288,6 +288,52 @@ body {
           input {
             width: 240px;
           }
+
+          #payment-terms-drop {
+            height: 50px;
+            border: 1px solid #dfe3fa;
+            border-radius: 4px;
+            width: 240px;
+
+            #term-arrow {
+              height: 50px;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+              padding: 0 1rem;
+            }
+
+            #dropdown-items {
+              background: #ffffff;
+              display: none;
+              position: absolute;
+              z-index: 10;
+              width: 241px;
+
+              p {
+                border-bottom: 1px solid #dfe3fa;
+                padding: 1rem;
+
+                &:hover {
+                  cursor: pointer;
+                  background: #f9fafe;
+                }
+              }
+
+              :last-child {
+                border: none;
+              }
+            }
+
+            &:hover {
+              cursor: pointer;
+
+              #dropdown-items {
+                display: block;
+              }
+            }
+          }
         }
       }
 
@@ -464,6 +510,7 @@ body {
         &:hover {
           cursor: pointer;
           border: 1px solid #7c5dfa;
+          height: 73px;
         }
       }
     }

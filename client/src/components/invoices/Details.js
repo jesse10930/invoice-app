@@ -6,7 +6,13 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 const Details = ({ currentUser }) => {
   const invoiceContext = useContext(InvoiceContext);
 
-  const { goBackClick } = invoiceContext;
+  const {
+    deleteConfirmation,
+    editInvoiceForm,
+    deleteButtonClick,
+    editButtonClick,
+    goBackClick,
+  } = invoiceContext;
 
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
@@ -14,8 +20,6 @@ const Details = ({ currentUser }) => {
   const [dueYear, setDueYear] = useState('');
   const [dueMonth, setDueMonth] = useState('');
   const [dueDay, setDueDay] = useState('');
-  const [editInvoiceClicked, setEditInvoiceClicked] = useState(true);
-  const [deleteInvoiceClicked, setDeleteInvoiceClicked] = useState(false);
 
   useEffect(() => {
     const year = createdAt.substring(0, 4);
@@ -51,7 +55,7 @@ const Details = ({ currentUser }) => {
 
   return (
     <div id='details-container'>
-      {editInvoiceClicked || deleteInvoiceClicked ? (
+      {editInvoiceForm || deleteConfirmation ? (
         <div className='back-drop' style={{ position: 'fixed' }}></div>
       ) : null}
       <div id='back-button' onClick={goBackClick}>
@@ -72,10 +76,10 @@ const Details = ({ currentUser }) => {
           </div>
         </div>
         <div id='dh-options'>
-          <div id='edit'>
+          <div id='edit' onClick={editButtonClick}>
             <p>Edit</p>
           </div>
-          <div id='delete'>
+          <div id='delete' onClick={deleteButtonClick}>
             <p>Delete</p>
           </div>
           <div id='mark-as-paid'>
@@ -183,8 +187,8 @@ const Details = ({ currentUser }) => {
           </div>
         </div>
       </div>
-      {editInvoiceClicked && <EditInvoice />}
-      {deleteInvoiceClicked && <DeleteModal />}
+      {editInvoiceForm && <EditInvoice />}
+      {deleteConfirmation && <DeleteModal />}
     </div>
   );
 };

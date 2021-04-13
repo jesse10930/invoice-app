@@ -3,12 +3,12 @@ import InvoiceContext from './invoiceContext';
 import invoiceReducer from './invoiceReducer';
 import {
   ADD_INVOICE,
-  DELETE_INVOICE,
-  SET_INVOICE,
-  UPDATE_INVOICE,
   NEW_INVOICE_FORM,
   INVOICE_DETAILS,
   GO_BACK,
+  DELETE_CONFIRMATION,
+  EDIT_INVOICE_FORM,
+  DISCARD,
 } from '../types';
 
 const InvoiceState = (props) => {
@@ -246,67 +246,70 @@ const InvoiceState = (props) => {
     ],
     newInvoiceForm: false,
     invoiceDetails: false,
-    currentUser: {
-      id: 'RT3080',
-      createdAt: '2021-08-18',
-      paymentDue: '2021-08-19',
-      description: 'Re-branding',
-      paymentTerms: 1,
-      clientName: 'Jensen Huang',
-      clientEmail: 'jensenh@mail.com',
-      status: 'pending',
-      senderAddress: {
-        street: '19 Union Terrace',
-        city: 'London',
-        postCode: 'E1 3EZ',
-        country: 'United Kingdom',
-      },
-      clientAddress: {
-        street: '106 Kendell Street',
-        city: 'Sharrington',
-        postCode: 'NR24 5WQ',
-        country: 'United Kingdom',
-      },
-      items: [
-        {
-          name: 'Brand Guidelines',
-          quantity: 2,
-          price: 1800.9,
-          total: 3601.8,
-        },
-        {
-          name: 'Don Guidelines',
-          quantity: 1,
-          price: 180,
-          total: 360,
-        },
-        {
-          name: 'Brand Guidelines',
-          quantity: 2,
-          price: 1800.9,
-          total: 3601.8,
-        },
-      ],
-      total: 1800.9,
-    },
+    editInvoiceForm: false,
+    deleteConfirmation: false,
+    currentUser: null,
+    // currentUser: {
+    //   id: 'RT3080',
+    //   createdAt: '2021-08-18',
+    //   paymentDue: '2021-08-19',
+    //   description: 'Re-branding',
+    //   paymentTerms: 1,
+    //   clientName: 'Jensen Huang',
+    //   clientEmail: 'jensenh@mail.com',
+    //   status: 'pending',
+    //   senderAddress: {
+    //     street: '19 Union Terrace',
+    //     city: 'London',
+    //     postCode: 'E1 3EZ',
+    //     country: 'United Kingdom',
+    //   },
+    //   clientAddress: {
+    //     street: '106 Kendell Street',
+    //     city: 'Sharrington',
+    //     postCode: 'NR24 5WQ',
+    //     country: 'United Kingdom',
+    //   },
+    //   items: [
+    //     {
+    //       name: 'Brand Guidelines',
+    //       quantity: 2,
+    //       price: 1800.9,
+    //       total: 3601.8,
+    //     },
+    //     {
+    //       name: 'Don Guidelines',
+    //       quantity: 1,
+    //       price: 180,
+    //       total: 360,
+    //     },
+    //     {
+    //       name: 'Brand Guidelines',
+    //       quantity: 2,
+    //       price: 1800.9,
+    //       total: 3601.8,
+    //     },
+    //   ],
+    //   total: 1800.9,
+    // },
   };
 
   const [state, dispatch] = useReducer(invoiceReducer, initialState);
 
   // Add Invoice
   const addInvoice = (invoice) => {
-    invoice.id = 'AB1234';
+    let tempId = '';
+    for (let i = 0; i <= 1; i++) {
+      tempId += String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+    }
+    for (let j = 0; j <= 3; j++) {
+      tempId += Math.floor(Math.random() * 10);
+    }
+
+    invoice.id = tempId;
     invoice.total = 180;
-    invoice.status = 'paid';
-    invoice.paymentDue = '2021-08-19';
     dispatch({ type: ADD_INVOICE, payload: invoice });
   };
-
-  // Delete Invoice
-
-  // Set Current Invoice
-
-  // Update Current Invoice
 
   // Click on New Invoice Button
   const newInvoiceClick = () => {
@@ -314,13 +317,28 @@ const InvoiceState = (props) => {
   };
 
   // Click on an invoice
-  const invoiceDetailsClick = () => {
-    dispatch({ type: INVOICE_DETAILS, payload: true });
+  const invoiceDetailsClick = (invoice) => {
+    dispatch({ type: INVOICE_DETAILS, payload: invoice });
   };
 
   // Click on Go Back
   const goBackClick = () => {
     dispatch({ type: GO_BACK, payload: false });
+  };
+
+  // Click on Delete Button
+  const deleteButtonClick = () => {
+    dispatch({ type: DELETE_CONFIRMATION, payload: true });
+  };
+
+  // Click on Edit Button
+  const editButtonClick = () => {
+    dispatch({ type: EDIT_INVOICE_FORM, payload: true });
+  };
+
+  // Click on Discard Button
+  const discardClick = () => {
+    dispatch({ type: DISCARD, payload: false });
   };
 
   return (
@@ -330,10 +348,15 @@ const InvoiceState = (props) => {
         newInvoiceForm: state.newInvoiceForm,
         currentUser: state.currentUser,
         invoiceDetails: state.invoiceDetails,
+        editInvoiceForm: state.editInvoiceForm,
+        deleteConfirmation: state.deleteConfirmation,
         newInvoiceClick,
         addInvoice,
         invoiceDetailsClick,
         goBackClick,
+        deleteButtonClick,
+        editButtonClick,
+        discardClick,
       }}
     >
       {props.children}
