@@ -148,6 +148,8 @@ const NewInvoice = () => {
               type='text'
               id='ni-sa-input'
               name='senderStreet'
+              autoComplete='off'
+              required
               value={senderStreet}
               onChange={onSenderAddressChange}
             />
@@ -159,6 +161,8 @@ const NewInvoice = () => {
                 type='text'
                 id='ni-from-city'
                 name='senderCity'
+                autoComplete='off'
+                required
                 value={senderCity}
                 onChange={onSenderAddressChange}
               />
@@ -169,6 +173,8 @@ const NewInvoice = () => {
                 type='text'
                 id='ni-from-zip'
                 name='senderPostCode'
+                autoComplete='off'
+                required
                 value={senderPostCode}
                 onChange={onSenderAddressChange}
               />
@@ -179,6 +185,8 @@ const NewInvoice = () => {
                 type='text'
                 id='ni-from-country'
                 name='senderCountry'
+                autoComplete='off'
+                required
                 value={senderCountry}
                 onChange={onSenderAddressChange}
               />
@@ -191,6 +199,8 @@ const NewInvoice = () => {
           <input
             type='text'
             name='clientName'
+            autoComplete='off'
+            required
             value={clientName}
             onChange={onInvoiceChange}
           />
@@ -198,6 +208,8 @@ const NewInvoice = () => {
           <input
             type='email'
             name='clientEmail'
+            autoComplete='off'
+            required
             value={clientEmail}
             onChange={onInvoiceChange}
           />
@@ -205,6 +217,8 @@ const NewInvoice = () => {
           <input
             type='text'
             name='clientStreet'
+            autoComplete='off'
+            required
             value={clientStreet}
             onChange={onClientAddressChange}
           />
@@ -214,6 +228,8 @@ const NewInvoice = () => {
               <input
                 type='text'
                 name='clientCity'
+                autoComplete='off'
+                required
                 value={clientCity}
                 onChange={onClientAddressChange}
               />
@@ -223,6 +239,8 @@ const NewInvoice = () => {
               <input
                 type='text'
                 name='clientPostCode'
+                autoComplete='off'
+                required
                 value={clientPostCode}
                 onChange={onClientAddressChange}
               />
@@ -232,6 +250,8 @@ const NewInvoice = () => {
               <input
                 type='text'
                 name='clientCountry'
+                autoComplete='off'
+                required
                 value={clientCountry}
                 onChange={onClientAddressChange}
               />
@@ -243,6 +263,8 @@ const NewInvoice = () => {
               <input
                 type='date'
                 name='createdAt'
+                autoComplete='off'
+                required
                 value={createdAt}
                 onChange={onInvoiceChange}
               />
@@ -277,6 +299,8 @@ const NewInvoice = () => {
           <input
             type='text'
             name='description'
+            autoComplete='off'
+            required
             value={description}
             onChange={onInvoiceChange}
           />
@@ -294,6 +318,8 @@ const NewInvoice = () => {
               type='text'
               id='item-name-input'
               name='itemName'
+              required
+              autoComplete='off'
               value={itemName}
               onChange={onItemsChange}
             />
@@ -301,6 +327,8 @@ const NewInvoice = () => {
               type='text'
               id='qty-input'
               name='itemQty'
+              autoComplete='off'
+              required
               value={itemQty}
               onChange={onItemsChange}
             />
@@ -308,6 +336,8 @@ const NewInvoice = () => {
               type='text'
               id='price-input'
               name='itemPrice'
+              autoComplete='off'
+              required
               value={itemPrice}
               onChange={onItemsChange}
             />

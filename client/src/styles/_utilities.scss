@@ -70,6 +70,14 @@ input {
   border-radius: 4px;
 }
 
+input[type='text'] {
+  font-family: 'Spartan', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0c0e16;
+  padding-left: 10px;
+}
+
 .back-drop {
   background: rgba(0, 0, 0, 0.5);
   height: 100%;

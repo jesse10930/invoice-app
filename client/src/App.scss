@@ -249,7 +249,7 @@ body {
 
         #street-address {
           input {
-            width: 99.8%;
+            width: 98%;
           }
         }
 
@@ -287,6 +287,14 @@ body {
 
           input {
             width: 240px;
+            font-family: 'Spartan', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #0c0e16;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
 
           #payment-terms-drop {
@@ -314,6 +322,10 @@ body {
               p {
                 border-bottom: 1px solid #dfe3fa;
                 padding: 1rem;
+                font-family: 'Spartan', sans-serif;
+                font-size: 12px;
+                font-weight: 700;
+                color: #0c0e16;
 
                 &:hover {
                   cursor: pointer;
