@@ -287,10 +287,6 @@ body {
 
           input {
             width: 240px;
-            font-family: 'Spartan', sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            color: #0c0e16;
 
             &:hover {
               cursor: pointer;
@@ -310,6 +306,13 @@ body {
               justify-content: space-between;
               align-items: center;
               padding: 0 1rem;
+
+              p {
+                font-family: 'Spartan', sans-serif;
+                font-size: 12px;
+                font-weight: 700;
+                color: #0c0e16;
+              }
             }
 
             #dropdown-items {

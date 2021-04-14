@@ -297,7 +297,7 @@ const InvoiceState = (props) => {
   const [state, dispatch] = useReducer(invoiceReducer, initialState);
 
   // Add Invoice
-  const addInvoice = (invoice) => {
+  const addInvoice = (invoice, senderAddress, clientAddress, items) => {
     let tempId = '';
     for (let i = 0; i <= 1; i++) {
       tempId += String.fromCharCode(Math.floor(Math.random() * 26) + 65);
@@ -307,6 +307,9 @@ const InvoiceState = (props) => {
     }
 
     invoice.id = tempId;
+    invoice.senderAddress = senderAddress;
+    invoice.clientAddress = clientAddress;
+    invoice.items = items;
     invoice.total = 180;
     dispatch({ type: ADD_INVOICE, payload: invoice });
   };

@@ -18,22 +18,23 @@ const NewInvoice = () => {
     total: '',
   });
   const [senderAddress, setSenderAddress] = useState({
-    senderStreet: '',
-    senderCity: '',
-    senderPostCode: '',
-    senderCountry: '',
+    street: '',
+    city: '',
+    postCode: '',
+    country: '',
   });
   const [clientAddress, setClientAddress] = useState({
-    clientStreet: '',
-    clientCity: '',
-    clientPostCode: '',
-    clientCountry: '',
+    street: '',
+    city: '',
+    postCode: '',
+    country: '',
   });
-  const [items, setItems] = useState({
-    itemName: '',
-    itemQty: '',
-    itemPrice: '',
+  const [item, setItem] = useState({
+    name: '',
+    quantity: '',
+    price: '',
   });
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     let d = new Date();
@@ -57,22 +58,6 @@ const NewInvoice = () => {
     clientName,
     clientEmail,
   } = invoice;
-
-  const {
-    senderStreet,
-    senderCity,
-    senderPostCode,
-    senderCountry,
-  } = senderAddress;
-
-  const {
-    clientStreet,
-    clientCity,
-    clientPostCode,
-    clientCountry,
-  } = clientAddress;
-
-  const { itemName, itemQty, itemPrice } = items;
 
   const incrementDate = (date, amount) => {
     let months = {
@@ -111,8 +96,13 @@ const NewInvoice = () => {
   const onClientAddressChange = (e) =>
     setClientAddress({ ...clientAddress, [e.target.name]: e.target.value });
 
-  const onItemsChange = (e) =>
-    setItems({ ...items, [e.target.name]: e.target.value });
+  const onItemChange = (e) =>
+    setItem({ ...item, [e.target.name]: e.target.value });
+
+  const onAddItemClick = (e) => {
+    setItems(items.concat(item));
+    setItem({ name: '', quantity: '', price: '' });
+  };
 
   const onMouseOver = (e) => {
     setInvoice({ ...invoice, status: e.target.name });
@@ -133,7 +123,9 @@ const NewInvoice = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    invoice.status === 'discard' ? discardClick() : addInvoice(invoice);
+    invoice.status === 'discard'
+      ? discardClick()
+      : addInvoice(invoice, senderAddress, clientAddress, items);
   };
 
   return (
@@ -147,10 +139,10 @@ const NewInvoice = () => {
             <input
               type='text'
               id='ni-sa-input'
-              name='senderStreet'
+              name='street'
               autoComplete='off'
               required
-              value={senderStreet}
+              value={senderAddress.street}
               onChange={onSenderAddressChange}
             />
           </div>
@@ -160,10 +152,10 @@ const NewInvoice = () => {
               <input
                 type='text'
                 id='ni-from-city'
-                name='senderCity'
+                name='city'
                 autoComplete='off'
                 required
-                value={senderCity}
+                value={senderAddress.city}
                 onChange={onSenderAddressChange}
               />
             </div>
@@ -172,10 +164,10 @@ const NewInvoice = () => {
               <input
                 type='text'
                 id='ni-from-zip'
-                name='senderPostCode'
+                name='postCode'
                 autoComplete='off'
                 required
-                value={senderPostCode}
+                value={senderAddress.postCode}
                 onChange={onSenderAddressChange}
               />
             </div>
@@ -184,10 +176,10 @@ const NewInvoice = () => {
               <input
                 type='text'
                 id='ni-from-country'
-                name='senderCountry'
+                name='country'
                 autoComplete='off'
                 required
-                value={senderCountry}
+                value={senderAddress.country}
                 onChange={onSenderAddressChange}
               />
             </div>
@@ -216,10 +208,10 @@ const NewInvoice = () => {
           <p className='td-beautiful'>Street Address</p>
           <input
             type='text'
-            name='clientStreet'
+            name='street'
             autoComplete='off'
             required
-            value={clientStreet}
+            value={clientAddress.street}
             onChange={onClientAddressChange}
           />
           <div id='bt-cityzipcountry'>
@@ -227,10 +219,10 @@ const NewInvoice = () => {
               <p className='td-beautiful'>City</p>
               <input
                 type='text'
-                name='clientCity'
+                name='city'
                 autoComplete='off'
                 required
-                value={clientCity}
+                value={clientAddress.city}
                 onChange={onClientAddressChange}
               />
             </div>
@@ -238,10 +230,10 @@ const NewInvoice = () => {
               <p className='td-beautiful'>Post Code</p>
               <input
                 type='text'
-                name='clientPostCode'
+                name='postCode'
                 autoComplete='off'
                 required
-                value={clientPostCode}
+                value={clientAddress.postCode}
                 onChange={onClientAddressChange}
               />
             </div>
@@ -249,10 +241,10 @@ const NewInvoice = () => {
               <p className='td-beautiful'>Country</p>
               <input
                 type='text'
-                name='clientCountry'
+                name='country'
                 autoComplete='off'
                 required
-                value={clientCountry}
+                value={clientAddress.country}
                 onChange={onClientAddressChange}
               />
             </div>
@@ -317,29 +309,29 @@ const NewInvoice = () => {
             <input
               type='text'
               id='item-name-input'
-              name='itemName'
-              required
+              name='name'
               autoComplete='off'
-              value={itemName}
-              onChange={onItemsChange}
+              value={item.name}
+              onChange={onItemChange}
             />
             <input
-              type='text'
+              type='number'
+              min='1'
               id='qty-input'
-              name='itemQty'
+              name='quantity'
               autoComplete='off'
-              required
-              value={itemQty}
-              onChange={onItemsChange}
+              value={item.quantity}
+              onChange={onItemChange}
             />
             <input
-              type='text'
+              type='number'
+              min='0.01'
+              step='0.01'
               id='price-input'
-              name='itemPrice'
+              name='price'
               autoComplete='off'
-              required
-              value={itemPrice}
-              onChange={onItemsChange}
+              value={item.price}
+              onChange={onItemChange}
             />
             <p className='td-beautiful'>4550.00</p>
             <img
@@ -347,7 +339,7 @@ const NewInvoice = () => {
               alt='icon-delete'
             />
           </div>
-          <div id='modal-add-new-item'>
+          <div id='modal-add-new-item' onClick={onAddItemClick}>
             <img
               src={require('../../images/icon-plus.svg').default}
               alt='icon-plus'

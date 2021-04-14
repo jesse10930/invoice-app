@@ -11,6 +11,7 @@ import {
 const invoiceReducer = (state, action) => {
   switch (action.type) {
     case ADD_INVOICE:
+      console.log(action.payload);
       return {
         ...state,
         newInvoiceForm: false,

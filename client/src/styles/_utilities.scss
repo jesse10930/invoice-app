@@ -68,14 +68,11 @@ input {
   height: 50px;
   border: 1px solid #dfe3fa;
   border-radius: 4px;
-}
-
-input[type='text'] {
+  padding-left: 10px;
   font-family: 'Spartan', sans-serif;
   font-size: 12px;
   font-weight: 700;
   color: #0c0e16;
-  padding-left: 10px;
 }
 
 .back-drop {
