@@ -263,11 +263,14 @@ const InvoiceState = (props) => {
       tempId += Math.floor(Math.random() * 10);
     }
 
+    let tempTotal = 0;
+    items.forEach((item) => (tempTotal += parseFloat(item.total)));
+
     invoice.id = tempId;
     invoice.senderAddress = senderAddress;
     invoice.clientAddress = clientAddress;
     invoice.items = items;
-    invoice.total = 180;
+    invoice.total = tempTotal;
     dispatch({ type: ADD_INVOICE, payload: invoice });
   };
 

@@ -168,7 +168,9 @@ const Details = ({ currentUser }) => {
               <div key={i} className='item-info'>
                 <p className='item-info-name'>{item.name}</p>
                 <p className='item-info-quantity'>{item.quantity}</p>
-                <p className='item-info-price'>${item.price.toFixed(2)}</p>
+                <p className='item-info-price'>
+                  ${parseFloat(item.price).toFixed(2)}
+                </p>
                 <p className='item-info-total'>
                   ${(item.quantity * item.price).toFixed(2)}
                 </p>

@@ -31,6 +31,7 @@ const NewInvoice = () => {
     country: '',
   });
   const [item, setItem] = useState({
+    itemId: '',
     name: '',
     quantity: '',
     price: '',
@@ -103,8 +104,14 @@ const NewInvoice = () => {
   };
 
   const onAddItemClick = (e) => {
+    let temp =
+      items.length > 0 ? parseInt(items[items.length - 1].itemId) + 1 : 0;
     setItems(
-      items.concat({ ...item, total: (item.quantity * item.price).toFixed(2) })
+      items.concat({
+        ...item,
+        itemId: temp,
+        total: (item.quantity * item.price).toFixed(2),
+      })
     );
     setItem({ name: '', quantity: '', price: '', total: 0 });
   };
@@ -133,15 +140,11 @@ const NewInvoice = () => {
   };
 
   const onDeleteItemClick = (e) => {
-    items.forEach((item, i) => {
-      if (item.name === e.target.id) {
-        items.splice(i, 1);
-      }
-    });
-    setItems({ ...items });
+    let temp = parseInt(e.target.id);
+    setItems(items.filter((item) => item.itemId !== temp));
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     invoice.status === 'discard'
       ? discardClick()
@@ -333,7 +336,6 @@ const NewInvoice = () => {
                 <ItemsCard
                   key={i}
                   item={item}
-                  itemId={i}
                   onDelBtnClick={onDeleteItemClick}
                   onItemChange={onItemChange}
                 />
@@ -344,7 +346,6 @@ const NewInvoice = () => {
               type='text'
               id='item-name-input'
               name='name'
-              required
               autoComplete='off'
               value={item.name}
               onChange={onItemChange}
@@ -354,7 +355,6 @@ const NewInvoice = () => {
               min='1'
               id='qty-input'
               name='quantity'
-              required
               autoComplete='off'
               value={item.quantity}
               onChange={onItemChange}
@@ -365,7 +365,6 @@ const NewInvoice = () => {
               step='0.01'
               id='price-input'
               name='price'
-              required
               autoComplete='off'
               value={item.price}
               onChange={onItemChange}
@@ -375,10 +374,6 @@ const NewInvoice = () => {
                 ? (item.quantity * item.price).toFixed(2)
                 : 0}
             </p>
-            <img
-              src={require('../../images/icon-delete.svg').default}
-              alt='icon-delete'
-            />
           </div>
           <div id='modal-add-new-item' onClick={onAddItemClick}>
             <img
@@ -395,6 +390,7 @@ const NewInvoice = () => {
             value='Discard'
             className='form-btn discard'
             onMouseOver={onMouseOver}
+            formNoValidate
           />
           <div id='save-btns'>
             <input

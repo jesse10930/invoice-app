@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ItemsCard = ({ item, itemId, onDelBtnClick, onItemChange }) => {
-  const { name, quantity, price, total } = item;
+const ItemsCard = ({ item, onDelBtnClick, onItemChange }) => {
+  const { name, quantity, price, total, itemId } = item;
   return (
     <div id={'modal-item-list-inputs-' + { itemId }}>
       <input
@@ -40,7 +40,7 @@ const ItemsCard = ({ item, itemId, onDelBtnClick, onItemChange }) => {
       <p className='td-beautiful'>{total}</p>
       <div onClick={onDelBtnClick}>
         <img
-          id={name}
+          id={itemId}
           src={require('../../images/icon-delete.svg').default}
           alt='icon-delete'
         />
