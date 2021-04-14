@@ -224,6 +224,7 @@ body {
       position: absolute;
       height: auto;
       width: 35vw;
+      min-width: 380px;
       top: 0;
       left: 0;
       background: #ffffff;
@@ -254,12 +255,12 @@ body {
         }
 
         #ni-city-zip-country {
-          width: 100%;
+          width: 101%;
           display: flex;
           justify-content: space-between;
 
           input {
-            width: 150px;
+            width: 90%;
           }
         }
       }
@@ -271,12 +272,12 @@ body {
         margin-bottom: 20px;
 
         #bt-cityzipcountry {
-          width: 100%;
+          width: 101%;
           display: flex;
           justify-content: space-between;
 
           input {
-            width: 150px;
+            width: 90%;
           }
         }
 
@@ -360,7 +361,7 @@ body {
 
         #modal-item-list-header {
           display: grid;
-          grid-template-columns: 250px 80px 90px 50px;
+          grid-template-columns: 49% 18% 22% 11%;
         }
 
         [id^='modal-item-list-inputs'] {

@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     !invoiceDetails && (
-      <div id='header'>
+      <div id='header' className='modal-container'>
         {newInvoiceForm ? (
           <div className='back-drop' style={{ position: 'fixed' }}></div>
         ) : null}

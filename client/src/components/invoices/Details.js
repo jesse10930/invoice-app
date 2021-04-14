@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import EditInvoice from '../modals/EditInvoice';
+// import NewInvoice from '../modals/NewInvoice';
 import DeleteModal from '../modals/DeleteModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
@@ -54,7 +55,7 @@ const Details = ({ currentUser }) => {
   } = currentUser;
 
   return (
-    <div id='details-container'>
+    <div id='details-container' className='modal-container'>
       {editInvoiceForm || deleteConfirmation ? (
         <div className='back-drop' style={{ position: 'fixed' }}></div>
       ) : null}
@@ -190,6 +191,7 @@ const Details = ({ currentUser }) => {
         </div>
       </div>
       {editInvoiceForm && <EditInvoice />}
+      {/* {editInvoiceForm && <NewInvoice />} */}
       {deleteConfirmation && <DeleteModal />}
     </div>
   );

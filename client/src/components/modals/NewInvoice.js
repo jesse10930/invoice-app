@@ -374,6 +374,7 @@ const NewInvoice = () => {
                 ? (item.quantity * item.price).toFixed(2)
                 : 0}
             </p>
+            <div id='img-holder'></div>
           </div>
           <div id='modal-add-new-item' onClick={onAddItemClick}>
             <img
