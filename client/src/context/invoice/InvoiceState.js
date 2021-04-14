@@ -249,49 +249,6 @@ const InvoiceState = (props) => {
     editInvoiceForm: false,
     deleteConfirmation: false,
     currentUser: null,
-    // currentUser: {
-    //   id: 'RT3080',
-    //   createdAt: '2021-08-18',
-    //   paymentDue: '2021-08-19',
-    //   description: 'Re-branding',
-    //   paymentTerms: 1,
-    //   clientName: 'Jensen Huang',
-    //   clientEmail: 'jensenh@mail.com',
-    //   status: 'pending',
-    //   senderAddress: {
-    //     street: '19 Union Terrace',
-    //     city: 'London',
-    //     postCode: 'E1 3EZ',
-    //     country: 'United Kingdom',
-    //   },
-    //   clientAddress: {
-    //     street: '106 Kendell Street',
-    //     city: 'Sharrington',
-    //     postCode: 'NR24 5WQ',
-    //     country: 'United Kingdom',
-    //   },
-    //   items: [
-    //     {
-    //       name: 'Brand Guidelines',
-    //       quantity: 2,
-    //       price: 1800.9,
-    //       total: 3601.8,
-    //     },
-    //     {
-    //       name: 'Don Guidelines',
-    //       quantity: 1,
-    //       price: 180,
-    //       total: 360,
-    //     },
-    //     {
-    //       name: 'Brand Guidelines',
-    //       quantity: 2,
-    //       price: 1800.9,
-    //       total: 3601.8,
-    //     },
-    //   ],
-    //   total: 1800.9,
-    // },
   };
 
   const [state, dispatch] = useReducer(invoiceReducer, initialState);

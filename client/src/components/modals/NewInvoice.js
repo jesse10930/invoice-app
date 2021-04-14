@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const NewInvoice = () => {
@@ -33,6 +34,7 @@ const NewInvoice = () => {
     name: '',
     quantity: '',
     price: '',
+    total: 0,
   });
   const [items, setItems] = useState([]);
 
@@ -96,12 +98,15 @@ const NewInvoice = () => {
   const onClientAddressChange = (e) =>
     setClientAddress({ ...clientAddress, [e.target.name]: e.target.value });
 
-  const onItemChange = (e) =>
+  const onItemChange = (e) => {
     setItem({ ...item, [e.target.name]: e.target.value });
+  };
 
   const onAddItemClick = (e) => {
-    setItems(items.concat(item));
-    setItem({ name: '', quantity: '', price: '' });
+    setItems(
+      items.concat({ ...item, total: (item.quantity * item.price).toFixed(2) })
+    );
+    setItem({ name: '', quantity: '', price: '', total: 0 });
   };
 
   const onMouseOver = (e) => {
@@ -110,7 +115,13 @@ const NewInvoice = () => {
 
   const onTermsClick = (e) => {
     const tempPaymentTerms =
-      e.target.id === 'day' ? 1 : e.target.id === 'week' ? 7 : 30;
+      e.target.id === 'day'
+        ? 1
+        : e.target.id === 'week'
+        ? 7
+        : e.target.id === 'two-weeks'
+        ? 14
+        : 30;
 
     const tempPaymentDue = incrementDate(createdAt, tempPaymentTerms + 1);
 
@@ -119,6 +130,15 @@ const NewInvoice = () => {
       paymentTerms: tempPaymentTerms,
       paymentDue: tempPaymentDue,
     });
+  };
+
+  const onDeleteItemClick = (e) => {
+    items.forEach((item, i) => {
+      if (item.name === e.target.id) {
+        items.splice(i, 1);
+      }
+    });
+    setItems({ ...items });
   };
 
   const onSubmit = async (e) => {
@@ -270,6 +290,8 @@ const NewInvoice = () => {
                       ? 'Net 1 day'
                       : paymentTerms === 7
                       ? 'Net 7 days'
+                      : paymentTerms === 14
+                      ? 'Net 14 days'
                       : paymentTerms === 30
                       ? 'Net 30 days'
                       : ''}
@@ -282,6 +304,7 @@ const NewInvoice = () => {
                 <div id='dropdown-items' onClick={onTermsClick}>
                   <p id='day'>Net 1 day</p>
                   <p id='week'>Net 7 days</p>
+                  <p id='two-weeks'>Net 14 days</p>
                   <p id='month'>Net 30 days</p>
                 </div>
               </div>
@@ -305,11 +328,23 @@ const NewInvoice = () => {
             <p className='td-beautiful'>Price</p>
             <p className='td-beautiful'>Total</p>
           </div>
+          {items.length > 0
+            ? items.map((item, i) => (
+                <ItemsCard
+                  key={i}
+                  item={item}
+                  itemId={i}
+                  onDelBtnClick={onDeleteItemClick}
+                  onItemChange={onItemChange}
+                />
+              ))
+            : null}
           <div id='modal-item-list-inputs'>
             <input
               type='text'
               id='item-name-input'
               name='name'
+              required
               autoComplete='off'
               value={item.name}
               onChange={onItemChange}
@@ -319,6 +354,7 @@ const NewInvoice = () => {
               min='1'
               id='qty-input'
               name='quantity'
+              required
               autoComplete='off'
               value={item.quantity}
               onChange={onItemChange}
@@ -329,11 +365,16 @@ const NewInvoice = () => {
               step='0.01'
               id='price-input'
               name='price'
+              required
               autoComplete='off'
               value={item.price}
               onChange={onItemChange}
             />
-            <p className='td-beautiful'>4550.00</p>
+            <p className='td-beautiful'>
+              {item.quantity > 0 && item.price > 0
+                ? (item.quantity * item.price).toFixed(2)
+                : 0}
+            </p>
             <img
               src={require('../../images/icon-delete.svg').default}
               alt='icon-delete'

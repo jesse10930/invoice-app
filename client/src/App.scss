@@ -363,7 +363,7 @@ body {
           grid-template-columns: 250px 80px 90px 50px;
         }
 
-        #modal-item-list-inputs {
+        [id^='modal-item-list-inputs'] {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -416,6 +416,7 @@ body {
           color: #7e88c3;
           background: #f9fafe;
           width: 100px;
+          padding: 0;
         }
 
         #save-btns {
@@ -426,11 +427,13 @@ body {
             color: #7e88c3;
             background: #373b53;
             margin-right: 10px;
+            padding: 0;
           }
 
           .send {
             color: #ffffff;
             background: #7c5dfa;
+            padding: 0;
           }
         }
       }
