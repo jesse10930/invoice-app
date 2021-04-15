@@ -125,60 +125,112 @@ body {
       align-items: center;
 
       #filter-dropdown {
-        display: flex;
         width: 130px;
         height: 15px;
         margin-right: 20px;
+        position: relative;
 
-        p {
-          font-size: 12px;
-          font-weight: 700;
+        #heading-arrow {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           padding-right: 10px;
+
+          p {
+            font-size: 12px;
+            font-weight: 700;
+          }
+
           &:hover {
             cursor: pointer;
           }
         }
 
-        img {
-          border: 2px solid transparent;
-          &:hover {
-            cursor: pointer;
-          }
-        }
-
-        #filter-modal {
-          position: absolute;
-          height: 130px;
-          width: 200px;
-          top: 125px;
-          right: 520px;
-          background: #ffffff;
+        #filter-choices {
           box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
           border-radius: 8px;
-          padding-bottom: 20px;
+          background: #ffffff;
+          display: none;
+          z-index: 10;
+          width: 192px;
+          height: 128px;
+          margin-left: -40px;
 
-          ul {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding-left: 30px;
-            li {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              list-style: none;
+          .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-family: 'Spartan', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #1e2139;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin-left: 30px;
+            margin-top: 12px;
 
-              p {
-                font-size: 12px;
-                font-weight: 700;
-                color: #0c0e16;
-                padding-left: 10px;
+            input {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+              height: 0;
+              width: 0;
 
-                &:hover {
-                  cursor: pointer;
+              &:checked ~ .checkmark {
+                background: #7c5dfa;
+
+                &:after {
+                  display: block;
                 }
               }
             }
+
+            .checkmark {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 16px;
+              width: 16px;
+              background: #dfe3fa;
+              border-radius: 2px;
+
+              &:after {
+                content: '';
+                position: absolute;
+                display: none;
+
+                left: 4px;
+                top: 0;
+                width: 5px;
+                height: 10px;
+                border: solid #ffffff;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+              }
+            }
+
+            &:hover {
+              .checkmark {
+                border: 1px solid #7c5dfa;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          #filter-choices {
+            // display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
           }
         }
       }
@@ -324,7 +376,6 @@ body {
                 border-radius: 8px;
                 background: #ffffff;
                 display: none;
-                // position: absolute;
                 z-index: 10;
                 width: 100%;
 
@@ -367,8 +418,22 @@ body {
         margin-bottom: 20px;
 
         #modal-item-list-header {
-          display: grid;
-          grid-template-columns: 49% 18% 22% 11%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          #header1 {
+            width: 215px;
+          }
+          #header2 {
+            width: 50px;
+          }
+          #header3 {
+            width: 70px;
+          }
+          #header4 {
+            width: 60px;
+          }
         }
 
         [id^='modal-item-list-inputs'] {

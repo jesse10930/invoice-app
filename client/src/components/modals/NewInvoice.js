@@ -326,10 +326,19 @@ const NewInvoice = () => {
         <div id='ni-item-list'>
           <p className='modal-big-title'>Item List</p>
           <div id='modal-item-list-header'>
-            <p className='td-beautiful'>Item Name</p>
-            <p className='td-beautiful'>Qty.</p>
-            <p className='td-beautiful'>Price</p>
-            <p className='td-beautiful'>Total</p>
+            <p id='header1' className='td-beautiful'>
+              Item Name
+            </p>
+            <p id='header2' className='td-beautiful'>
+              Qty.
+            </p>
+            <p id='header3' className='td-beautiful'>
+              Price
+            </p>
+            <p id='header4' className='td-beautiful'>
+              Total
+            </p>
+            <p id='header5'></p>
           </div>
           {items.length > 0
             ? items.map((item, i) => (
@@ -374,7 +383,12 @@ const NewInvoice = () => {
                 ? (item.quantity * item.price).toFixed(2)
                 : 0}
             </p>
-            <div id='img-holder'></div>
+            <div style={{ visibility: 'hidden' }}>
+              <img
+                src={require('../../images/icon-delete.svg').default}
+                alt='icon-delete'
+              />
+            </div>
           </div>
           <div id='modal-add-new-item' onClick={onAddItemClick}>
             <img

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import NewInvoice from '../modals/NewInvoice';
-import FilterModal from '../modals/FilterModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const Header = () => {
@@ -29,12 +28,30 @@ const Header = () => {
         </div>
         <div id='header-right'>
           <div id='filter-dropdown'>
-            <p id='filter-title'>Filter by Status</p>
-            <img
-              src={require('../../images/icon-arrow-down.svg').default}
-              alt='icon-arrow-down'
-            />
-            <FilterModal />
+            <div id='heading-arrow'>
+              <p id='filter-title'>Filter by Status</p>
+              <img
+                src={require('../../images/icon-arrow-down.svg').default}
+                alt='icon-arrow-down'
+              />
+            </div>
+            <div id='filter-choices'>
+              <label class='container'>
+                Draft
+                <input type='checkbox' checked='false' />
+                <span class='checkmark'></span>
+              </label>
+              <label class='container'>
+                Pending
+                <input type='checkbox' checked='false' />
+                <span class='checkmark'></span>
+              </label>
+              <label class='container'>
+                Paid
+                <input type='checkbox' checked='false' />
+                <span class='checkmark'></span>
+              </label>
+            </div>
           </div>
           <div id='new-invoice-container' onClick={newInvoiceClick}>
             <div id='new-invoice-icon'>
