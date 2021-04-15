@@ -5,3 +5,4 @@ export const GO_BACK = 'GO_BACK';
 export const EDIT_INVOICE_FORM = 'EDIT_INVOICE_FORM';
 export const DELETE_CONFIRMATION = 'DELETE_CONFIRMATION';
 export const DISCARD = 'DISCARD';
+export const FILTER_INVOICES = 'FILTER_INVOICES';

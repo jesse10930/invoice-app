@@ -6,12 +6,12 @@ import {
   DELETE_CONFIRMATION,
   EDIT_INVOICE_FORM,
   DISCARD,
+  FILTER_INVOICES,
 } from '../types';
 
 const invoiceReducer = (state, action) => {
   switch (action.type) {
     case ADD_INVOICE:
-      console.log(action.payload);
       return {
         ...state,
         newInvoiceForm: false,
@@ -32,7 +32,8 @@ const invoiceReducer = (state, action) => {
       return {
         ...state,
         currentUser: null,
-        invoiceDetails: action.payload,
+        invoiceDetails: false,
+        filters: action.payload,
       };
     case EDIT_INVOICE_FORM:
       return {
@@ -48,6 +49,11 @@ const invoiceReducer = (state, action) => {
       return {
         ...state,
         newInvoiceForm: action.payload,
+      };
+    case FILTER_INVOICES:
+      return {
+        ...state,
+        filters: action.payload,
       };
     default:
       return state;

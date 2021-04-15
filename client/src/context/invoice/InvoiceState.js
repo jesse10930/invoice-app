@@ -9,6 +9,7 @@ import {
   DELETE_CONFIRMATION,
   EDIT_INVOICE_FORM,
   DISCARD,
+  FILTER_INVOICES,
 } from '../types';
 
 const InvoiceState = (props) => {
@@ -249,6 +250,7 @@ const InvoiceState = (props) => {
     editInvoiceForm: false,
     deleteConfirmation: false,
     currentUser: null,
+    filters: ['paid', 'pending', 'draft'],
   };
 
   const [state, dispatch] = useReducer(invoiceReducer, initialState);
@@ -286,7 +288,7 @@ const InvoiceState = (props) => {
 
   // Click on Go Back
   const goBackClick = () => {
-    dispatch({ type: GO_BACK, payload: false });
+    dispatch({ type: GO_BACK, payload: ['draft', 'pending', 'paid'] });
   };
 
   // Click on Delete Button
@@ -304,6 +306,19 @@ const InvoiceState = (props) => {
     dispatch({ type: DISCARD, payload: false });
   };
 
+  // Check filter
+  const filterCheck = (status) => {
+    let tempFilters = state.filters;
+    const index = tempFilters.indexOf(status);
+    if (index >= 0) {
+      tempFilters.splice(index, 1);
+    } else {
+      tempFilters.push(status);
+    }
+
+    dispatch({ type: FILTER_INVOICES, payload: tempFilters });
+  };
+
   return (
     <InvoiceContext.Provider
       value={{
@@ -313,6 +328,7 @@ const InvoiceState = (props) => {
         invoiceDetails: state.invoiceDetails,
         editInvoiceForm: state.editInvoiceForm,
         deleteConfirmation: state.deleteConfirmation,
+        filters: state.filters,
         newInvoiceClick,
         addInvoice,
         invoiceDetailsClick,
@@ -320,6 +336,7 @@ const InvoiceState = (props) => {
         deleteButtonClick,
         editButtonClick,
         discardClick,
+        filterCheck,
       }}
     >
       {props.children}

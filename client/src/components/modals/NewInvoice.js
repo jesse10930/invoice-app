@@ -12,7 +12,7 @@ const NewInvoice = () => {
     createdAt: '',
     paymentDue: '',
     description: '',
-    paymentTerms: '',
+    paymentTerms: 30,
     clientName: '',
     clientEmail: '',
     status: '',
@@ -41,16 +41,19 @@ const NewInvoice = () => {
 
   useEffect(() => {
     let d = new Date();
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
+    let day =
+      ('' + d.getDate()).length < 2 ? '0' + d.getDate() : '' + d.getDate();
+    let month =
+      ('' + (d.getMonth() + 1)).length < 2
+        ? '0' + (d.getMonth() + 1)
+        : '' + (d.getMonth() + 1);
     let year = d.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+    let initPaymentDue = incrementDate(new Date(), 30);
 
     setInvoice({
       ...invoice,
       createdAt: [year, month, day].join('-'),
+      paymentDue: initPaymentDue,
     });
   }, []);
 

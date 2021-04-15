@@ -6,13 +6,15 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 const Invoices = () => {
   const invoiceContext = useContext(InvoiceContext);
 
-  const { invoices, currentUser, invoiceDetails } = invoiceContext;
+  const { invoices, currentUser, invoiceDetails, filters } = invoiceContext;
+
+  let filtered = invoices.filter((invoice) => filters.includes(invoice.status));
 
   return !invoiceDetails ? (
     <div id='invoices'>
       {invoices ? (
         <div id='invoice-list'>
-          {invoices.map((invoice, i) => (
+          {filtered.map((invoice, i) => (
             <InvoiceItem key={i} invoice={invoice} />
           ))}
         </div>

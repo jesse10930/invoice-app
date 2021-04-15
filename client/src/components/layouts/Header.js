@@ -10,7 +10,12 @@ const Header = () => {
     newInvoiceForm,
     newInvoiceClick,
     invoiceDetails,
+    filterCheck,
   } = invoiceContext;
+
+  const onCheck = (e) => {
+    filterCheck(e.target.value);
+  };
 
   return (
     !invoiceDetails && (
@@ -36,20 +41,35 @@ const Header = () => {
               />
             </div>
             <div id='filter-choices'>
-              <label class='container'>
+              <label className='container'>
                 Draft
-                <input type='checkbox' checked='false' />
-                <span class='checkmark'></span>
+                <input
+                  onClick={onCheck}
+                  type='checkbox'
+                  defaultChecked='false'
+                  value='draft'
+                />
+                <span className='checkmark'></span>
               </label>
-              <label class='container'>
+              <label className='container'>
                 Pending
-                <input type='checkbox' checked='false' />
-                <span class='checkmark'></span>
+                <input
+                  type='checkbox'
+                  defaultChecked='false'
+                  onClick={onCheck}
+                  value='pending'
+                />
+                <span className='checkmark'></span>
               </label>
-              <label class='container'>
+              <label className='container'>
                 Paid
-                <input type='checkbox' checked='false' />
-                <span class='checkmark'></span>
+                <input
+                  type='checkbox'
+                  defaultChecked='false'
+                  onClick={onCheck}
+                  value='paid'
+                />
+                <span className='checkmark'></span>
               </label>
             </div>
           </div>
