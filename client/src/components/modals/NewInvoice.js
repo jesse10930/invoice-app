@@ -224,6 +224,7 @@ const NewInvoice = () => {
             type='email'
             name='clientEmail'
             autoComplete='off'
+            placeholder='e.g. email@example.com'
             required
             value={clientEmail}
             onChange={onInvoiceChange}
@@ -273,7 +274,7 @@ const NewInvoice = () => {
             </div>
           </div>
           <div id='td-date-terms'>
-            <div>
+            <div id='td-date'>
               <p className='td-beautiful'>Invoice Date</p>
               <input
                 type='date'
@@ -284,7 +285,7 @@ const NewInvoice = () => {
                 onChange={onInvoiceChange}
               />
             </div>
-            <div>
+            <div id='td-terms'>
               <p className='td-beautiful'>Payment Terms</p>
               <div id='payment-terms-drop'>
                 <div id='term-arrow'>
@@ -295,9 +296,7 @@ const NewInvoice = () => {
                       ? 'Net 7 days'
                       : paymentTerms === 14
                       ? 'Net 14 days'
-                      : paymentTerms === 30
-                      ? 'Net 30 days'
-                      : ''}
+                      : 'Net 30 days'}
                   </p>
                   <img
                     src={require('../../images/icon-arrow-down.svg').default}
@@ -318,6 +317,7 @@ const NewInvoice = () => {
             type='text'
             name='description'
             autoComplete='off'
+            placeholder='e.g. Graphic Design Service'
             required
             value={description}
             onChange={onInvoiceChange}

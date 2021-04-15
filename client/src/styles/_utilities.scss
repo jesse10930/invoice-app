@@ -73,6 +73,10 @@ input {
   font-size: 12px;
   font-weight: 700;
   color: #0c0e16;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .back-drop {
@@ -96,5 +100,17 @@ input {
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+input[type='text'],
+input[type='number'],
+input[type='date'] {
+  &:focus {
+    outline: none;
+    border: 1px solid #9277ff;
+  }
+  &:hover {
+    border: 1px solid #9277ff;
   }
 }
