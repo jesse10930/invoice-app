@@ -102,10 +102,6 @@ const NewInvoice = () => {
   const onClientAddressChange = (e) =>
     setClientAddress({ ...clientAddress, [e.target.name]: e.target.value });
 
-  const onItemChange = (e) => {
-    setItem({ ...item, [e.target.name]: e.target.value });
-  };
-
   const onAddItemClick = (e) => {
     let temp =
       items.length > 0 ? parseInt(items[items.length - 1].itemId) + 1 : 0;
@@ -116,7 +112,20 @@ const NewInvoice = () => {
         total: (item.quantity * item.price).toFixed(2),
       })
     );
-    setItem({ name: '', quantity: '', price: '', total: 0 });
+  };
+
+  // change the value in the child, trigger a state change in the parent for that specific item in items (found by matching id) causing a rerender of the child with the updated value to be passed to the input field.
+  // const onItemChange = (e) => {
+  //   setItems(items.concat({}))
+  // };
+
+  // on change in value in child state input field, update the child's state with the new value, then pass thisItem's state to updateItems function which triggers an updateItemsState in parent.
+
+  // Set the current item first onChange, and then later (somewhere) set Items. Maybe?
+  const updateItems = (item) => {
+    // console.log(item);
+    setItem(item);
+    // setItems(items.concat({ ...item }));
   };
 
   const onMouseOver = (e) => {
@@ -149,6 +158,7 @@ const NewInvoice = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(items);
     invoice.status === 'discard'
       ? discardClick()
       : addInvoice(invoice, senderAddress, clientAddress, items);
@@ -349,11 +359,12 @@ const NewInvoice = () => {
                   key={i}
                   item={item}
                   onDelBtnClick={onDeleteItemClick}
-                  onItemChange={onItemChange}
+                  // onItemChange={onItemChange}
+                  updateItems={updateItems}
                 />
               ))
             : null}
-          <div id='modal-item-list-inputs'>
+          {/* <div id='modal-item-list-inputs'>
             <input
               type='text'
               id='item-name-input'
@@ -392,7 +403,7 @@ const NewInvoice = () => {
                 alt='icon-delete'
               />
             </div>
-          </div>
+          </div> */}
           <div id='modal-add-new-item' onClick={onAddItemClick}>
             <img
               src={require('../../images/icon-plus.svg').default}

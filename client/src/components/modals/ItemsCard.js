@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const ItemsCard = ({ item, onDelBtnClick, onItemChange }) => {
+const ItemsCard = ({ item, onDelBtnClick, updateItems }) => {
   const { name, quantity, price, total, itemId } = item;
+
+  const [thisItem, setThisItem] = useState({
+    name: name,
+    quantity: quantity,
+    price: price,
+    total: total,
+    itemId: itemId,
+  });
+
+  const onThisItemChange = (e) => {
+    setThisItem({ ...thisItem, [e.target.name]: e.target.value });
+    updateItems(thisItem);
+  };
+
   return (
     <div id={'modal-item-list-inputs-' + { itemId }}>
       <input
@@ -11,8 +25,9 @@ const ItemsCard = ({ item, onDelBtnClick, onItemChange }) => {
         name='name'
         required
         autoComplete='off'
-        value={name}
-        onChange={onItemChange}
+        value={thisItem.name}
+        // onChange={onItemChange}
+        onChange={onThisItemChange}
       />
       <input
         type='number'
@@ -22,8 +37,9 @@ const ItemsCard = ({ item, onDelBtnClick, onItemChange }) => {
         name='quantity'
         required
         autoComplete='off'
-        value={quantity}
-        onChange={onItemChange}
+        value={thisItem.quantity}
+        // onChange={onItemChange}
+        onChange={onThisItemChange}
       />
       <input
         type='number'
@@ -34,10 +50,15 @@ const ItemsCard = ({ item, onDelBtnClick, onItemChange }) => {
         name='price'
         required
         autoComplete='off'
-        value={price}
-        onChange={onItemChange}
+        value={thisItem.price}
+        // onChange={onItemChange}
+        onChange={onThisItemChange}
       />
-      <p className='td-beautiful'>{total}</p>
+      <p className='td-beautiful'>
+        {thisItem.quantity > 0 && thisItem.price > 0
+          ? (thisItem.quantity * thisItem.price).toFixed(2)
+          : 0.0}
+      </p>
       <div onClick={onDelBtnClick}>
         <img
           id={itemId}
