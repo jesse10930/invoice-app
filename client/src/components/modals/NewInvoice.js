@@ -105,11 +105,14 @@ const NewInvoice = () => {
   const onAddItemClick = (e) => {
     let temp =
       items.length > 0 ? parseInt(items[items.length - 1].itemId) + 1 : 0;
+
     setItems(
       items.concat({
-        ...item,
         itemId: temp,
-        total: (item.quantity * item.price).toFixed(2),
+        name: '',
+        quantity: '',
+        price: '',
+        total: (0).toFixed(2),
       })
     );
   };
@@ -122,10 +125,10 @@ const NewInvoice = () => {
   // on change in value in child state input field, update the child's state with the new value, then pass thisItem's state to updateItems function which triggers an updateItemsState in parent.
 
   // Set the current item first onChange, and then later (somewhere) set Items. Maybe?
-  const updateItems = (item) => {
-    // console.log(item);
-    setItem(item);
-    // setItems(items.concat({ ...item }));
+  const updateItem = (thisItem) => {
+    setItem(thisItem);
+    let tempId = thisItem.itemId;
+    setItems(items.filter((item) => item.itemId !== tempId).concat(thisItem));
   };
 
   const onMouseOver = (e) => {
@@ -152,13 +155,15 @@ const NewInvoice = () => {
   };
 
   const onDeleteItemClick = (e) => {
+    console.log(e.target.id);
+    console.log(items);
     let temp = parseInt(e.target.id);
     setItems(items.filter((item) => item.itemId !== temp));
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
     console.log(items);
+    e.preventDefault();
     invoice.status === 'discard'
       ? discardClick()
       : addInvoice(invoice, senderAddress, clientAddress, items);
@@ -360,7 +365,7 @@ const NewInvoice = () => {
                   item={item}
                   onDelBtnClick={onDeleteItemClick}
                   // onItemChange={onItemChange}
-                  updateItems={updateItems}
+                  updateItem={updateItem}
                 />
               ))
             : null}

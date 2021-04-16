@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const ItemsCard = ({ item, onDelBtnClick, updateItems }) => {
+const ItemsCard = ({ item, onDelBtnClick, updateItem }) => {
   const { name, quantity, price, total, itemId } = item;
 
   const [thisItem, setThisItem] = useState({
@@ -11,9 +11,28 @@ const ItemsCard = ({ item, onDelBtnClick, updateItems }) => {
     itemId: itemId,
   });
 
+  useEffect(() => {
+    updateItem(thisItem);
+  }, [thisItem]);
+
   const onThisItemChange = (e) => {
-    setThisItem({ ...thisItem, [e.target.name]: e.target.value });
-    updateItems(thisItem);
+    let tempTot;
+    if (e.target.name === 'quantity' && thisItem.price > 0) {
+      tempTot = (
+        parseFloat(e.target.value) * parseFloat(thisItem.price)
+      ).toFixed(2);
+    } else if (e.target.name === 'price' && thisItem.quantity > 0) {
+      tempTot = (
+        parseFloat(e.target.value) * parseFloat(thisItem.quantity)
+      ).toFixed(2);
+    } else {
+      tempTot = 0;
+    }
+    setThisItem({
+      ...thisItem,
+      [e.target.name]: e.target.value,
+      total: tempTot,
+    });
   };
 
   return (

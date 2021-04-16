@@ -105,7 +105,8 @@ input {
 
 input[type='text'],
 input[type='number'],
-input[type='date'] {
+input[type='date'],
+input[type='email'] {
   &:focus {
     outline: none;
     border: 1px solid #9277ff;
