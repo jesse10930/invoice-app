@@ -87,7 +87,8 @@ const invoiceReducer = (state, action) => {
     case SAVE_CHANGES:
       return {
         ...state,
-        invoices: action.payload,
+        invoices: action.payloadOne,
+        currentUser: action.payloadTwo,
         editInvoiceForm: false,
       };
     default:

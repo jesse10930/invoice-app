@@ -356,10 +356,13 @@ const InvoiceState = (props) => {
     updatedClientAddress,
     updatedItems
   ) => {
+    let tempTotal = 0;
+    updatedItems.forEach((item) => (tempTotal += parseFloat(item.total)));
+
     updatedInvoice.senderAddress = updatedSenderAddress;
     updatedInvoice.clientAddress = updatedClientAddress;
     updatedInvoice.items = updatedItems;
-    // invoice.total = tempTotal;
+    updatedInvoice.total = tempTotal;
 
     let newInvoices = state.invoices.map((invoice) => {
       if (invoice.id === updatedInvoice.id) {
@@ -368,9 +371,11 @@ const InvoiceState = (props) => {
       return invoice;
     });
 
-    console.log(newInvoices);
-
-    dispatch({ type: SAVE_CHANGES, payload: newInvoices });
+    dispatch({
+      type: SAVE_CHANGES,
+      payloadOne: newInvoices,
+      payloadTwo: updatedInvoice,
+    });
   };
 
   return (
