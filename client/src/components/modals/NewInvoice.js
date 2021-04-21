@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
 const NewInvoice = () => {
+  // Context
   const invoiceContext = useContext(InvoiceContext);
-
   const { addInvoice, discardClick } = invoiceContext;
 
+  // State
   const [invoice, setInvoice] = useState({
     id: '',
     createdAt: '',
@@ -30,15 +32,16 @@ const NewInvoice = () => {
     postCode: '',
     country: '',
   });
-  const [item, setItem] = useState({
-    itemId: '',
-    name: '',
-    quantity: '',
-    price: '',
-    total: 0,
-  });
+  // const [item, setItem] = useState({
+  //   itemId: '',
+  //   name: '',
+  //   quantity: '',
+  //   price: '',
+  //   total: 0,
+  // });
   const [items, setItems] = useState([]);
 
+  // Effect
   useEffect(() => {
     let d = new Date();
     let day =
@@ -55,8 +58,10 @@ const NewInvoice = () => {
       createdAt: [year, month, day].join('-'),
       paymentDue: initPaymentDue,
     });
+    // eslint-disable-next-line
   }, []);
 
+  // Destructure State
   const {
     createdAt,
     description,
@@ -64,6 +69,38 @@ const NewInvoice = () => {
     clientName,
     clientEmail,
   } = invoice;
+
+  // Bill From
+  const onSenderAddressChange = (e) =>
+    setSenderAddress({ ...senderAddress, [e.target.name]: e.target.value });
+
+  // Bill To
+  const onInvoiceChange = (e) => {
+    setInvoice({ ...invoice, [e.target.name]: e.target.value });
+  };
+
+  const onClientAddressChange = (e) =>
+    setClientAddress({ ...clientAddress, [e.target.name]: e.target.value });
+
+  // Payment Terms and Date
+  const onTermsClick = (e) => {
+    const tempPaymentTerms =
+      e.target.id === 'day'
+        ? 1
+        : e.target.id === 'week'
+        ? 7
+        : e.target.id === 'two-weeks'
+        ? 14
+        : 30;
+
+    const tempPaymentDue = incrementDate(createdAt, tempPaymentTerms + 1);
+
+    setInvoice({
+      ...invoice,
+      paymentTerms: tempPaymentTerms,
+      paymentDue: tempPaymentDue,
+    });
+  };
 
   const incrementDate = (date, amount) => {
     let months = {
@@ -92,23 +129,13 @@ const NewInvoice = () => {
     return dueString;
   };
 
-  const onInvoiceChange = (e) => {
-    setInvoice({ ...invoice, [e.target.name]: e.target.value });
-  };
-
-  const onSenderAddressChange = (e) =>
-    setSenderAddress({ ...senderAddress, [e.target.name]: e.target.value });
-
-  const onClientAddressChange = (e) =>
-    setClientAddress({ ...clientAddress, [e.target.name]: e.target.value });
-
+  // Items List and Add Item Btn
   const onAddItemClick = (e) => {
-    let temp =
-      items.length > 0 ? parseInt(items[items.length - 1].itemId) + 1 : 0;
+    let tempId = uuidv4();
 
     setItems(
       items.concat({
-        itemId: temp,
+        itemId: tempId,
         name: '',
         quantity: '',
         price: '',
@@ -117,58 +144,35 @@ const NewInvoice = () => {
     );
   };
 
-  // change the value in the child, trigger a state change in the parent for that specific item in items (found by matching id) causing a rerender of the child with the updated value to be passed to the input field.
-  // const onItemChange = (e) => {
-  //   setItems(items.concat({}))
-  // };
-
-  // on change in value in child state input field, update the child's state with the new value, then pass thisItem's state to updateItems function which triggers an updateItemsState in parent.
-
-  // Set the current item first onChange, and then later (somewhere) set Items. Maybe?
-  const updateItem = (thisItem) => {
-    setItem(thisItem);
-    let tempId = thisItem.itemId;
-    setItems(items.filter((item) => item.itemId !== tempId).concat(thisItem));
+  const updateItems = (thisItem) => {
+    const newItems = items.map((item) => {
+      if (item.itemId === thisItem.itemId) {
+        item = thisItem;
+      }
+      return item;
+    });
+    setItems(newItems);
   };
 
+  const deleteItem = (delState, thisItem) => {
+    if (delState) {
+      setItems(items.filter((item) => item.itemId !== thisItem.itemId));
+    }
+  };
+
+  // Discard, Save, Send
   const onMouseOver = (e) => {
     setInvoice({ ...invoice, status: e.target.name });
   };
 
-  const onTermsClick = (e) => {
-    const tempPaymentTerms =
-      e.target.id === 'day'
-        ? 1
-        : e.target.id === 'week'
-        ? 7
-        : e.target.id === 'two-weeks'
-        ? 14
-        : 30;
-
-    const tempPaymentDue = incrementDate(createdAt, tempPaymentTerms + 1);
-
-    setInvoice({
-      ...invoice,
-      paymentTerms: tempPaymentTerms,
-      paymentDue: tempPaymentDue,
-    });
-  };
-
-  const onDeleteItemClick = (e) => {
-    console.log(e.target.id);
-    console.log(items);
-    let temp = parseInt(e.target.id);
-    setItems(items.filter((item) => item.itemId !== temp));
-  };
-
   const onSubmit = (e) => {
-    console.log(items);
     e.preventDefault();
     invoice.status === 'discard'
       ? discardClick()
       : addInvoice(invoice, senderAddress, clientAddress, items);
   };
 
+  // Render
   return (
     <div id='new-invoice-modal'>
       <p id='new-invoice-title'>New Invoice</p>
@@ -359,56 +363,15 @@ const NewInvoice = () => {
             <p id='header5'></p>
           </div>
           {items.length > 0
-            ? items.map((item, i) => (
+            ? items.map((item) => (
                 <ItemsCard
-                  key={i}
+                  key={item.itemId}
                   item={item}
-                  onDelBtnClick={onDeleteItemClick}
-                  // onItemChange={onItemChange}
-                  updateItem={updateItem}
+                  deleteItem={deleteItem}
+                  updateItems={updateItems}
                 />
               ))
             : null}
-          {/* <div id='modal-item-list-inputs'>
-            <input
-              type='text'
-              id='item-name-input'
-              name='name'
-              autoComplete='off'
-              value={item.name}
-              onChange={onItemChange}
-            />
-            <input
-              type='number'
-              min='1'
-              id='qty-input'
-              name='quantity'
-              autoComplete='off'
-              value={item.quantity}
-              onChange={onItemChange}
-            />
-            <input
-              type='number'
-              min='0.01'
-              step='0.01'
-              id='price-input'
-              name='price'
-              autoComplete='off'
-              value={item.price}
-              onChange={onItemChange}
-            />
-            <p className='td-beautiful'>
-              {item.quantity > 0 && item.price > 0
-                ? (item.quantity * item.price).toFixed(2)
-                : 0}
-            </p>
-            <div style={{ visibility: 'hidden' }}>
-              <img
-                src={require('../../images/icon-delete.svg').default}
-                alt='icon-delete'
-              />
-            </div>
-          </div> */}
           <div id='modal-add-new-item' onClick={onAddItemClick}>
             <img
               src={require('../../images/icon-plus.svg').default}

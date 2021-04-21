@@ -13,6 +13,7 @@ const Details = ({ currentUser }) => {
     deleteButtonClick,
     editButtonClick,
     goBackClick,
+    onMarkAsPaidClick,
   } = invoiceContext;
 
   const [year, setYear] = useState('');
@@ -38,7 +39,8 @@ const Details = ({ currentUser }) => {
     setDueYear(dD.substring(11, 15));
     setDueMonth(dD.substring(4, 7));
     setDueDay(dD.substring(8, 10));
-  });
+    // eslint-disable-next-line
+  }, []);
 
   const {
     status,
@@ -76,14 +78,37 @@ const Details = ({ currentUser }) => {
             </p>
           </div>
         </div>
-        <div id='dh-options'>
-          <div id='edit' onClick={editButtonClick}>
+        <div
+          id='dh-options'
+          style={
+            status === 'paid'
+              ? {
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'flex-end',
+                }
+              : { display: 'flex' }
+          }
+        >
+          <div
+            id='edit'
+            className='form-btn'
+            onClick={editButtonClick}
+            style={
+              status === 'paid' ? { marginRight: '5px' } : { marginRight: '0' }
+            }
+          >
             <p>Edit</p>
           </div>
-          <div id='delete' onClick={deleteButtonClick}>
+          <div id='delete' className='form-btn' onClick={deleteButtonClick}>
             <p>Delete</p>
           </div>
-          <div id='mark-as-paid'>
+          <div
+            id='mark-as-paid'
+            className='form-btn'
+            onClick={onMarkAsPaidClick}
+            style={status === 'paid' ? { display: 'none' } : { display: '' }}
+          >
             <p>Mark as Paid</p>
           </div>
         </div>

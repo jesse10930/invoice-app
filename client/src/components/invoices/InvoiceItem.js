@@ -20,7 +20,8 @@ const InvoiceItem = ({ invoice }) => {
     setYear(d.substring(11, 15));
     setMonth(d.substring(4, 7));
     setDay(d.substring(8, 10));
-  });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className='invoice-item' onClick={() => invoiceDetailsClick(invoice)}>

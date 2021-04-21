@@ -227,7 +227,6 @@ body {
           cursor: pointer;
 
           #filter-choices {
-            // display: block;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -717,17 +716,12 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 24px;
           background: #f9fafe;
           color: #7e88c3;
 
-          p {
-            font-size: 12px;
-            font-weight: 700;
-          }
-
           &:hover {
             cursor: pointer;
+            background: #dfe3fa;
           }
         }
 
@@ -736,17 +730,12 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 24px;
           background: #ec5757;
           color: #ffffff;
 
-          p {
-            font-size: 12px;
-            font-weight: 700;
-          }
-
           &:hover {
             cursor: pointer;
+            background: #ff9797;
           }
         }
 
@@ -755,17 +744,12 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 24px;
           background: #7c5dfa;
           color: #ffffff;
 
-          p {
-            font-size: 12px;
-            font-weight: 700;
-          }
-
           &:hover {
             cursor: pointer;
+            background: #9277ff;
           }
         }
       }
@@ -1134,6 +1118,7 @@ body {
 
           &:hover {
             cursor: pointer;
+            background: #dfe3fa;
           }
         }
 
@@ -1154,6 +1139,7 @@ body {
 
           &:hover {
             cursor: pointer;
+            background: #ff9797;
           }
         }
       }

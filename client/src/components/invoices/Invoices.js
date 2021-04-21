@@ -12,7 +12,7 @@ const Invoices = () => {
 
   return !invoiceDetails ? (
     <div id='invoices'>
-      {invoices ? (
+      {invoices.length > 0 ? (
         <div id='invoice-list'>
           {filtered.map((invoice, i) => (
             <InvoiceItem key={i} invoice={invoice} />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ItemsCard = ({ item, onDelBtnClick, updateItem }) => {
+const ItemsCard = ({ item, deleteItem, updateItems }) => {
   const { name, quantity, price, total, itemId } = item;
 
   const [thisItem, setThisItem] = useState({
@@ -11,9 +11,15 @@ const ItemsCard = ({ item, onDelBtnClick, updateItem }) => {
     itemId: itemId,
   });
 
+  const [delState, setDelState] = useState(false);
+
   useEffect(() => {
-    updateItem(thisItem);
+    updateItems(thisItem);
   }, [thisItem]);
+
+  useEffect(() => {
+    deleteItem(delState, thisItem);
+  }, [delState]);
 
   const onThisItemChange = (e) => {
     let tempTot;
@@ -26,7 +32,7 @@ const ItemsCard = ({ item, onDelBtnClick, updateItem }) => {
         parseFloat(e.target.value) * parseFloat(thisItem.quantity)
       ).toFixed(2);
     } else {
-      tempTot = 0;
+      tempTot = thisItem.total;
     }
     setThisItem({
       ...thisItem,
@@ -35,42 +41,43 @@ const ItemsCard = ({ item, onDelBtnClick, updateItem }) => {
     });
   };
 
+  const onThisItemDelBtnClick = (e) => {
+    setDelState(true);
+  };
+
   return (
-    <div id={'modal-item-list-inputs-' + { itemId }}>
+    <div id={'modal-item-list-inputs-' + itemId}>
       <input
         type='text'
-        id={'item-name-input-' + { itemId }}
+        id={'item-name-input-' + itemId}
         style={{ width: '215px' }}
         name='name'
         required
         autoComplete='off'
         value={thisItem.name}
-        // onChange={onItemChange}
         onChange={onThisItemChange}
       />
       <input
         type='number'
         min='1'
-        id={'qty-input-' + { itemId }}
+        id={'qty-input-' + itemId}
         style={{ width: '50px' }}
         name='quantity'
         required
         autoComplete='off'
         value={thisItem.quantity}
-        // onChange={onItemChange}
         onChange={onThisItemChange}
       />
       <input
         type='number'
         min='0.01'
         step='0.01'
-        id={'price-input-' + { itemId }}
+        id={'price-input-' + itemId}
         style={{ width: '50px' }}
         name='price'
         required
         autoComplete='off'
         value={thisItem.price}
-        // onChange={onItemChange}
         onChange={onThisItemChange}
       />
       <p className='td-beautiful'>
@@ -78,7 +85,7 @@ const ItemsCard = ({ item, onDelBtnClick, updateItem }) => {
           ? (thisItem.quantity * thisItem.price).toFixed(2)
           : 0.0}
       </p>
-      <div onClick={onDelBtnClick}>
+      <div onClick={onThisItemDelBtnClick}>
         <img
           id={itemId}
           src={require('../../images/icon-delete.svg').default}

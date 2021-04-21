@@ -10,6 +10,9 @@ import {
   EDIT_INVOICE_FORM,
   DISCARD,
   FILTER_INVOICES,
+  MARK_PAID,
+  CANCEL_DELETE,
+  CONFIRM_DELETE,
 } from '../types';
 
 const InvoiceState = (props) => {
@@ -296,9 +299,21 @@ const InvoiceState = (props) => {
     dispatch({ type: DELETE_CONFIRMATION, payload: true });
   };
 
+  // Click on Delete Button
+  const cancelDeleteClick = () => {
+    dispatch({ type: CANCEL_DELETE, payload: false });
+  };
+
   // Click on Edit Button
   const editButtonClick = () => {
     dispatch({ type: EDIT_INVOICE_FORM, payload: true });
+  };
+
+  // Click on Mark as Paid Button
+  const onMarkAsPaidClick = () => {
+    const newCurrUser = state.currentUser;
+    newCurrUser.status = 'paid';
+    dispatch({ type: MARK_PAID, payload: newCurrUser });
   };
 
   // Click on Discard Button
@@ -319,6 +334,14 @@ const InvoiceState = (props) => {
     dispatch({ type: FILTER_INVOICES, payload: tempFilters });
   };
 
+  // Confirm Delete of Invoice
+  const onConfirmDeleteClick = (currentUser) => {
+    let newInvoices = state.invoices.filter(
+      (invoice) => invoice.id !== currentUser.id
+    );
+    dispatch({ type: CONFIRM_DELETE, payload: newInvoices });
+  };
+
   return (
     <InvoiceContext.Provider
       value={{
@@ -337,6 +360,9 @@ const InvoiceState = (props) => {
         editButtonClick,
         discardClick,
         filterCheck,
+        onMarkAsPaidClick,
+        cancelDeleteClick,
+        onConfirmDeleteClick,
       }}
     >
       {props.children}
