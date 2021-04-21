@@ -9,3 +9,5 @@ export const FILTER_INVOICES = 'FILTER_INVOICES';
 export const MARK_PAID = 'MARK_PAID';
 export const CANCEL_DELETE = 'CANCEL_DELETE';
 export const CONFIRM_DELETE = 'CONFIRM_DELETE';
+export const CANCEL_EDIT = 'CANCEL_EDIT';
+export const SAVE_CHANGES = 'SAVE_CHANGES';

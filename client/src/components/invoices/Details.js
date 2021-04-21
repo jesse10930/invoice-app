@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import EditInvoice from '../modals/EditInvoice';
-// import NewInvoice from '../modals/NewInvoice';
+// import EditInvoice from '../modals/EditInvoice';
+import NewInvoice from '../modals/NewInvoice';
 import DeleteModal from '../modals/DeleteModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 
@@ -215,8 +215,8 @@ const Details = ({ currentUser }) => {
           </div>
         </div>
       </div>
-      {editInvoiceForm && <EditInvoice />}
-      {/* {editInvoiceForm && <NewInvoice />} */}
+      {/* {editInvoiceForm && <EditInvoice />} */}
+      {editInvoiceForm && <NewInvoice />}
       {deleteConfirmation && <DeleteModal />}
     </div>
   );

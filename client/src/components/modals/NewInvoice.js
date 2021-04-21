@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
@@ -6,9 +6,15 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 const NewInvoice = () => {
   // Context
   const invoiceContext = useContext(InvoiceContext);
-  const { addInvoice, discardClick } = invoiceContext;
+  const {
+    addInvoice,
+    discardClick,
+    currentUser,
+    cancelEditClick,
+    saveChangesClick,
+  } = invoiceContext;
 
-  // State
+  // Set Initial State
   const [invoice, setInvoice] = useState({
     id: '',
     createdAt: '',
@@ -32,16 +38,19 @@ const NewInvoice = () => {
     postCode: '',
     country: '',
   });
-  // const [item, setItem] = useState({
-  //   itemId: '',
-  //   name: '',
-  //   quantity: '',
-  //   price: '',
-  //   total: 0,
-  // });
   const [items, setItems] = useState([]);
+  const [save, setSave] = useState(true);
 
-  // Effect
+  // Destructure State
+  const {
+    createdAt,
+    description,
+    paymentTerms,
+    clientName,
+    clientEmail,
+  } = invoice;
+
+  // Effect to set date/payment due
   useEffect(() => {
     let d = new Date();
     let day =
@@ -61,14 +70,34 @@ const NewInvoice = () => {
     // eslint-disable-next-line
   }, []);
 
-  // Destructure State
-  const {
-    createdAt,
-    description,
-    paymentTerms,
-    clientName,
-    clientEmail,
-  } = invoice;
+  // effect to Set State if CurrentUser
+  useEffect(() => {
+    if (currentUser) {
+      setInvoice({
+        id: currentUser.id,
+        createdAt: currentUser.createdAt,
+        paymentDue: currentUser.paymentDue,
+        description: currentUser.description,
+        paymentTerms: currentUser.paymentTerms,
+        clientName: currentUser.clientName,
+        clientEmail: currentUser.clientEmail,
+        status: currentUser.status,
+        total: currentUser.total,
+      });
+
+      setSenderAddress(currentUser.senderAddress);
+
+      setClientAddress(currentUser.clientAddress);
+
+      let newCurUserItems = currentUser.items.map((item) => ({
+        ...item,
+        itemId: uuidv4(),
+      }));
+
+      setItems(newCurUserItems);
+    }
+    // eslint-disable-next-line
+  }, []);
 
   // Bill From
   const onSenderAddressChange = (e) =>
@@ -160,22 +189,36 @@ const NewInvoice = () => {
     }
   };
 
-  // Discard, Save, Send
+  // Discard, Save, Send btns
   const onMouseOver = (e) => {
     setInvoice({ ...invoice, status: e.target.name });
   };
 
+  // Cancel Button
+  const onMouseEnter = (e) => {
+    setSave(false);
+  };
+  const onMouseOut = (e) => {
+    setSave(true);
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    invoice.status === 'discard'
-      ? discardClick()
-      : addInvoice(invoice, senderAddress, clientAddress, items);
+    !currentUser
+      ? invoice.status === 'discard'
+        ? discardClick()
+        : addInvoice(invoice, senderAddress, clientAddress, items)
+      : !save
+      ? cancelEditClick()
+      : saveChangesClick(invoice, senderAddress, clientAddress, items);
   };
 
   // Render
   return (
     <div id='new-invoice-modal'>
-      <p id='new-invoice-title'>New Invoice</p>
+      <p id='new-invoice-title'>
+        {currentUser ? `Edit ${currentUser.id}` : 'New Invoice'}
+      </p>
       <form onSubmit={onSubmit}>
         <div id='ni-bill-from'>
           <p className='modal-sec-title'>Bill From</p>
@@ -381,30 +424,55 @@ const NewInvoice = () => {
           </div>
         </div>
         <div id='ni-bot-btns'>
-          <input
-            type='submit'
-            name='discard'
-            value='Discard'
-            className='form-btn discard'
-            onMouseOver={onMouseOver}
-            formNoValidate
-          />
-          <div id='save-btns'>
-            <input
-              type='submit'
-              name='draft'
-              value='Save as Draft'
-              className='form-btn draft'
-              onMouseOver={onMouseOver}
-            />
-            <input
-              type='submit'
-              name='pending'
-              value='Save & Send'
-              className='form-btn send'
-              onMouseOver={onMouseOver}
-            />
-          </div>
+          {!currentUser ? (
+            <Fragment>
+              <input
+                type='submit'
+                name='discard'
+                value='Discard'
+                className='form-btn discard'
+                onMouseOver={onMouseOver}
+                formNoValidate
+              />
+              <div id='save-btns'>
+                <input
+                  type='submit'
+                  name='draft'
+                  value='Save as Draft'
+                  className='form-btn draft'
+                  onMouseOver={onMouseOver}
+                />
+                <input
+                  type='submit'
+                  name='pending'
+                  value='Save & Send'
+                  className='form-btn send'
+                  onMouseOver={onMouseOver}
+                />
+              </div>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <div id='change-btns'>
+                <input
+                  type='submit'
+                  name='cancel'
+                  value='Cancel'
+                  className='form-btn cancel'
+                  onMouseEnter={onMouseEnter}
+                  onMouseOut={onMouseOut}
+                  formNoValidate
+                />
+                <input
+                  type='submit'
+                  name='changes'
+                  value='Save Changes'
+                  className='form-btn change'
+                  // onMouseOver={onMouseOver}
+                />
+              </div>
+            </Fragment>
+          )}
         </div>
       </form>
     </div>

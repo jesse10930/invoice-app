@@ -13,6 +13,8 @@ import {
   MARK_PAID,
   CANCEL_DELETE,
   CONFIRM_DELETE,
+  CANCEL_EDIT,
+  SAVE_CHANGES,
 } from '../types';
 
 const InvoiceState = (props) => {
@@ -299,7 +301,7 @@ const InvoiceState = (props) => {
     dispatch({ type: DELETE_CONFIRMATION, payload: true });
   };
 
-  // Click on Delete Button
+  // Click on Cancel Delete Button
   const cancelDeleteClick = () => {
     dispatch({ type: CANCEL_DELETE, payload: false });
   };
@@ -342,6 +344,35 @@ const InvoiceState = (props) => {
     dispatch({ type: CONFIRM_DELETE, payload: newInvoices });
   };
 
+  // Cancel Edit Click
+  const cancelEditClick = () => {
+    dispatch({ type: CANCEL_EDIT, payload: false });
+  };
+
+  // Save Changes Click
+  const saveChangesClick = (
+    updatedInvoice,
+    updatedSenderAddress,
+    updatedClientAddress,
+    updatedItems
+  ) => {
+    updatedInvoice.senderAddress = updatedSenderAddress;
+    updatedInvoice.clientAddress = updatedClientAddress;
+    updatedInvoice.items = updatedItems;
+    // invoice.total = tempTotal;
+
+    let newInvoices = state.invoices.map((invoice) => {
+      if (invoice.id === updatedInvoice.id) {
+        invoice = updatedInvoice;
+      }
+      return invoice;
+    });
+
+    console.log(newInvoices);
+
+    dispatch({ type: SAVE_CHANGES, payload: newInvoices });
+  };
+
   return (
     <InvoiceContext.Provider
       value={{
@@ -363,6 +394,8 @@ const InvoiceState = (props) => {
         onMarkAsPaidClick,
         cancelDeleteClick,
         onConfirmDeleteClick,
+        cancelEditClick,
+        saveChangesClick,
       }}
     >
       {props.children}

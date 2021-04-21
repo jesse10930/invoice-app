@@ -10,6 +10,8 @@ import {
   MARK_PAID,
   CANCEL_DELETE,
   CONFIRM_DELETE,
+  CANCEL_EDIT,
+  SAVE_CHANGES,
 } from '../types';
 
 const invoiceReducer = (state, action) => {
@@ -76,6 +78,17 @@ const invoiceReducer = (state, action) => {
         filters: ['draft', 'pending', 'paid'],
         deleteConfirmation: false,
         invoices: action.payload,
+      };
+    case CANCEL_EDIT:
+      return {
+        ...state,
+        editInvoiceForm: action.payload,
+      };
+    case SAVE_CHANGES:
+      return {
+        ...state,
+        invoices: action.payload,
+        editInvoiceForm: false,
       };
     default:
       return state;
