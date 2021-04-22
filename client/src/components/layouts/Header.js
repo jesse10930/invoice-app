@@ -11,11 +11,16 @@ const Header = () => {
     newInvoiceClick,
     invoiceDetails,
     filterCheck,
+    filters,
   } = invoiceContext;
 
   const onCheck = (e) => {
     filterCheck(e.target.value);
   };
+
+  const filtered = invoices.filter((invoice) =>
+    filters.includes(invoice.status)
+  );
 
   return (
     !invoiceDetails && (
@@ -26,7 +31,7 @@ const Header = () => {
         <div id='header-left'>
           <h1>Invoices</h1>
           {invoices ? (
-            <p>There are {invoices.length} total invoices</p>
+            <p>There are {filtered.length} total invoices</p>
           ) : (
             <p>There are 0 total invoices</p>
           )}

@@ -12,7 +12,7 @@ const Invoices = () => {
 
   return !invoiceDetails ? (
     <div id='invoices'>
-      {invoices.length > 0 ? (
+      {filtered.length > 0 ? (
         <div id='invoice-list'>
           {filtered.map((invoice, i) => (
             <InvoiceItem key={i} invoice={invoice} />
@@ -28,7 +28,8 @@ const Invoices = () => {
           <p>
             Create an invoice by clicking the{' '}
             <span style={{ fontWeight: '700' }}>New Invoice</span> button and
-            get started
+            get started, or change the{' '}
+            <span style={{ fontWeight: '700' }}>Filter by Status</span>
           </p>
         </div>
       )}

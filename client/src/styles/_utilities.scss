@@ -304,8 +304,13 @@ input[type='email'] {
         font-weight: 700;
       }
 
-      img:hover {
-        cursor: pointer;
+      svg {
+        fill: #888eb0;
+
+        &:hover {
+          cursor: pointer;
+          fill: #ec5757;
+        }
       }
     }
 
