@@ -6,12 +6,22 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 const Invoices = () => {
   const invoiceContext = useContext(InvoiceContext);
 
-  const { invoices, currentUser, invoiceDetails, filters } = invoiceContext;
+  const {
+    invoices,
+    currentUser,
+    invoiceDetails,
+    filters,
+    newInvoiceForm,
+  } = invoiceContext;
 
   let filtered = invoices.filter((invoice) => filters.includes(invoice.status));
 
   return !invoiceDetails ? (
-    <div id='invoices'>
+    <div
+      id='invoices'
+      className={newInvoiceForm ? 'modal-container' : null}
+      style={newInvoiceForm ? { marginTop: '120px' } : null}
+    >
       {filtered.length > 0 ? (
         <div id='invoice-list'>
           {filtered.map((invoice, i) => (

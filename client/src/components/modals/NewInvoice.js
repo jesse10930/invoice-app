@@ -215,266 +215,268 @@ const NewInvoice = () => {
 
   // Render
   return (
-    <div id='new-invoice-modal'>
-      <p id='new-invoice-title'>
-        {currentUser ? `Edit ${currentUser.id}` : 'New Invoice'}
-      </p>
-      <form onSubmit={onSubmit}>
-        <div id='ni-bill-from'>
-          <p className='modal-sec-title'>Bill From</p>
-          <div id='street-address'>
+    <div id='new-invoice-modal' className='back-drop'>
+      <div id='tester-for-modal'>
+        <p id='new-invoice-title'>
+          {currentUser ? `Edit ${currentUser.id}` : 'New Invoice'}
+        </p>
+        <form onSubmit={onSubmit}>
+          <div id='ni-bill-from'>
+            <p className='modal-sec-title'>Bill From</p>
+            <div id='street-address'>
+              <p className='td-beautiful'>Street Address</p>
+              <input
+                type='text'
+                id='ni-sa-input'
+                name='street'
+                autoComplete='off'
+                required
+                value={senderAddress.street}
+                onChange={onSenderAddressChange}
+              />
+            </div>
+            <div id='ni-city-zip-country'>
+              <div id='city'>
+                <p className='td-beautiful'>City</p>
+                <input
+                  type='text'
+                  id='ni-from-city'
+                  name='city'
+                  autoComplete='off'
+                  required
+                  value={senderAddress.city}
+                  onChange={onSenderAddressChange}
+                />
+              </div>
+              <div id='zip'>
+                <p className='td-beautiful'>Post Code</p>
+                <input
+                  type='text'
+                  id='ni-from-zip'
+                  name='postCode'
+                  autoComplete='off'
+                  required
+                  value={senderAddress.postCode}
+                  onChange={onSenderAddressChange}
+                />
+              </div>
+              <div id='country'>
+                <p className='td-beautiful'>Country</p>
+                <input
+                  type='text'
+                  id='ni-from-country'
+                  name='country'
+                  autoComplete='off'
+                  required
+                  value={senderAddress.country}
+                  onChange={onSenderAddressChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div id='ni-bill-to'>
+            <p className='modal-sec-title'>Bill To</p>
+            <p className='td-beautiful'>Client's Name</p>
+            <input
+              type='text'
+              name='clientName'
+              autoComplete='off'
+              required
+              value={clientName}
+              onChange={onInvoiceChange}
+            />
+            <p className='td-beautiful'>Client's Email</p>
+            <input
+              type='email'
+              name='clientEmail'
+              autoComplete='off'
+              placeholder='e.g. email@example.com'
+              required
+              value={clientEmail}
+              onChange={onInvoiceChange}
+            />
             <p className='td-beautiful'>Street Address</p>
             <input
               type='text'
-              id='ni-sa-input'
               name='street'
               autoComplete='off'
               required
-              value={senderAddress.street}
-              onChange={onSenderAddressChange}
+              value={clientAddress.street}
+              onChange={onClientAddressChange}
+            />
+            <div id='bt-cityzipcountry'>
+              <div>
+                <p className='td-beautiful'>City</p>
+                <input
+                  type='text'
+                  name='city'
+                  autoComplete='off'
+                  required
+                  value={clientAddress.city}
+                  onChange={onClientAddressChange}
+                />
+              </div>
+              <div>
+                <p className='td-beautiful'>Post Code</p>
+                <input
+                  type='text'
+                  name='postCode'
+                  autoComplete='off'
+                  required
+                  value={clientAddress.postCode}
+                  onChange={onClientAddressChange}
+                />
+              </div>
+              <div>
+                <p className='td-beautiful'>Country</p>
+                <input
+                  type='text'
+                  name='country'
+                  autoComplete='off'
+                  required
+                  value={clientAddress.country}
+                  onChange={onClientAddressChange}
+                />
+              </div>
+            </div>
+            <div id='td-date-terms'>
+              <div id='td-date'>
+                <p className='td-beautiful'>Invoice Date</p>
+                <input
+                  type='date'
+                  name='createdAt'
+                  autoComplete='off'
+                  required
+                  value={createdAt}
+                  onChange={onInvoiceChange}
+                />
+              </div>
+              <div id='td-terms'>
+                <p className='td-beautiful'>Payment Terms</p>
+                <div id='payment-terms-drop'>
+                  <div id='term-arrow'>
+                    <p>
+                      {paymentTerms === 1
+                        ? 'Net 1 day'
+                        : paymentTerms === 7
+                        ? 'Net 7 days'
+                        : paymentTerms === 14
+                        ? 'Net 14 days'
+                        : 'Net 30 days'}
+                    </p>
+                    <img
+                      src={require('../../images/icon-arrow-down.svg').default}
+                      alt='icon-arrow-down'
+                    />
+                  </div>
+                  <div id='dropdown-items' onClick={onTermsClick}>
+                    <p id='day'>Net 1 day</p>
+                    <p id='week'>Net 7 days</p>
+                    <p id='two-weeks'>Net 14 days</p>
+                    <p id='month'>Net 30 days</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className='td-beautiful'>Project Description</p>
+            <input
+              type='text'
+              name='description'
+              autoComplete='off'
+              placeholder='e.g. Graphic Design Service'
+              required
+              value={description}
+              onChange={onInvoiceChange}
             />
           </div>
-          <div id='ni-city-zip-country'>
-            <div id='city'>
-              <p className='td-beautiful'>City</p>
-              <input
-                type='text'
-                id='ni-from-city'
-                name='city'
-                autoComplete='off'
-                required
-                value={senderAddress.city}
-                onChange={onSenderAddressChange}
-              />
+          <div id='ni-item-list'>
+            <p className='modal-big-title'>Item List</p>
+            <div id='modal-item-list-header'>
+              <p id='header1' className='td-beautiful'>
+                Item Name
+              </p>
+              <p id='header2' className='td-beautiful'>
+                Qty.
+              </p>
+              <p id='header3' className='td-beautiful'>
+                Price
+              </p>
+              <p id='header4' className='td-beautiful'>
+                Total
+              </p>
+              <p id='header5'></p>
             </div>
-            <div id='zip'>
-              <p className='td-beautiful'>Post Code</p>
-              <input
-                type='text'
-                id='ni-from-zip'
-                name='postCode'
-                autoComplete='off'
-                required
-                value={senderAddress.postCode}
-                onChange={onSenderAddressChange}
-              />
-            </div>
-            <div id='country'>
-              <p className='td-beautiful'>Country</p>
-              <input
-                type='text'
-                id='ni-from-country'
-                name='country'
-                autoComplete='off'
-                required
-                value={senderAddress.country}
-                onChange={onSenderAddressChange}
-              />
-            </div>
-          </div>
-        </div>
-        <div id='ni-bill-to'>
-          <p className='modal-sec-title'>Bill To</p>
-          <p className='td-beautiful'>Client's Name</p>
-          <input
-            type='text'
-            name='clientName'
-            autoComplete='off'
-            required
-            value={clientName}
-            onChange={onInvoiceChange}
-          />
-          <p className='td-beautiful'>Client's Email</p>
-          <input
-            type='email'
-            name='clientEmail'
-            autoComplete='off'
-            placeholder='e.g. email@example.com'
-            required
-            value={clientEmail}
-            onChange={onInvoiceChange}
-          />
-          <p className='td-beautiful'>Street Address</p>
-          <input
-            type='text'
-            name='street'
-            autoComplete='off'
-            required
-            value={clientAddress.street}
-            onChange={onClientAddressChange}
-          />
-          <div id='bt-cityzipcountry'>
-            <div>
-              <p className='td-beautiful'>City</p>
-              <input
-                type='text'
-                name='city'
-                autoComplete='off'
-                required
-                value={clientAddress.city}
-                onChange={onClientAddressChange}
-              />
-            </div>
-            <div>
-              <p className='td-beautiful'>Post Code</p>
-              <input
-                type='text'
-                name='postCode'
-                autoComplete='off'
-                required
-                value={clientAddress.postCode}
-                onChange={onClientAddressChange}
-              />
-            </div>
-            <div>
-              <p className='td-beautiful'>Country</p>
-              <input
-                type='text'
-                name='country'
-                autoComplete='off'
-                required
-                value={clientAddress.country}
-                onChange={onClientAddressChange}
-              />
-            </div>
-          </div>
-          <div id='td-date-terms'>
-            <div id='td-date'>
-              <p className='td-beautiful'>Invoice Date</p>
-              <input
-                type='date'
-                name='createdAt'
-                autoComplete='off'
-                required
-                value={createdAt}
-                onChange={onInvoiceChange}
-              />
-            </div>
-            <div id='td-terms'>
-              <p className='td-beautiful'>Payment Terms</p>
-              <div id='payment-terms-drop'>
-                <div id='term-arrow'>
-                  <p>
-                    {paymentTerms === 1
-                      ? 'Net 1 day'
-                      : paymentTerms === 7
-                      ? 'Net 7 days'
-                      : paymentTerms === 14
-                      ? 'Net 14 days'
-                      : 'Net 30 days'}
-                  </p>
-                  <img
-                    src={require('../../images/icon-arrow-down.svg').default}
-                    alt='icon-arrow-down'
+            {items.length > 0
+              ? items.map((item) => (
+                  <ItemsCard
+                    key={item.itemId}
+                    item={item}
+                    deleteItem={deleteItem}
+                    updateItems={updateItems}
                   />
-                </div>
-                <div id='dropdown-items' onClick={onTermsClick}>
-                  <p id='day'>Net 1 day</p>
-                  <p id='week'>Net 7 days</p>
-                  <p id='two-weeks'>Net 14 days</p>
-                  <p id='month'>Net 30 days</p>
-                </div>
-              </div>
+                ))
+              : null}
+            <div id='modal-add-new-item' onClick={onAddItemClick}>
+              <img
+                src={require('../../images/icon-plus.svg').default}
+                alt='icon-plus'
+              />
+              <p style={{ marginLeft: '5px' }}>Add New Item</p>
             </div>
           </div>
-          <p className='td-beautiful'>Project Description</p>
-          <input
-            type='text'
-            name='description'
-            autoComplete='off'
-            placeholder='e.g. Graphic Design Service'
-            required
-            value={description}
-            onChange={onInvoiceChange}
-          />
-        </div>
-        <div id='ni-item-list'>
-          <p className='modal-big-title'>Item List</p>
-          <div id='modal-item-list-header'>
-            <p id='header1' className='td-beautiful'>
-              Item Name
-            </p>
-            <p id='header2' className='td-beautiful'>
-              Qty.
-            </p>
-            <p id='header3' className='td-beautiful'>
-              Price
-            </p>
-            <p id='header4' className='td-beautiful'>
-              Total
-            </p>
-            <p id='header5'></p>
-          </div>
-          {items.length > 0
-            ? items.map((item) => (
-                <ItemsCard
-                  key={item.itemId}
-                  item={item}
-                  deleteItem={deleteItem}
-                  updateItems={updateItems}
-                />
-              ))
-            : null}
-          <div id='modal-add-new-item' onClick={onAddItemClick}>
-            <img
-              src={require('../../images/icon-plus.svg').default}
-              alt='icon-plus'
-            />
-            <p style={{ marginLeft: '5px' }}>Add New Item</p>
-          </div>
-        </div>
-        <div id='ni-bot-btns'>
-          {!currentUser ? (
-            <Fragment>
-              <input
-                type='submit'
-                name='discard'
-                value='Discard'
-                className='form-btn discard'
-                onMouseOver={onMouseOver}
-                formNoValidate
-              />
-              <div id='save-btns'>
+          <div id='ni-bot-btns'>
+            {!currentUser ? (
+              <Fragment>
                 <input
                   type='submit'
-                  name='draft'
-                  value='Save as Draft'
-                  className='form-btn draft'
+                  name='discard'
+                  value='Discard'
+                  className='form-btn discard'
                   onMouseOver={onMouseOver}
-                />
-                <input
-                  type='submit'
-                  name='pending'
-                  value='Save & Send'
-                  className='form-btn send'
-                  onMouseOver={onMouseOver}
-                />
-              </div>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <div id='change-btns'>
-                <input
-                  type='submit'
-                  name='cancel'
-                  value='Cancel'
-                  className='form-btn cancel'
-                  onMouseEnter={onMouseEnter}
-                  onMouseOut={onMouseOut}
                   formNoValidate
                 />
-                <input
-                  type='submit'
-                  name='changes'
-                  value='Save Changes'
-                  className='form-btn change'
-                  // onMouseOver={onMouseOver}
-                />
-              </div>
-            </Fragment>
-          )}
-        </div>
-      </form>
+                <div id='save-btns'>
+                  <input
+                    type='submit'
+                    name='draft'
+                    value='Save as Draft'
+                    className='form-btn draft'
+                    onMouseOver={onMouseOver}
+                  />
+                  <input
+                    type='submit'
+                    name='pending'
+                    value='Save & Send'
+                    className='form-btn send'
+                    onMouseOver={onMouseOver}
+                  />
+                </div>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <div id='change-btns'>
+                  <input
+                    type='submit'
+                    name='cancel'
+                    value='Cancel'
+                    className='form-btn cancel'
+                    onMouseEnter={onMouseEnter}
+                    onMouseOut={onMouseOut}
+                    formNoValidate
+                  />
+                  <input
+                    type='submit'
+                    name='changes'
+                    value='Save Changes'
+                    className='form-btn change'
+                    // onMouseOver={onMouseOver}
+                  />
+                </div>
+              </Fragment>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
