@@ -32,10 +32,18 @@
 
   .dot {
     background-color: #373b53;
+
+    &.dark {
+      background-color: #dfe3fa;
+    }
   }
 
   .item-status {
     color: #373b53;
+
+    &.dark {
+      color: #dfe3fa;
+    }
   }
 }
 
@@ -45,6 +53,10 @@
   font-weight: 700;
   color: #0c0e16;
   line-height: 24px;
+
+  &.dark {
+    color: #ffffff;
+  }
 }
 
 // Terms-Date Small Letter
@@ -53,6 +65,10 @@
   font-weight: 500;
   color: #7e88c3;
   line-height: 24px;
+
+  &.dark {
+    color: #dfe3fa;
+  }
 }
 
 // Modal Title
@@ -450,16 +466,28 @@ input[type='email'] {
   flex-direction: column;
   justify-content: space-between;
 
+  &.dark {
+    background: #1e2139;
+  }
+
   #dm-heading {
     font-size: 24px;
     font-weight: 700;
     color: #0c0e16;
+
+    &.dark {
+      color: #ffffff;
+    }
   }
 
   #dm-question {
     font-size: 16px;
     font-weight: 500;
     color: #888eb0;
+
+    &.dark {
+      color: #dfe3fa;
+    }
   }
 
   #dm-btns {
@@ -476,10 +504,24 @@ input[type='email'] {
       justify-content: center;
       align-items: center;
 
+      &.dark {
+        background: #252945;
+
+        &:hover {
+          #cancel {
+            color: #7e88c3;
+          }
+        }
+      }
+
       #cancel {
         font-size: 12px;
         font-weight: 700;
         color: #7e88c3;
+
+        &.dark {
+          color: #dfe3fa;
+        }
       }
 
       &:hover {

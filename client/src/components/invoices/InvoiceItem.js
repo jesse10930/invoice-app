@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import InvoiceContext from '../../context/invoice/invoiceContext';
+import DarkContext from '../../context/dark/darkContext';
 
 const InvoiceItem = ({ invoice }) => {
   const invoiceContext = useContext(InvoiceContext);
+  const darkContext = useContext(DarkContext);
+
+  const { dark } = darkContext;
 
   const { invoiceDetailsClick } = invoiceContext;
 
@@ -24,16 +28,21 @@ const InvoiceItem = ({ invoice }) => {
   }, []);
 
   return (
-    <div className='invoice-item' onClick={() => invoiceDetailsClick(invoice)}>
-      <h3 className='item-id'>
+    <div
+      className={dark ? 'dark invoice-item' : 'invoice-item'}
+      onClick={() => invoiceDetailsClick(invoice)}
+    >
+      <h3 className={dark ? 'dark item-id' : 'item-id'}>
         <span style={{ color: '#7e88c3' }}>#</span>
         {id}
       </h3>
-      <p className='item-created-at'>
+      <p className={dark ? 'dark item-created-at' : 'item-created-at'}>
         Due {day} {month} {year}
       </p>
-      <p className='item-client-name'>{clientName}</p>
-      <h3 className='item-payment-due'>
+      <p className={dark ? 'item-client-name dark' : 'item-client-name'}>
+        {clientName}
+      </p>
+      <h3 className={dark ? 'dark item-payment-due' : 'item-payment-due'}>
         $
         {total
           .toFixed(2)
@@ -42,8 +51,8 @@ const InvoiceItem = ({ invoice }) => {
       </h3>
       <div className='colored-part-and-arrow'>
         <div id={status} className='item-status-container'>
-          <div className='dot'></div>
-          <p className='item-status'>
+          <div className={dark ? 'dark dot' : 'dot'}></div>
+          <p className={dark ? 'dark item-status' : 'item-status'}>
             {status.charAt(0).toUpperCase() + status.slice(1)}
           </p>
         </div>

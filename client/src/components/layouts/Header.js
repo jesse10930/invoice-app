@@ -1,10 +1,12 @@
 import React, { Fragment, useContext } from 'react';
 import NewInvoice from '../modals/NewInvoice';
 import InvoiceContext from '../../context/invoice/invoiceContext';
+import DarkContext from '../../context/dark/darkContext';
 
 const Header = () => {
   const invoiceContext = useContext(InvoiceContext);
-
+  const darkContext = useContext(DarkContext);
+  const { dark } = darkContext;
   const {
     invoices,
     newInvoiceForm,
@@ -45,9 +47,9 @@ const Header = () => {
       <Fragment>
         <div id='header' className={newInvoiceForm ? 'modal-container' : null}>
           <div id='header-left'>
-            <h1>Invoices</h1>
+            <h1 className={dark && 'dark'}>Invoices</h1>
             {invoices ? (
-              <p>
+              <p className={dark && 'dark'}>
                 There are {numOfInvoices} {filterTypes}
               </p>
             ) : (
@@ -57,14 +59,16 @@ const Header = () => {
           <div id='header-right'>
             <div id='filter-dropdown'>
               <div id='heading-arrow'>
-                <p id='filter-title'>Filter by Status</p>
+                <p id='filter-title' className={dark && 'dark'}>
+                  Filter by Status
+                </p>
                 <img
                   src={require('../../images/icon-arrow-down.svg').default}
                   alt='icon-arrow-down'
                 />
               </div>
-              <div id='filter-choices'>
-                <label className='container'>
+              <div id='filter-choices' className={dark && 'dark'}>
+                <label className={dark ? 'dark container' : 'container'}>
                   Draft
                   <input
                     onClick={onCheck}
@@ -72,9 +76,11 @@ const Header = () => {
                     defaultChecked='false'
                     value='draft'
                   />
-                  <span className='checkmark'></span>
+                  <span
+                    className={dark ? 'checkmark dark' : 'checkmark'}
+                  ></span>
                 </label>
-                <label className='container'>
+                <label className={dark ? 'dark container' : 'container'}>
                   Pending
                   <input
                     type='checkbox'
@@ -82,9 +88,11 @@ const Header = () => {
                     onClick={onCheck}
                     value='pending'
                   />
-                  <span className='checkmark'></span>
+                  <span
+                    className={dark ? 'checkmark dark' : 'checkmark'}
+                  ></span>
                 </label>
-                <label className='container'>
+                <label className={dark ? 'dark container' : 'container'}>
                   Paid
                   <input
                     type='checkbox'
@@ -92,7 +100,9 @@ const Header = () => {
                     onClick={onCheck}
                     value='paid'
                   />
-                  <span className='checkmark'></span>
+                  <span
+                    className={dark ? 'checkmark dark' : 'checkmark'}
+                  ></span>
                 </label>
               </div>
             </div>

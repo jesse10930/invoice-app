@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import DarkContext from '../../context/dark/darkContext';
 
 const ItemsCard = ({ item, deleteItem, updateItems }) => {
+  const darkContext = useContext(DarkContext);
+
   const { name, quantity, price, total, itemId } = item;
 
   const [thisItem, setThisItem] = useState({

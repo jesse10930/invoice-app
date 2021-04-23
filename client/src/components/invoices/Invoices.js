@@ -2,9 +2,13 @@ import React, { useContext } from 'react';
 import InvoiceItem from './InvoiceItem';
 import Details from './Details';
 import InvoiceContext from '../../context/invoice/invoiceContext';
+import DarkContext from '../../context/dark/darkContext';
 
 const Invoices = () => {
   const invoiceContext = useContext(InvoiceContext);
+  const darkContext = useContext(DarkContext);
+
+  const { dark } = darkContext;
 
   const {
     invoices,
@@ -34,8 +38,8 @@ const Invoices = () => {
             src={require('../../images/illustration-empty.svg').default}
             alt='emtpy-illustration'
           />
-          <h2>There is nothing here</h2>
-          <p>
+          <h2 className={dark && 'dark'}>There is nothing here</h2>
+          <p className={dark && 'dark'}>
             Create an invoice by clicking the{' '}
             <span style={{ fontWeight: '700' }}>New Invoice</span> button and
             get started, or change the{' '}

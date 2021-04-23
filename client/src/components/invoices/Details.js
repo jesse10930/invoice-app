@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext, Fragment } from 'react';
 import NewInvoice from '../modals/NewInvoice';
 import DeleteModal from '../modals/DeleteModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
+import DarkContext from '../../context/dark/darkContext';
 
 const Details = ({ currentUser }) => {
   const invoiceContext = useContext(InvoiceContext);
+  const darkContext = useContext(DarkContext);
 
   const {
     deleteConfirmation,
@@ -14,6 +16,7 @@ const Details = ({ currentUser }) => {
     goBackClick,
     onMarkAsPaidClick,
   } = invoiceContext;
+  const { dark } = darkContext;
 
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
@@ -68,14 +71,16 @@ const Details = ({ currentUser }) => {
             src={require('../../images/icon-arrow-left.svg').default}
             alt='icon-arrow-left'
           />
-          <p>Go Back</p>
+          <p className={dark && 'dark'}>Go Back</p>
         </div>
-        <div id='details-header'>
+        <div id='details-header' className={dark && 'dark'}>
           <div id='dh-status'>
-            <p id='status-word'>Status</p>
+            <p id='status-word' className={dark && 'dark'}>
+              Status
+            </p>
             <div id={status} className='item-status-container'>
-              <div className='dot'></div>
-              <p className='item-status'>
+              <div className={dark ? 'dark dot' : 'dot'}></div>
+              <p className={dark ? 'dark item-status' : 'item-status'}>
                 {status.charAt(0).toUpperCase() + status.slice(1)}
               </p>
             </div>
@@ -94,7 +99,7 @@ const Details = ({ currentUser }) => {
           >
             <div
               id='edit'
-              className='form-btn'
+              className={dark ? 'form-btn dark' : 'form-btn'}
               onClick={editButtonClick}
               style={
                 status === 'paid'
@@ -117,41 +122,59 @@ const Details = ({ currentUser }) => {
             </div>
           </div>
         </div>
-        <div id='details-card'>
+        <div id='details-card' className={dark && 'dark'}>
           <div id='top-details'>
             <div id='td-group1'>
-              <p id='td-id' className='td-bold'>
+              <p id='td-id' className={dark ? 'dark td-bold' : 'td-bold'}>
                 <span style={{ color: '#7E88C3' }}>#</span>
                 {id}
               </p>
-              <p id='td-desription' className='td-beautiful'>
+              <p
+                id='td-desription'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 {description}
               </p>
             </div>
             <div id='td-group2'>
-              <p id='td-inv-date-header' className='td-beautiful'>
+              <p
+                id='td-inv-date-header'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Invoice Date
               </p>
-              <p id='td-inv-date' className='td-bold'>
+              <p id='td-inv-date' className={dark ? 'dark td-bold' : 'td-bold'}>
                 {day} {month} {year}
               </p>
             </div>
             <div id='td-group3'>
-              <p id='td-due-date-header' className='td-beautiful'>
+              <p
+                id='td-due-date-header'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Payment Due
               </p>
-              <p id='td-due-date' className='td-bold'>
+              <p id='td-due-date' className={dark ? 'dark td-bold' : 'td-bold'}>
                 {dueDay} {dueMonth} {dueYear}
               </p>
             </div>
             <div id='td-group4'>
-              <p id='td-bill-to-header' className='td-beautiful'>
+              <p
+                id='td-bill-to-header'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Bill To
               </p>
-              <p id='td-bill-to-name' className='td-bold'>
+              <p
+                id='td-bill-to-name'
+                className={dark ? 'dark td-bold' : 'td-bold'}
+              >
                 {clientName}
               </p>
-              <div id='td-bill-to-address' className='td-beautiful'>
+              <div
+                id='td-bill-to-address'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 <p id='client-street'>{clientAddress.street}</p>
                 <p id='client-city'>{clientAddress.city}</p>
                 <p id='client-zip'>{clientAddress.postCode}</p>
@@ -159,15 +182,24 @@ const Details = ({ currentUser }) => {
               </div>
             </div>
             <div id='td-group5'>
-              <p id='td-sent-to-header' className='td-beautiful'>
+              <p
+                id='td-sent-to-header'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Sent To
               </p>
-              <p id='td-sent-to-email' className='td-bold'>
+              <p
+                id='td-sent-to-email'
+                className={dark ? 'dark td-bold' : 'td-bold'}
+              >
                 {clientEmail}
               </p>
             </div>
             <div id='td-group6'>
-              <div id='td-sender-address' className='td-beautiful'>
+              <div
+                id='td-sender-address'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 <p id='client-street' style={{ float: 'right' }}>
                   {senderAddress.street}
                 </p>
@@ -186,29 +218,55 @@ const Details = ({ currentUser }) => {
               </div>
             </div>
           </div>
-          <div id='details-card-items'>
+          <div id='details-card-items' className={dark && 'dark'}>
             <div id='dc-items-header'>
-              <p id='item-name'>Item Name</p>
-              <p id='qty'>QTY.</p>
-              <p id='price'>Price</p>
-              <p id='total'>Total</p>
+              <p id='item-name' className={dark && 'dark'}>
+                Item Name
+              </p>
+              <p id='qty' className={dark && 'dark'}>
+                QTY.
+              </p>
+              <p id='price' className={dark && 'dark'}>
+                Price
+              </p>
+              <p id='total' className={dark && 'dark'}>
+                Total
+              </p>
             </div>
             {items.map((item, i) => {
               return (
                 <div key={i} className='item-info'>
-                  <p className='item-info-name'>{item.name}</p>
-                  <p className='item-info-quantity'>{item.quantity}</p>
-                  <p className='item-info-price'>
+                  <p
+                    className={dark ? 'dark item-info-name' : 'item-info-name'}
+                  >
+                    {item.name}
+                  </p>
+                  <p
+                    className={
+                      dark ? 'dark item-info-quantity' : 'item-info-quantity'
+                    }
+                  >
+                    {item.quantity}
+                  </p>
+                  <p
+                    className={
+                      dark ? 'dark item-info-price' : 'item-info-price'
+                    }
+                  >
                     ${parseFloat(item.price).toFixed(2)}
                   </p>
-                  <p className='item-info-total'>
+                  <p
+                    className={
+                      dark ? 'dark item-info-total' : 'item-info-total'
+                    }
+                  >
                     ${(item.quantity * item.price).toFixed(2)}
                   </p>
                 </div>
               );
             })}
           </div>
-          <div id='details-card-total'>
+          <div id='details-card-total' className={dark && 'dark'}>
             <p id='amount-due'>Amount Due</p>
             <div id='dc-total'>
               $

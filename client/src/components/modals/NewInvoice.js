@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext, Fragment } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
+import DarkContext from '../../context/dark/darkContext';
 
 const NewInvoice = () => {
   // Context
   const invoiceContext = useContext(InvoiceContext);
+  const darkContext = useContext(DarkContext);
   const {
     addInvoice,
     discardClick,

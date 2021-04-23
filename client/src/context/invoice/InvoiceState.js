@@ -359,9 +359,7 @@ const InvoiceState = (props) => {
     let tempTotal = 0;
     updatedItems.forEach((item) => (tempTotal += parseFloat(item.total)));
 
-    updatedInvoice.status === 'draft'
-      ? (updatedInvoice.status = 'pending')
-      : (updatedInvoice.status = updatedInvoice.status);
+    updatedInvoice.status === 'draft' && (updatedInvoice.status = 'pending');
 
     updatedInvoice.senderAddress = updatedSenderAddress;
     updatedInvoice.clientAddress = updatedClientAddress;
