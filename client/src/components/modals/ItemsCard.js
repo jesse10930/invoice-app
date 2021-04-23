@@ -3,6 +3,7 @@ import DarkContext from '../../context/dark/darkContext';
 
 const ItemsCard = ({ item, deleteItem, updateItems }) => {
   const darkContext = useContext(DarkContext);
+  const { dark } = darkContext;
 
   const { name, quantity, price, total, itemId } = item;
 
@@ -51,6 +52,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
   return (
     <div id={'modal-item-list-inputs-' + itemId}>
       <input
+        className={dark && 'dark'}
         type='text'
         id={'item-name-input-' + itemId}
         style={{ width: '215px' }}
@@ -61,6 +63,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         onChange={onThisItemChange}
       />
       <input
+        className={dark && 'dark'}
         type='number'
         min='1'
         id={'qty-input-' + itemId}
@@ -72,6 +75,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         onChange={onThisItemChange}
       />
       <input
+        className={dark && 'dark'}
         type='number'
         min='0.01'
         step='0.01'
@@ -83,7 +87,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         value={thisItem.price}
         onChange={onThisItemChange}
       />
-      <p className='td-beautiful'>
+      <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
         {thisItem.quantity > 0 && thisItem.price > 0
           ? (thisItem.quantity * thisItem.price).toFixed(2)
           : 0.0}

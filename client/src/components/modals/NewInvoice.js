@@ -16,6 +16,8 @@ const NewInvoice = () => {
     saveChangesClick,
   } = invoiceContext;
 
+  const { dark } = darkContext;
+
   // Set Initial State
   const [invoice, setInvoice] = useState({
     id: '',
@@ -218,16 +220,19 @@ const NewInvoice = () => {
   // Render
   return (
     <div id='new-invoice-modal' className='back-drop'>
-      <div id='tester-for-modal'>
-        <p id='new-invoice-title'>
+      <div id='tester-for-modal' className={dark && 'dark'}>
+        <p id='new-invoice-title' className={dark && 'dark'}>
           {currentUser ? `Edit ${currentUser.id}` : 'New Invoice'}
         </p>
         <form onSubmit={onSubmit}>
           <div id='ni-bill-from'>
             <p className='modal-sec-title'>Bill From</p>
             <div id='street-address'>
-              <p className='td-beautiful'>Street Address</p>
+              <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                Street Address
+              </p>
               <input
+                className={dark && 'dark'}
                 type='text'
                 id='ni-sa-input'
                 name='street'
@@ -239,8 +244,11 @@ const NewInvoice = () => {
             </div>
             <div id='ni-city-zip-country'>
               <div id='city'>
-                <p className='td-beautiful'>City</p>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  City
+                </p>
                 <input
+                  className={dark && 'dark'}
                   type='text'
                   id='ni-from-city'
                   name='city'
@@ -251,8 +259,11 @@ const NewInvoice = () => {
                 />
               </div>
               <div id='zip'>
-                <p className='td-beautiful'>Post Code</p>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  Post Code
+                </p>
                 <input
+                  className={dark && 'dark'}
                   type='text'
                   id='ni-from-zip'
                   name='postCode'
@@ -263,8 +274,11 @@ const NewInvoice = () => {
                 />
               </div>
               <div id='country'>
-                <p className='td-beautiful'>Country</p>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  Country
+                </p>
                 <input
+                  className={dark && 'dark'}
                   type='text'
                   id='ni-from-country'
                   name='country'
@@ -278,8 +292,11 @@ const NewInvoice = () => {
           </div>
           <div id='ni-bill-to'>
             <p className='modal-sec-title'>Bill To</p>
-            <p className='td-beautiful'>Client's Name</p>
+            <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+              Client's Name
+            </p>
             <input
+              className={dark && 'dark'}
               type='text'
               name='clientName'
               autoComplete='off'
@@ -287,8 +304,11 @@ const NewInvoice = () => {
               value={clientName}
               onChange={onInvoiceChange}
             />
-            <p className='td-beautiful'>Client's Email</p>
+            <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+              Client's Email
+            </p>
             <input
+              className={dark && 'dark'}
               type='email'
               name='clientEmail'
               autoComplete='off'
@@ -297,8 +317,11 @@ const NewInvoice = () => {
               value={clientEmail}
               onChange={onInvoiceChange}
             />
-            <p className='td-beautiful'>Street Address</p>
+            <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+              Street Address
+            </p>
             <input
+              className={dark && 'dark'}
               type='text'
               name='street'
               autoComplete='off'
@@ -308,8 +331,11 @@ const NewInvoice = () => {
             />
             <div id='bt-cityzipcountry'>
               <div>
-                <p className='td-beautiful'>City</p>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  City
+                </p>
                 <input
+                  className={dark && 'dark'}
                   type='text'
                   name='city'
                   autoComplete='off'
@@ -319,8 +345,11 @@ const NewInvoice = () => {
                 />
               </div>
               <div>
-                <p className='td-beautiful'>Post Code</p>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  Post Code
+                </p>
                 <input
+                  className={dark && 'dark'}
                   type='text'
                   name='postCode'
                   autoComplete='off'
@@ -330,8 +359,11 @@ const NewInvoice = () => {
                 />
               </div>
               <div>
-                <p className='td-beautiful'>Country</p>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  Country
+                </p>
                 <input
+                  className={dark && 'dark'}
                   type='text'
                   name='country'
                   autoComplete='off'
@@ -343,8 +375,11 @@ const NewInvoice = () => {
             </div>
             <div id='td-date-terms'>
               <div id='td-date'>
-                <p className='td-beautiful'>Invoice Date</p>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  Invoice Date
+                </p>
                 <input
+                  className={dark && 'dark'}
                   type='date'
                   name='createdAt'
                   autoComplete='off'
@@ -354,10 +389,12 @@ const NewInvoice = () => {
                 />
               </div>
               <div id='td-terms'>
-                <p className='td-beautiful'>Payment Terms</p>
-                <div id='payment-terms-drop'>
+                <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+                  Payment Terms
+                </p>
+                <div id='payment-terms-drop' className={dark && 'dark'}>
                   <div id='term-arrow'>
-                    <p>
+                    <p className={dark && 'dark'}>
                       {paymentTerms === 1
                         ? 'Net 1 day'
                         : paymentTerms === 7
@@ -371,17 +408,32 @@ const NewInvoice = () => {
                       alt='icon-arrow-down'
                     />
                   </div>
-                  <div id='dropdown-items' onClick={onTermsClick}>
-                    <p id='day'>Net 1 day</p>
-                    <p id='week'>Net 7 days</p>
-                    <p id='two-weeks'>Net 14 days</p>
-                    <p id='month'>Net 30 days</p>
+                  <div
+                    id='dropdown-items'
+                    className={dark && 'dark'}
+                    onClick={onTermsClick}
+                  >
+                    <p id='day' className={dark && 'dark'}>
+                      Net 1 day
+                    </p>
+                    <p id='week' className={dark && 'dark'}>
+                      Net 7 days
+                    </p>
+                    <p id='two-weeks' className={dark && 'dark'}>
+                      Net 14 days
+                    </p>
+                    <p id='month' className={dark && 'dark'}>
+                      Net 30 days
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            <p className='td-beautiful'>Project Description</p>
+            <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+              Project Description
+            </p>
             <input
+              className={dark && 'dark'}
               type='text'
               name='description'
               autoComplete='off'
@@ -394,16 +446,28 @@ const NewInvoice = () => {
           <div id='ni-item-list'>
             <p className='modal-big-title'>Item List</p>
             <div id='modal-item-list-header'>
-              <p id='header1' className='td-beautiful'>
+              <p
+                id='header1'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Item Name
               </p>
-              <p id='header2' className='td-beautiful'>
+              <p
+                id='header2'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Qty.
               </p>
-              <p id='header3' className='td-beautiful'>
+              <p
+                id='header3'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Price
               </p>
-              <p id='header4' className='td-beautiful'>
+              <p
+                id='header4'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Total
               </p>
               <p id='header5'></p>
@@ -418,7 +482,11 @@ const NewInvoice = () => {
                   />
                 ))
               : null}
-            <div id='modal-add-new-item' onClick={onAddItemClick}>
+            <div
+              id='modal-add-new-item'
+              onClick={onAddItemClick}
+              className={dark && 'dark'}
+            >
               <img
                 src={require('../../images/icon-plus.svg').default}
                 alt='icon-plus'
@@ -433,7 +501,9 @@ const NewInvoice = () => {
                   type='submit'
                   name='discard'
                   value='Discard'
-                  className='form-btn discard'
+                  className={
+                    dark ? 'form-btn discard dark' : 'form-btn discard'
+                  }
                   onMouseOver={onMouseOver}
                   formNoValidate
                 />
@@ -442,7 +512,7 @@ const NewInvoice = () => {
                     type='submit'
                     name='draft'
                     value='Save as Draft'
-                    className='form-btn draft'
+                    className={dark ? 'form-btn draft dark' : 'form-btn draft'}
                     onMouseOver={onMouseOver}
                   />
                   <input

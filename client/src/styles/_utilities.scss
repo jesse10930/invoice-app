@@ -136,6 +136,11 @@ input[type='text'],
 input[type='number'],
 input[type='date'],
 input[type='email'] {
+  &.dark {
+    background: #1e2139;
+    border: 1px solid #1e2139;
+    color: #ffffff;
+  }
   &:focus {
     outline: none;
     border: 1px solid #9277ff;
@@ -176,12 +181,20 @@ input[type='email'] {
     overflow-y: auto;
     z-index: 5;
 
+    &.dark {
+      background: #141625;
+    }
+
     #new-invoice-title {
       font-size: 24px;
       line-height: 32px;
       font-weight: 700;
       color: #0c0e16;
       margin-bottom: 20px;
+
+      &.dark {
+        color: #ffffff;
+      }
     }
 
     #ni-bill-from {
@@ -244,6 +257,11 @@ input[type='email'] {
             width: 100%;
             position: relative;
 
+            &.dark {
+              background: #1e2139;
+              border: 1px solid #1e2139;
+            }
+
             #term-arrow {
               height: 50px;
               display: flex;
@@ -257,6 +275,10 @@ input[type='email'] {
                 font-size: 12px;
                 font-weight: 700;
                 color: #0c0e16;
+
+                &.dark {
+                  color: #ffffff;
+                }
               }
             }
 
@@ -268,6 +290,10 @@ input[type='email'] {
               z-index: 10;
               width: 100%;
 
+              &.dark {
+                background: #1e2139;
+              }
+
               p {
                 border-bottom: 1px solid #dfe3fa;
                 padding: 1rem;
@@ -275,6 +301,11 @@ input[type='email'] {
                 font-size: 12px;
                 font-weight: 700;
                 color: #0c0e16;
+
+                &.dark {
+                  color: #ffffff;
+                  border-bottom: 1px solid #141625;
+                }
 
                 &:hover {
                   cursor: pointer;
@@ -369,6 +400,15 @@ input[type='email'] {
         border-radius: 24px;
         color: #7e88c3;
 
+        &.dark {
+          background: #252945;
+          color: #dfe3fa;
+
+          &:hover {
+            background: #1e2139;
+          }
+        }
+
         &:hover {
           cursor: pointer;
           background: #dfe3fa;
@@ -387,6 +427,10 @@ input[type='email'] {
         width: 100px;
         padding: 0;
 
+        &.dark {
+          background: #f9fafe;
+        }
+
         &:hover {
           background: #dfe3fa;
         }
@@ -397,10 +441,18 @@ input[type='email'] {
         justify-content: space-between;
 
         .draft {
-          color: #7e88c3;
+          color: #888eb0;
           background: #373b53;
           margin-right: 10px;
           padding: 0;
+
+          &.dark {
+            color: #dfe3fa;
+
+            &:hover {
+              background: #1e2139;
+            }
+          }
 
           &:hover {
             background: #0c0e16;
