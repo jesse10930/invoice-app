@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import InvoiceItem from './InvoiceItem';
 import Details from './Details';
 import InvoiceContext from '../../context/invoice/invoiceContext';
@@ -16,7 +16,13 @@ const Invoices = () => {
     invoiceDetails,
     filters,
     newInvoiceForm,
+    getInvoices,
   } = invoiceContext;
+
+  useEffect(() => {
+    getInvoices();
+    // eslint-disable-next-line
+  }, []);
 
   let filtered = invoices.filter((invoice) => filters.includes(invoice.status));
 

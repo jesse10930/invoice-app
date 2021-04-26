@@ -609,3 +609,14 @@ input[type='email'] {
 .modal-container {
   position: fixed;
 }
+
+.alert {
+  border: 1px solid #ec5757;
+}
+
+.alert-text {
+  font-weight: 600;
+  font-size: 12px;
+  color: #ec5757;
+  margin-bottom: 5px;
+}

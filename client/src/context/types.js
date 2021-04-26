@@ -12,3 +12,6 @@ export const CONFIRM_DELETE = 'CONFIRM_DELETE';
 export const CANCEL_EDIT = 'CANCEL_EDIT';
 export const SAVE_CHANGES = 'SAVE_CHANGES';
 export const DARK = 'DARK';
+export const ALERT = 'ALERT';
+export const INVOICE_ERROR = 'INVOICE_ERROR';
+export const GET_INVOICES = 'GET_INVOICES';

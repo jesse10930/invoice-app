@@ -3,11 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const NewInvoice = () => {
   // Context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
+  const alertContext = useContext(AlertContext);
+
   const {
     addInvoice,
     discardClick,
@@ -15,8 +18,8 @@ const NewInvoice = () => {
     cancelEditClick,
     saveChangesClick,
   } = invoiceContext;
-
   const { dark } = darkContext;
+  // const { alert, setAlertState } = alertContext;
 
   // Set Initial State
   const [invoice, setInvoice] = useState({
@@ -44,6 +47,8 @@ const NewInvoice = () => {
   });
   const [items, setItems] = useState([]);
   const [save, setSave] = useState(true);
+  const [inputAlert, setInputAlert] = useState(false);
+  const [itemAlert, setItemAlert] = useState(false);
 
   // Destructure State
   const {
@@ -206,15 +211,41 @@ const NewInvoice = () => {
     setSave(true);
   };
 
+  // New Invoice Validation
+  const addValidate = () => {
+    if (items.length === 0) {
+      setItemAlert(true);
+    } else {
+      addInvoice(invoice, senderAddress, clientAddress, items);
+    }
+  };
+
+  // Edit Invoice Validation
+  const editValidate = () => {
+    if (items.length === 0) {
+      setItemAlert(true);
+    } else {
+      saveChangesClick(
+        currentUser,
+        invoice,
+        senderAddress,
+        clientAddress,
+        items
+      );
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     !currentUser
       ? invoice.status === 'discard'
         ? discardClick()
+        : invoice.status === 'pending'
+        ? addValidate()
         : addInvoice(invoice, senderAddress, clientAddress, items)
       : !save
       ? cancelEditClick()
-      : saveChangesClick(invoice, senderAddress, clientAddress, items);
+      : editValidate();
   };
 
   // Render
@@ -237,7 +268,6 @@ const NewInvoice = () => {
                 id='ni-sa-input'
                 name='street'
                 autoComplete='off'
-                required
                 value={senderAddress.street}
                 onChange={onSenderAddressChange}
               />
@@ -253,7 +283,6 @@ const NewInvoice = () => {
                   id='ni-from-city'
                   name='city'
                   autoComplete='off'
-                  required
                   value={senderAddress.city}
                   onChange={onSenderAddressChange}
                 />
@@ -268,7 +297,6 @@ const NewInvoice = () => {
                   id='ni-from-zip'
                   name='postCode'
                   autoComplete='off'
-                  required
                   value={senderAddress.postCode}
                   onChange={onSenderAddressChange}
                 />
@@ -283,7 +311,6 @@ const NewInvoice = () => {
                   id='ni-from-country'
                   name='country'
                   autoComplete='off'
-                  required
                   value={senderAddress.country}
                   onChange={onSenderAddressChange}
                 />
@@ -300,7 +327,6 @@ const NewInvoice = () => {
               type='text'
               name='clientName'
               autoComplete='off'
-              required
               value={clientName}
               onChange={onInvoiceChange}
             />
@@ -313,7 +339,6 @@ const NewInvoice = () => {
               name='clientEmail'
               autoComplete='off'
               placeholder='e.g. email@example.com'
-              required
               value={clientEmail}
               onChange={onInvoiceChange}
             />
@@ -325,7 +350,6 @@ const NewInvoice = () => {
               type='text'
               name='street'
               autoComplete='off'
-              required
               value={clientAddress.street}
               onChange={onClientAddressChange}
             />
@@ -339,7 +363,6 @@ const NewInvoice = () => {
                   type='text'
                   name='city'
                   autoComplete='off'
-                  required
                   value={clientAddress.city}
                   onChange={onClientAddressChange}
                 />
@@ -353,7 +376,6 @@ const NewInvoice = () => {
                   type='text'
                   name='postCode'
                   autoComplete='off'
-                  required
                   value={clientAddress.postCode}
                   onChange={onClientAddressChange}
                 />
@@ -367,7 +389,6 @@ const NewInvoice = () => {
                   type='text'
                   name='country'
                   autoComplete='off'
-                  required
                   value={clientAddress.country}
                   onChange={onClientAddressChange}
                 />
@@ -383,7 +404,6 @@ const NewInvoice = () => {
                   type='date'
                   name='createdAt'
                   autoComplete='off'
-                  required
                   value={createdAt}
                   onChange={onInvoiceChange}
                 />
@@ -438,7 +458,6 @@ const NewInvoice = () => {
               name='description'
               autoComplete='off'
               placeholder='e.g. Graphic Design Service'
-              required
               value={description}
               onChange={onInvoiceChange}
             />
@@ -493,6 +512,18 @@ const NewInvoice = () => {
               />
               <p style={{ marginLeft: '5px' }}>Add New Item</p>
             </div>
+          </div>
+          <div id='alert-messages'>
+            {inputAlert ? (
+              <div id='field-alert'>
+                <p className='alert-text'>-All fields must be added</p>
+              </div>
+            ) : null}
+            {itemAlert ? (
+              <div id='item-alert'>
+                <p className='alert-text'>-An item must be added</p>
+              </div>
+            ) : null}
           </div>
           <div id='ni-bot-btns'>
             {!currentUser ? (

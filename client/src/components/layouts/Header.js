@@ -32,7 +32,7 @@ const Header = () => {
       filterTypes = filters[0] + ' invoices';
       break;
     case 2:
-      filterTypes = filters[0] + ' &' + filters[1] + ' invoices';
+      filterTypes = filters[0] + ' & ' + filters[1] + ' invoices';
       break;
     case 3:
       filterTypes = 'total invoices';

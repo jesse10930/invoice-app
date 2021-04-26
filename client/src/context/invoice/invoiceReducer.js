@@ -12,10 +12,17 @@ import {
   CONFIRM_DELETE,
   CANCEL_EDIT,
   SAVE_CHANGES,
+  INVOICE_ERROR,
+  GET_INVOICES,
 } from '../types';
 
 const invoiceReducer = (state, action) => {
   switch (action.type) {
+    case GET_INVOICES:
+      return {
+        ...state,
+        invoices: action.payload,
+      };
     case ADD_INVOICE:
       return {
         ...state,
@@ -90,6 +97,11 @@ const invoiceReducer = (state, action) => {
         invoices: action.payloadOne,
         currentUser: action.payloadTwo,
         editInvoiceForm: false,
+      };
+    case INVOICE_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

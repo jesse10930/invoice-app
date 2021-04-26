@@ -23,56 +23,44 @@ router.get('/', async (req, res) => {
 router.post(
   '/',
   [
-    check('name', 'name is required').not().isEmpty(),
-    check('amount', 'amount is required').not().isEmpty(),
+    check('id', 'id is required').not().isEmpty(),
+    check('description', 'description is required').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
     const {
       id,
-      date,
-      name,
-      amount,
-      status,
-      street,
-      city,
-      zip,
-      country,
-      email,
-      billToStreet,
-      billToCity,
-      billToZip,
-      billToCountry,
-      paymentTerms,
+      createdAt,
+      paymentDue,
       description,
+      paymentTerms,
+      clientName,
+      clientEmail,
+      status,
+      senderAddress,
+      clientAddress,
+      items,
+      total,
     } = req.body;
-
     try {
       let newInvoice = new Invoice({
         id,
-        date,
-        name,
-        amount,
-        status,
-        street,
-        city,
-        zip,
-        country,
-        email,
-        billToStreet,
-        billToCity,
-        billToZip,
-        billToCountry,
-        paymentTerms,
+        createdAt,
+        paymentDue,
         description,
+        paymentTerms,
+        clientName,
+        clientEmail,
+        status,
+        senderAddress,
+        clientAddress,
+        items,
+        total,
       });
-
       const invoice = await newInvoice.save();
-
       res.send(invoice);
     } catch (err) {
       console.error(err.message);
@@ -87,38 +75,31 @@ router.post(
 router.put('/:id', async (req, res) => {
   const {
     id,
-    name,
-    amount,
-    status,
-    street,
-    city,
-    zip,
-    country,
-    email,
-    billToStreet,
-    billToCity,
-    billToZip,
-    billToCountry,
-    paymentTerms,
+    createdAt,
+    paymentDue,
     description,
+    paymentTerms,
+    clientName,
+    clientEmail,
+    status,
+    senderAddress,
+    clientAddress,
+    items,
+    total,
   } = req.body;
-
   const invoiceFields = {};
   if (id) invoiceFields.id = id;
-  if (name) invoiceFields.name = name;
-  if (amount) invoiceFields.amount = amount;
-  if (status) invoiceFields.status = status;
-  if (street) invoiceFields.street = street;
-  if (city) invoiceFields.city = city;
-  if (zip) invoiceFields.zip = zip;
-  if (country) invoiceFields.country = country;
-  if (email) invoiceFields.email = email;
-  if (billToStreet) invoiceFields.billToStreet = billToStreet;
-  if (billToCity) invoiceFields.billToCity = billToCity;
-  if (billToZip) invoiceFields.billToZip = billToZip;
-  if (billToCountry) invoiceFields.billToCountry = billToCountry;
-  if (paymentTerms) invoiceFields.paymentTerms = paymentTerms;
+  if (createdAt) invoiceFields.createdAt = createdAt;
+  if (paymentDue) invoiceFields.paymentDue = paymentDue;
   if (description) invoiceFields.description = description;
+  if (paymentTerms) invoiceFields.paymentTerms = paymentTerms;
+  if (clientName) invoiceFields.clientName = clientName;
+  if (clientEmail) invoiceFields.clientEmail = clientEmail;
+  if (status) invoiceFields.status = status;
+  if (senderAddress) invoiceFields.senderAddress = senderAddress;
+  if (clientAddress) invoiceFields.clientAddress = clientAddress;
+  if (items) invoiceFields.items = items;
+  if (total) invoiceFields.total = total;
 
   try {
     let invoice = await Invoice.findById(req.params.id);
@@ -126,7 +107,6 @@ router.put('/:id', async (req, res) => {
     invoice = await Invoice.findByIdAndUpdate(req.params.id, {
       $set: invoiceFields,
     });
-
     res.json(invoice);
   } catch (err) {
     console.error(err.message);
