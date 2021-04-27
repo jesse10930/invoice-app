@@ -59,7 +59,6 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         id={'item-name-input-' + itemId}
         style={{ width: '215px' }}
         name='name'
-        required
         autoComplete='off'
         value={thisItem.name}
         onChange={onThisItemChange}
@@ -71,7 +70,6 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         id={'qty-input-' + itemId}
         style={{ width: '50px' }}
         name='quantity'
-        required
         autoComplete='off'
         value={thisItem.quantity}
         onChange={onThisItemChange}
@@ -84,7 +82,6 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         id={'price-input-' + itemId}
         style={{ width: '50px' }}
         name='price'
-        required
         autoComplete='off'
         value={thisItem.price}
         onChange={onThisItemChange}

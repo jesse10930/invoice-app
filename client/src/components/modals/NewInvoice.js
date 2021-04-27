@@ -109,11 +109,15 @@ const NewInvoice = () => {
   }, []);
 
   // Bill From
-  const onSenderAddressChange = (e) =>
+  const onSenderAddressChange = (e) => {
+    if (e.target.value.length > 0) {
+      console.log(e.target.id);
+    }
     setSenderAddress({
       ...senderAddress,
       [e.target.name]: e.target.value,
     });
+  };
 
   // Bill To
   const onInvoiceChange = (e) => {
@@ -218,9 +222,48 @@ const NewInvoice = () => {
   };
 
   // New Invoice Validation
-  const addValidate = () => {
+  const addValidate = (invoice, senderAddress, clientAddress, items) => {
+    let tempItemAlertState = false;
+    let tempInputAlertState = false;
+
+    let emptyInputs = [];
+    Object.keys(invoice).forEach((key) => {
+      invoice[key].length === 0 && emptyInputs.push(key);
+    });
+    Object.keys(senderAddress).forEach((key) => {
+      senderAddress[key].length === 0 && emptyInputs.push(key);
+    });
+    Object.keys(clientAddress).forEach((key) => {
+      clientAddress[key].length === 0 && emptyInputs.push(key);
+    });
+    items.forEach((itemObj) => {
+      Object.keys(itemObj).forEach((key) => {
+        itemObj[key].length === 0 && emptyInputs.push(key);
+      });
+    });
+
+    if (emptyInputs.length > 2) {
+      tempInputAlertState = true;
+    }
     if (items.length === 0) {
-      setItemAlert(true);
+      tempItemAlertState = true;
+    }
+
+    // if (tempInputAlertState && tempItemAlertState) {
+    //   setInputAlert(tempInputAlertState);
+    //   setItemAlert(tempItemAlertState);
+    // } else if (tempInputAlertState && !tempItemAlertState) {
+    //   setInputAlert(tempInputlertState);
+    // } else if (!tempInputAlertState && tempItemAlertState) {
+    //   setItemAlert(tempItemAlertState);
+    // } else {
+    //   addInvoice(invoice, senderAddress, clientAddress, items);
+    // }
+
+    console.log(emptyInputs);
+    if (tempInputAlertState || tempItemAlertState) {
+      setInputAlert(tempInputAlertState);
+      setItemAlert(tempItemAlertState);
     } else {
       addInvoice(invoice, senderAddress, clientAddress, items);
     }
@@ -249,7 +292,7 @@ const NewInvoice = () => {
       ? invoice.status === 'discard'
         ? discardClick()
         : invoice.status === 'pending'
-        ? addValidate()
+        ? addValidate(invoice, senderAddress, clientAddress, items)
         : addInvoice(invoice, senderAddress, clientAddress, items)
       : !save
       ? cancelEditClick()
