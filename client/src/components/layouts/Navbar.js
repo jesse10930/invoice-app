@@ -6,7 +6,7 @@ const Navbar = () => {
   const { dark, toggleDarkMode } = darkContext;
 
   return (
-    <div id='navbar' className={dark && 'dark'}>
+    <div id='navbar' className={dark ? 'dark' : undefined}>
       <div id='home-icon'>
         <div id='home-icon-bot'></div>
         <div id='home-icon-circle'></div>

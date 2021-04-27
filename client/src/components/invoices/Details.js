@@ -71,11 +71,11 @@ const Details = ({ currentUser }) => {
             src={require('../../images/icon-arrow-left.svg').default}
             alt='icon-arrow-left'
           />
-          <p className={dark && 'dark'}>Go Back</p>
+          <p className={dark ? 'dark' : undefined}>Go Back</p>
         </div>
-        <div id='details-header' className={dark && 'dark'}>
+        <div id='details-header' className={dark ? 'dark' : undefined}>
           <div id='dh-status'>
-            <p id='status-word' className={dark && 'dark'}>
+            <p id='status-word' className={dark ? 'dark' : undefined}>
               Status
             </p>
             <div id={status} className='item-status-container'>
@@ -122,7 +122,7 @@ const Details = ({ currentUser }) => {
             </div>
           </div>
         </div>
-        <div id='details-card' className={dark && 'dark'}>
+        <div id='details-card' className={dark ? 'dark' : undefined}>
           <div id='top-details'>
             <div id='td-group1'>
               <p id='td-id' className={dark ? 'dark td-bold' : 'td-bold'}>
@@ -218,18 +218,18 @@ const Details = ({ currentUser }) => {
               </div>
             </div>
           </div>
-          <div id='details-card-items' className={dark && 'dark'}>
+          <div id='details-card-items' className={dark ? 'dark' : undefined}>
             <div id='dc-items-header'>
-              <p id='item-name' className={dark && 'dark'}>
+              <p id='item-name' className={dark ? 'dark' : undefined}>
                 Item Name
               </p>
-              <p id='qty' className={dark && 'dark'}>
+              <p id='qty' className={dark ? 'dark' : undefined}>
                 QTY.
               </p>
-              <p id='price' className={dark && 'dark'}>
+              <p id='price' className={dark ? 'dark' : undefined}>
                 Price
               </p>
-              <p id='total' className={dark && 'dark'}>
+              <p id='total' className={dark ? 'dark' : undefined}>
                 Total
               </p>
             </div>
@@ -266,7 +266,7 @@ const Details = ({ currentUser }) => {
               );
             })}
           </div>
-          <div id='details-card-total' className={dark && 'dark'}>
+          <div id='details-card-total' className={dark ? 'dark' : undefined}>
             <p id='amount-due'>Amount Due</p>
             <div id='dc-total'>
               $

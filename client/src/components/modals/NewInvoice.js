@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
-import AlertContext from '../../context/alert/alertContext';
+// import AlertContext from '../../context/alert/alertContext';
 
 const NewInvoice = () => {
   // Context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
-  const alertContext = useContext(AlertContext);
+  // const alertContext = useContext(AlertContext);
 
   const {
     addInvoice,
@@ -239,13 +239,7 @@ const NewInvoice = () => {
       invoice.clientAddress = clientAddress;
       invoice.items = items;
       invoice.total = tempTotal;
-      saveChangesClick(
-        currentUser,
-        invoice
-        // senderAddress,
-        // clientAddress,
-        // items
-      );
+      saveChangesClick(currentUser, invoice);
     }
   };
 
@@ -265,8 +259,8 @@ const NewInvoice = () => {
   // Render
   return (
     <div id='new-invoice-modal' className='back-drop'>
-      <div id='tester-for-modal' className={dark && 'dark'}>
-        <p id='new-invoice-title' className={dark && 'dark'}>
+      <div id='tester-for-modal' className={dark ? 'dark' : undefined}>
+        <p id='new-invoice-title' className={dark ? 'dark' : undefined}>
           {currentUser ? `Edit ${currentUser.id}` : 'New Invoice'}
         </p>
         <form onSubmit={onSubmit}>
@@ -277,7 +271,7 @@ const NewInvoice = () => {
                 Street Address
               </p>
               <input
-                className={dark && 'dark'}
+                className={dark ? 'dark' : undefined}
                 type='text'
                 id='ni-sa-input'
                 name='street'
@@ -292,7 +286,7 @@ const NewInvoice = () => {
                   City
                 </p>
                 <input
-                  className={dark && 'dark'}
+                  className={dark ? 'dark' : undefined}
                   type='text'
                   id='ni-from-city'
                   name='city'
@@ -306,7 +300,7 @@ const NewInvoice = () => {
                   Post Code
                 </p>
                 <input
-                  className={dark && 'dark'}
+                  className={dark ? 'dark' : undefined}
                   type='text'
                   id='ni-from-zip'
                   name='postCode'
@@ -320,7 +314,7 @@ const NewInvoice = () => {
                   Country
                 </p>
                 <input
-                  className={dark && 'dark'}
+                  className={dark ? 'dark' : undefined}
                   type='text'
                   id='ni-from-country'
                   name='country'
@@ -337,7 +331,7 @@ const NewInvoice = () => {
               Client's Name
             </p>
             <input
-              className={dark && 'dark'}
+              className={dark ? 'dark' : undefined}
               type='text'
               name='clientName'
               autoComplete='off'
@@ -348,7 +342,7 @@ const NewInvoice = () => {
               Client's Email
             </p>
             <input
-              className={dark && 'dark'}
+              className={dark ? 'dark' : undefined}
               type='email'
               name='clientEmail'
               autoComplete='off'
@@ -360,7 +354,7 @@ const NewInvoice = () => {
               Street Address
             </p>
             <input
-              className={dark && 'dark'}
+              className={dark ? 'dark' : undefined}
               type='text'
               name='street'
               autoComplete='off'
@@ -373,7 +367,7 @@ const NewInvoice = () => {
                   City
                 </p>
                 <input
-                  className={dark && 'dark'}
+                  className={dark ? 'dark' : undefined}
                   type='text'
                   name='city'
                   autoComplete='off'
@@ -386,7 +380,7 @@ const NewInvoice = () => {
                   Post Code
                 </p>
                 <input
-                  className={dark && 'dark'}
+                  className={dark ? 'dark' : undefined}
                   type='text'
                   name='postCode'
                   autoComplete='off'
@@ -399,7 +393,7 @@ const NewInvoice = () => {
                   Country
                 </p>
                 <input
-                  className={dark && 'dark'}
+                  className={dark ? 'dark' : undefined}
                   type='text'
                   name='country'
                   autoComplete='off'
@@ -414,7 +408,7 @@ const NewInvoice = () => {
                   Invoice Date
                 </p>
                 <input
-                  className={dark && 'dark'}
+                  className={dark ? 'dark' : undefined}
                   type='date'
                   name='createdAt'
                   autoComplete='off'
@@ -426,9 +420,12 @@ const NewInvoice = () => {
                 <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
                   Payment Terms
                 </p>
-                <div id='payment-terms-drop' className={dark && 'dark'}>
+                <div
+                  id='payment-terms-drop'
+                  className={dark ? 'dark' : undefined}
+                >
                   <div id='term-arrow'>
-                    <p className={dark && 'dark'}>
+                    <p className={dark ? 'dark' : undefined}>
                       {paymentTerms === 1
                         ? 'Net 1 day'
                         : paymentTerms === 7
@@ -444,19 +441,19 @@ const NewInvoice = () => {
                   </div>
                   <div
                     id='dropdown-items'
-                    className={dark && 'dark'}
+                    className={dark ? 'dark' : undefined}
                     onClick={onTermsClick}
                   >
-                    <p id='day' className={dark && 'dark'}>
+                    <p id='day' className={dark ? 'dark' : undefined}>
                       Net 1 day
                     </p>
-                    <p id='week' className={dark && 'dark'}>
+                    <p id='week' className={dark ? 'dark' : undefined}>
                       Net 7 days
                     </p>
-                    <p id='two-weeks' className={dark && 'dark'}>
+                    <p id='two-weeks' className={dark ? 'dark' : undefined}>
                       Net 14 days
                     </p>
-                    <p id='month' className={dark && 'dark'}>
+                    <p id='month' className={dark ? 'dark' : undefined}>
                       Net 30 days
                     </p>
                   </div>
@@ -467,7 +464,7 @@ const NewInvoice = () => {
               Project Description
             </p>
             <input
-              className={dark && 'dark'}
+              className={dark ? 'dark' : undefined}
               type='text'
               name='description'
               autoComplete='off'
@@ -518,7 +515,7 @@ const NewInvoice = () => {
             <div
               id='modal-add-new-item'
               onClick={onAddItemClick}
-              className={dark && 'dark'}
+              className={dark ? 'dark' : undefined}
             >
               <img
                 src={require('../../images/icon-plus.svg').default}

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator');
 
 const Invoice = require('../models/Invoice');
 
@@ -20,18 +19,23 @@ router.get('/', async (req, res) => {
 // @route   POST api/invoices
 // @desc    Add an invoice
 // @access  Public
-router.post(
-  '/',
-  [
-    check('id', 'id is required').not().isEmpty(),
-    check('description', 'description is required').not().isEmpty(),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    const {
+router.post('/', async (req, res) => {
+  const {
+    id,
+    createdAt,
+    paymentDue,
+    description,
+    paymentTerms,
+    clientName,
+    clientEmail,
+    status,
+    senderAddress,
+    clientAddress,
+    items,
+    total,
+  } = req.body;
+  try {
+    let newInvoice = new Invoice({
       id,
       createdAt,
       paymentDue,
@@ -44,30 +48,14 @@ router.post(
       clientAddress,
       items,
       total,
-    } = req.body;
-    try {
-      let newInvoice = new Invoice({
-        id,
-        createdAt,
-        paymentDue,
-        description,
-        paymentTerms,
-        clientName,
-        clientEmail,
-        status,
-        senderAddress,
-        clientAddress,
-        items,
-        total,
-      });
-      const invoice = await newInvoice.save();
-      res.send(invoice);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
-    }
+    });
+    const invoice = await newInvoice.save();
+    res.send(invoice);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
-);
+});
 
 // @route   PUT api/invoices/:id
 // @desc    Edit an invoice

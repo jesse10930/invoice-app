@@ -44,8 +44,8 @@ const Invoices = () => {
             src={require('../../images/illustration-empty.svg').default}
             alt='emtpy-illustration'
           />
-          <h2 className={dark && 'dark'}>There is nothing here</h2>
-          <p className={dark && 'dark'}>
+          <h2 className={dark ? 'dark' : undefined}>There is nothing here</h2>
+          <p className={dark ? 'dark' : undefined}>
             Create an invoice by clicking the{' '}
             <span style={{ fontWeight: '700' }}>New Invoice</span> button and
             get started, or change the{' '}

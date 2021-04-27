@@ -5,11 +5,10 @@ const InvoiceSchema = mongoose.Schema({
     type: String,
   },
   createdAt: {
-    type: Date,
-    default: Date.now,
+    type: String,
   },
   paymentDue: {
-    type: Date,
+    type: String,
   },
   description: {
     type: String,

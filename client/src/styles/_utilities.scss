@@ -152,19 +152,6 @@ input[type='email'] {
 
 // New/Edit Invoice Modal
 #new-invoice-modal {
-  // position: absolute;
-  // height: auto;
-  // width: 35vw;
-  // min-width: 380px;
-  // top: 0;
-  // left: 0;
-  // background: #ffffff;
-  // border-radius: 0px 20px 20px 0px;
-  // padding: 50px 50px 50px 150px;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-
   #tester-for-modal {
     position: absolute;
     height: calc(100vh - 100px);
@@ -610,10 +597,12 @@ input[type='email'] {
   position: fixed;
 }
 
+// Alert State Border
 .alert {
   border: 1px solid #ec5757;
 }
 
+// Alert State Messages
 .alert-text {
   font-weight: 600;
   font-size: 12px;

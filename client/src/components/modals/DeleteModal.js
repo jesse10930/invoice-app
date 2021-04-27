@@ -16,11 +16,11 @@ const DeleteModal = () => {
 
   return (
     <div id='delete-modal-container' className='back-drop'>
-      <div id='delete-modal' className={dark && 'dark'}>
-        <p id='dm-heading' className={dark && 'dark'}>
+      <div id='delete-modal' className={dark ? 'dark' : undefined}>
+        <p id='dm-heading' className={dark ? 'dark' : undefined}>
           Confirm Deletion
         </p>
-        <p id='dm-question' className={dark && 'dark'}>
+        <p id='dm-question' className={dark ? 'dark' : undefined}>
           Are you sure you want to delete invoice{' '}
           <span style={{ color: '#7E88C3' }}>#</span>
           {currentUser.id}? This action cannot be undone.
@@ -31,7 +31,7 @@ const DeleteModal = () => {
             className={dark ? 'dark form-btn' : 'form-btn'}
             onClick={cancelDeleteClick}
           >
-            <p id='cancel' className={dark && 'dark'}>
+            <p id='cancel' className={dark ? 'dark' : undefined}>
               Cancel
             </p>
           </div>

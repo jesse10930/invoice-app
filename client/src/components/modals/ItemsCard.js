@@ -19,10 +19,12 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
 
   useEffect(() => {
     updateItems(thisItem);
+    // eslint-disable-next-line
   }, [thisItem]);
 
   useEffect(() => {
     deleteItem(delState, thisItem);
+    // eslint-disable-next-line
   }, [delState]);
 
   const onThisItemChange = (e) => {
@@ -52,7 +54,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
   return (
     <div id={'modal-item-list-inputs-' + itemId}>
       <input
-        className={dark && 'dark'}
+        className={dark ? 'dark' : undefined}
         type='text'
         id={'item-name-input-' + itemId}
         style={{ width: '215px' }}
@@ -63,7 +65,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         onChange={onThisItemChange}
       />
       <input
-        className={dark && 'dark'}
+        className={dark ? 'dark' : undefined}
         type='number'
         min='1'
         id={'qty-input-' + itemId}
@@ -75,7 +77,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         onChange={onThisItemChange}
       />
       <input
-        className={dark && 'dark'}
+        className={dark ? 'dark' : undefined}
         type='number'
         min='0.01'
         step='0.01'
@@ -93,11 +95,6 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
           : 0.0}
       </p>
       <div id={itemId} onClick={onThisItemDelBtnClick}>
-        {/* <img
-          id={itemId}
-          src={require('../../images/icon-delete.svg').default}
-          alt='icon-delete'
-        /> */}
         <svg width='13' height='16' xmlns='http://www.w3.org/2000/svg'>
           <path
             d='M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z'

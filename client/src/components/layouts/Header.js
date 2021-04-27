@@ -47,9 +47,9 @@ const Header = () => {
       <Fragment>
         <div id='header' className={newInvoiceForm ? 'modal-container' : null}>
           <div id='header-left'>
-            <h1 className={dark && 'dark'}>Invoices</h1>
+            <h1 className={dark ? 'dark' : undefined}>Invoices</h1>
             {invoices ? (
-              <p className={dark && 'dark'}>
+              <p className={dark ? 'dark' : undefined}>
                 There are {numOfInvoices} {filterTypes}
               </p>
             ) : (
@@ -59,7 +59,7 @@ const Header = () => {
           <div id='header-right'>
             <div id='filter-dropdown'>
               <div id='heading-arrow'>
-                <p id='filter-title' className={dark && 'dark'}>
+                <p id='filter-title' className={dark ? 'dark' : undefined}>
                   Filter by Status
                 </p>
                 <img
@@ -67,7 +67,7 @@ const Header = () => {
                   alt='icon-arrow-down'
                 />
               </div>
-              <div id='filter-choices' className={dark && 'dark'}>
+              <div id='filter-choices' className={dark ? 'dark' : undefined}>
                 <label className={dark ? 'dark container' : 'container'}>
                   Draft
                   <input
