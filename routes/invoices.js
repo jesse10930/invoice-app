@@ -104,9 +104,13 @@ router.put('/:id', async (req, res) => {
   try {
     let invoice = await Invoice.findById(req.params.id);
     if (!invoice) return res.status(404).json({ msg: 'Invoice not found' });
-    invoice = await Invoice.findByIdAndUpdate(req.params.id, {
-      $set: invoiceFields,
-    });
+    invoice = await Invoice.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: invoiceFields,
+      },
+      { new: true }
+    );
     res.json(invoice);
   } catch (err) {
     console.error(err.message);

@@ -217,31 +217,7 @@ const InvoiceState = (props) => {
   };
 
   // Save Changes Click
-  const saveChangesClick = async (
-    currentUser,
-    updatedInvoice,
-    updatedSenderAddress,
-    updatedClientAddress,
-    updatedItems
-  ) => {
-    console.log(currentUser);
-    let tempTotal = 0;
-    updatedItems.forEach((item) => (tempTotal += parseFloat(item.total)));
-
-    updatedInvoice.status === 'draft' && (updatedInvoice.status = 'pending');
-
-    updatedInvoice.senderAddress = updatedSenderAddress;
-    updatedInvoice.clientAddress = updatedClientAddress;
-    updatedInvoice.items = updatedItems;
-    updatedInvoice.total = tempTotal;
-
-    let newInvoices = state.invoices.map((invoice) => {
-      if (invoice.id === updatedInvoice.id) {
-        invoice = updatedInvoice;
-      }
-      return invoice;
-    });
-
+  const saveChangesClick = async (currentUser, updatedInvoice) => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -254,10 +230,18 @@ const InvoiceState = (props) => {
         updatedInvoice,
         config
       );
+
+      let newInvoices = state.invoices.map((invoice) => {
+        if (invoice.id === updatedInvoice.id) {
+          invoice = res.data;
+        }
+        return invoice;
+      });
+
       dispatch({
         type: SAVE_CHANGES,
         payloadOne: newInvoices,
-        payloadTwo: res.data,
+        payload: res.data,
       });
     } catch (err) {
       dispatch({

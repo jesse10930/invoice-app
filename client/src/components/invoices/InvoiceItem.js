@@ -3,6 +3,7 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
 
 const InvoiceItem = ({ invoice }) => {
+  console.log(invoice.createdAt);
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
 

@@ -110,7 +110,10 @@ const NewInvoice = () => {
 
   // Bill From
   const onSenderAddressChange = (e) =>
-    setSenderAddress({ ...senderAddress, [e.target.name]: e.target.value });
+    setSenderAddress({
+      ...senderAddress,
+      [e.target.name]: e.target.value,
+    });
 
   // Bill To
   const onInvoiceChange = (e) => {
@@ -118,7 +121,10 @@ const NewInvoice = () => {
   };
 
   const onClientAddressChange = (e) =>
-    setClientAddress({ ...clientAddress, [e.target.name]: e.target.value });
+    setClientAddress({
+      ...clientAddress,
+      [e.target.name]: e.target.value,
+    });
 
   // Payment Terms and Date
   const onTermsClick = (e) => {
@@ -225,12 +231,20 @@ const NewInvoice = () => {
     if (items.length === 0) {
       setItemAlert(true);
     } else {
+      let tempTotal = 0;
+      items.forEach((item) => (tempTotal += parseFloat(item.total)));
+
+      invoice.status === 'draft' && (invoice.status = 'pending');
+      invoice.senderAddress = senderAddress;
+      invoice.clientAddress = clientAddress;
+      invoice.items = items;
+      invoice.total = tempTotal;
       saveChangesClick(
         currentUser,
-        invoice,
-        senderAddress,
-        clientAddress,
-        items
+        invoice
+        // senderAddress,
+        // clientAddress,
+        // items
       );
     }
   };
