@@ -150,6 +150,16 @@ const NewInvoice = () => {
     });
   };
 
+  const onDateChange = (e) => {
+    const tempPaymentDue = incrementDate(e.target.value, paymentTerms + 1);
+
+    setInvoice({
+      ...invoice,
+      [e.target.name]: e.target.value,
+      paymentDue: tempPaymentDue,
+    });
+  };
+
   const incrementDate = (date, amount) => {
     let months = {
       Jan: '01',
@@ -311,9 +321,88 @@ const NewInvoice = () => {
   };
 
   // Edit Invoice Validation
-  const editValidate = () => {
+  const editValidate = (invoice, senderAddress, clientAddress, items) => {
+    let tempItemAlertState = false;
+    let tempInputAlertState = false;
+    let invoiceIds = {
+      description: 'ni-proj-desc',
+      clientName: 'ni-client-name',
+      clientEmail: 'ni-client-email',
+      id: '',
+      total: '',
+    };
+    let senderAddressIds = {
+      street: 'ni-sa-input',
+      city: 'ni-from-city',
+      postCode: 'ni-from-zip',
+      country: 'ni-from-country',
+    };
+    let clientAddressIds = {
+      street: 'ni-to-street',
+      city: 'ni-to-city',
+      postCode: 'ni-to-zip',
+      country: 'ni-to-country',
+    };
+
+    let emptyInputs = [];
+    Object.keys(invoice).forEach((key) => {
+      if (
+        key === 'id' ||
+        key === 'total' ||
+        key === 'createdAt' ||
+        key === 'paymentDue' ||
+        key === 'paymentTerms' ||
+        key === 'status'
+      ) {
+        return;
+      }
+      let invElement = document.getElementById(invoiceIds[key]);
+      if (invoice[key].length === 0) {
+        emptyInputs.push(key);
+        invElement.style.cssText += 'border:1px solid #ec5757';
+        invElement.previousSibling.style.cssText += 'color:#ec5757;';
+      } else if (inputAlert) {
+        invElement.style.cssText -= 'border:1px solid #ec5757';
+        invElement.previousSibling.style.cssText -= 'color:#ec5757;';
+      }
+    });
+    Object.keys(senderAddress).forEach((key) => {
+      let senAddrElement = document.getElementById(senderAddressIds[key]);
+      if (senderAddress[key].length === 0) {
+        emptyInputs.push(key);
+        senAddrElement.style.cssText += 'border:1px solid #ec5757';
+        senAddrElement.previousSibling.style.cssText += 'color:#ec5757;';
+      } else if (inputAlert) {
+        senAddrElement.style.cssText -= 'border:1px solid #ec5757';
+        senAddrElement.previousSibling.style.cssText -= 'color:#ec5757;';
+      }
+    });
+    Object.keys(clientAddress).forEach((key) => {
+      let clAddrElement = document.getElementById(clientAddressIds[key]);
+      if (clientAddress[key].length === 0) {
+        emptyInputs.push(key);
+        clAddrElement.style.cssText += 'border:1px solid #ec5757';
+        clAddrElement.previousSibling.style.cssText += 'color:#ec5757';
+      } else if (inputAlert) {
+        clAddrElement.style.cssText -= 'border:1px solid #ec5757';
+        clAddrElement.previousSibling.style.cssText -= 'color:#ec5757;';
+      }
+    });
+    items.forEach((itemObj) => {
+      Object.keys(itemObj).forEach((key) => {
+        itemObj[key].length === 0 && emptyInputs.push(key);
+      });
+    });
+
+    if (emptyInputs.length > 0) {
+      tempInputAlertState = true;
+    }
     if (items.length === 0) {
-      setItemAlert(true);
+      tempItemAlertState = true;
+    }
+    if (tempInputAlertState || tempItemAlertState) {
+      setInputAlert(tempInputAlertState);
+      setItemAlert(tempItemAlertState);
     } else {
       let tempTotal = 0;
       items.forEach((item) => (tempTotal += parseFloat(item.total)));
@@ -337,7 +426,7 @@ const NewInvoice = () => {
         : addInvoice(invoice, senderAddress, clientAddress, items)
       : !save
       ? cancelEditClick()
-      : editValidate();
+      : editValidate(invoice, senderAddress, clientAddress, items);
   };
 
   // Render
@@ -506,7 +595,7 @@ const NewInvoice = () => {
                   name='createdAt'
                   autoComplete='off'
                   value={createdAt}
-                  onChange={onInvoiceChange}
+                  onChange={onDateChange}
                 />
               </div>
               <div id='td-terms'>

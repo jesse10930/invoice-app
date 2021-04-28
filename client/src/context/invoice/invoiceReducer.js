@@ -95,7 +95,7 @@ const invoiceReducer = (state, action) => {
       return {
         ...state,
         invoices: action.payloadOne,
-        currentUser: action.payload,
+        currentUser: action.payloadTwo,
         editInvoiceForm: false,
       };
     case INVOICE_ERROR:

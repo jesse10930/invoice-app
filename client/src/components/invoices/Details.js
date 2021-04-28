@@ -42,7 +42,7 @@ const Details = ({ currentUser }) => {
     setDueMonth(dD.substring(4, 7));
     setDueDay(dD.substring(8, 10));
     // eslint-disable-next-line
-  }, []);
+  }, [currentUser.createdAt, currentUser.paymentDue]);
 
   const {
     status,

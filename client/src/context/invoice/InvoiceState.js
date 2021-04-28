@@ -241,7 +241,7 @@ const InvoiceState = (props) => {
       dispatch({
         type: SAVE_CHANGES,
         payloadOne: newInvoices,
-        payload: res.data,
+        payloadTwo: res.data,
       });
     } catch (err) {
       dispatch({
