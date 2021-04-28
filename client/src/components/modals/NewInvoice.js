@@ -110,9 +110,9 @@ const NewInvoice = () => {
 
   // Bill From
   const onSenderAddressChange = (e) => {
-    if (e.target.value.length > 0) {
-      console.log(e.target.id);
-    }
+    // if (e.target.value.length > 0) {
+    //   console.log(e.target.id);
+    // }
     setSenderAddress({
       ...senderAddress,
       [e.target.name]: e.target.value,
@@ -225,16 +225,69 @@ const NewInvoice = () => {
   const addValidate = (invoice, senderAddress, clientAddress, items) => {
     let tempItemAlertState = false;
     let tempInputAlertState = false;
+    let invoiceIds = {
+      description: 'ni-proj-desc',
+      clientName: 'ni-client-name',
+      clientEmail: 'ni-client-email',
+      id: '',
+      total: '',
+    };
+    let senderAddressIds = {
+      street: 'ni-sa-input',
+      city: 'ni-from-city',
+      postCode: 'ni-from-zip',
+      country: 'ni-from-country',
+    };
+    let clientAddressIds = {
+      street: 'ni-to-street',
+      city: 'ni-to-city',
+      postCode: 'ni-to-zip',
+      country: 'ni-to-country',
+    };
 
     let emptyInputs = [];
     Object.keys(invoice).forEach((key) => {
-      invoice[key].length === 0 && emptyInputs.push(key);
+      if (
+        key === 'id' ||
+        key === 'total' ||
+        key === 'createdAt' ||
+        key === 'paymentDue' ||
+        key === 'paymentTerms' ||
+        key === 'status'
+      ) {
+        return;
+      }
+      let invElement = document.getElementById(invoiceIds[key]);
+      if (invoice[key].length === 0) {
+        emptyInputs.push(key);
+        invElement.style.cssText += 'border:1px solid #ec5757';
+        invElement.previousSibling.style.cssText += 'color:#ec5757;';
+      } else if (inputAlert) {
+        invElement.style.cssText -= 'border:1px solid #ec5757';
+        invElement.previousSibling.style.cssText -= 'color:#ec5757;';
+      }
     });
     Object.keys(senderAddress).forEach((key) => {
-      senderAddress[key].length === 0 && emptyInputs.push(key);
+      let senAddrElement = document.getElementById(senderAddressIds[key]);
+      if (senderAddress[key].length === 0) {
+        emptyInputs.push(key);
+        senAddrElement.style.cssText += 'border:1px solid #ec5757';
+        senAddrElement.previousSibling.style.cssText += 'color:#ec5757;';
+      } else if (inputAlert) {
+        senAddrElement.style.cssText -= 'border:1px solid #ec5757';
+        senAddrElement.previousSibling.style.cssText -= 'color:#ec5757;';
+      }
     });
     Object.keys(clientAddress).forEach((key) => {
-      clientAddress[key].length === 0 && emptyInputs.push(key);
+      let clAddrElement = document.getElementById(clientAddressIds[key]);
+      if (clientAddress[key].length === 0) {
+        emptyInputs.push(key);
+        clAddrElement.style.cssText += 'border:1px solid #ec5757';
+        clAddrElement.previousSibling.style.cssText += 'color:#ec5757';
+      } else if (inputAlert) {
+        clAddrElement.style.cssText -= 'border:1px solid #ec5757';
+        clAddrElement.previousSibling.style.cssText -= 'color:#ec5757;';
+      }
     });
     items.forEach((itemObj) => {
       Object.keys(itemObj).forEach((key) => {
@@ -242,25 +295,13 @@ const NewInvoice = () => {
       });
     });
 
-    if (emptyInputs.length > 2) {
+    if (emptyInputs.length > 0) {
       tempInputAlertState = true;
     }
     if (items.length === 0) {
       tempItemAlertState = true;
     }
 
-    // if (tempInputAlertState && tempItemAlertState) {
-    //   setInputAlert(tempInputAlertState);
-    //   setItemAlert(tempItemAlertState);
-    // } else if (tempInputAlertState && !tempItemAlertState) {
-    //   setInputAlert(tempInputlertState);
-    // } else if (!tempInputAlertState && tempItemAlertState) {
-    //   setItemAlert(tempItemAlertState);
-    // } else {
-    //   addInvoice(invoice, senderAddress, clientAddress, items);
-    // }
-
-    console.log(emptyInputs);
     if (tempInputAlertState || tempItemAlertState) {
       setInputAlert(tempInputAlertState);
       setItemAlert(tempItemAlertState);
@@ -310,7 +351,10 @@ const NewInvoice = () => {
           <div id='ni-bill-from'>
             <p className='modal-sec-title'>Bill From</p>
             <div id='street-address'>
-              <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+              <p
+                id='sa-red-words'
+                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+              >
                 Street Address
               </p>
               <input
@@ -374,6 +418,7 @@ const NewInvoice = () => {
               Client's Name
             </p>
             <input
+              id='ni-client-name'
               className={dark ? 'dark' : undefined}
               type='text'
               name='clientName'
@@ -385,6 +430,7 @@ const NewInvoice = () => {
               Client's Email
             </p>
             <input
+              id='ni-client-email'
               className={dark ? 'dark' : undefined}
               type='email'
               name='clientEmail'
@@ -397,6 +443,7 @@ const NewInvoice = () => {
               Street Address
             </p>
             <input
+              id='ni-to-street'
               className={dark ? 'dark' : undefined}
               type='text'
               name='street'
@@ -410,6 +457,7 @@ const NewInvoice = () => {
                   City
                 </p>
                 <input
+                  id='ni-to-city'
                   className={dark ? 'dark' : undefined}
                   type='text'
                   name='city'
@@ -423,6 +471,7 @@ const NewInvoice = () => {
                   Post Code
                 </p>
                 <input
+                  id='ni-to-zip'
                   className={dark ? 'dark' : undefined}
                   type='text'
                   name='postCode'
@@ -436,6 +485,7 @@ const NewInvoice = () => {
                   Country
                 </p>
                 <input
+                  id='ni-to-country'
                   className={dark ? 'dark' : undefined}
                   type='text'
                   name='country'
@@ -507,6 +557,7 @@ const NewInvoice = () => {
               Project Description
             </p>
             <input
+              id='ni-proj-desc'
               className={dark ? 'dark' : undefined}
               type='text'
               name='description'

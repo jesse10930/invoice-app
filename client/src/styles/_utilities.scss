@@ -600,6 +600,9 @@ input[type='email'] {
 // Alert State Border
 .alert {
   border: 1px solid #ec5757;
+  &:hover {
+    border: 1px solid #ec5757;
+  }
 }
 
 // Alert State Messages
