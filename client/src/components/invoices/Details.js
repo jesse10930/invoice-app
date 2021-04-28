@@ -88,7 +88,7 @@ const Details = ({ currentUser }) => {
           <div
             id='dh-options'
             style={
-              status === 'paid'
+              status === 'draft'
                 ? {
                     display: 'flex',
                     flexDirection: 'row',
@@ -115,10 +115,14 @@ const Details = ({ currentUser }) => {
             <div
               id='mark-as-paid'
               className='form-btn'
-              onClick={onMarkAsPaidClick}
-              style={status === 'paid' ? { display: 'none' } : { display: '' }}
+              onClick={() => onMarkAsPaidClick(status)}
+              style={status === 'draft' ? { display: 'none' } : { display: '' }}
             >
-              <p>Mark as Paid</p>
+              {status === 'pending' ? (
+                <p>Mark as Paid</p>
+              ) : (
+                <p>Mark as Pending</p>
+              )}
             </div>
           </div>
         </div>

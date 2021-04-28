@@ -139,9 +139,11 @@ const InvoiceState = (props) => {
   };
 
   // Click on Mark as Paid Button
-  const onMarkAsPaidClick = async () => {
+  const onMarkAsPaidClick = async (status) => {
     const newCurrUser = state.currentUser;
-    newCurrUser.status = 'paid';
+    status === 'pending'
+      ? (newCurrUser.status = 'paid')
+      : (newCurrUser.status = 'pending');
 
     const config = {
       headers: {

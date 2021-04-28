@@ -301,7 +301,36 @@ const NewInvoice = () => {
     });
     items.forEach((itemObj) => {
       Object.keys(itemObj).forEach((key) => {
-        itemObj[key].length === 0 && emptyInputs.push(key);
+        if (key === 'itemId' || key === 'total') {
+          return;
+        }
+        let nameElement = document.getElementById(
+          `item-name-input-${itemObj.itemId}`
+        );
+        let quantElement = document.getElementById(
+          `qty-input-${itemObj.itemId}`
+        );
+        let priceElement = document.getElementById(
+          `price-input-${itemObj.itemId}`
+        );
+        if (itemObj[key].length === 0) {
+          emptyInputs.push(key);
+          if (key === 'name') {
+            nameElement.style.cssText += 'border:1px solid #ec5757';
+          } else if (key === 'quantity') {
+            quantElement.style.cssText += 'border:1px solid #ec5757';
+          } else {
+            priceElement.style.cssText += 'border:1px solid #ec5757';
+          }
+        } else if (inputAlert) {
+          if (key === 'name') {
+            nameElement.style.cssText -= 'border:1px solid #ec5757';
+          } else if (key === 'quantity') {
+            quantElement.style.cssText -= 'border:1px solid #ec5757';
+          } else {
+            priceElement.style.cssText -= 'border:1px solid #ec5757';
+          }
+        }
       });
     });
 
@@ -390,7 +419,38 @@ const NewInvoice = () => {
     });
     items.forEach((itemObj) => {
       Object.keys(itemObj).forEach((key) => {
-        itemObj[key].length === 0 && emptyInputs.push(key);
+        if (key === 'itemId' || key === 'total') {
+          return;
+        }
+        let nameElement = document.getElementById(
+          `item-name-input-${itemObj.itemId}`
+        );
+        let quantElement = document.getElementById(
+          `qty-input-${itemObj.itemId}`
+        );
+        let priceElement = document.getElementById(
+          `price-input-${itemObj.itemId}`
+        );
+        if (itemObj[key].length === 0) {
+          emptyInputs.push(key);
+          if (key === 'name') {
+            nameElement.style.cssText += 'border:1px solid #ec5757';
+          } else if (key === 'quantity') {
+            quantElement.style.cssText += 'border:1px solid #ec5757';
+          } else {
+            priceElement.style.cssText += 'border:1px solid #ec5757';
+          }
+        } else if (inputAlert) {
+          if (key === 'name') {
+            nameElement.style.cssText -= 'border:1px solid #ec5757';
+          } else if (key === 'quantity') {
+            quantElement.style.cssText -= 'border:1px solid #ec5757';
+            quantElement.style.cssText += 'width:50px';
+          } else {
+            priceElement.style.cssText -= 'border:1px solid #ec5757';
+            priceElement.style.cssText += 'width:50px';
+          }
+        }
       });
     });
 

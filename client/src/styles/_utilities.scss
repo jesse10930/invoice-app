@@ -404,6 +404,7 @@ input[type='email'] {
     }
 
     #ni-bot-btns {
+      // border: solid red 3px;
       margin-bottom: -20px;
       display: flex;
       justify-content: space-between;
@@ -486,6 +487,9 @@ input[type='email'] {
         }
       }
     }
+    // &.form:last-child {
+    //   border: 3px green solid;
+    // }
   }
 }
 
