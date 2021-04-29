@@ -26,6 +26,10 @@ const Details = ({ currentUser }) => {
   const [dueDay, setDueDay] = useState('');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const year = createdAt.substring(0, 4);
     const month = parseInt(createdAt.substring(5, 7)) - 1;
     const day = createdAt.substring(8);
@@ -101,11 +105,6 @@ const Details = ({ currentUser }) => {
               id='edit'
               className={dark ? 'form-btn dark' : 'form-btn'}
               onClick={editButtonClick}
-              style={
-                status === 'paid'
-                  ? { marginRight: '5px' }
-                  : { marginRight: '0' }
-              }
             >
               <p>Edit</p>
             </div>

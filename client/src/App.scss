@@ -3,6 +3,10 @@
 @import 'styles/utilities';
 
 // General
+html {
+  overflow-y: scroll;
+}
+
 * {
   margin: 0;
   padding: 0;

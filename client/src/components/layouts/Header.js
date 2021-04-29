@@ -1,9 +1,11 @@
-import React, { Fragment, useContext } from 'react';
+import React, { useState, useEffect, Fragment, useContext } from 'react';
 import NewInvoice from '../modals/NewInvoice';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
 
 const Header = () => {
+  const [run, setRun] = useState(false);
+
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
   const { dark } = darkContext;
@@ -15,6 +17,12 @@ const Header = () => {
     filterCheck,
     filters,
   } = invoiceContext;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRun(true);
+    }, 500);
+  });
 
   const onCheck = (e) => {
     filterCheck(e.target.value);
@@ -48,13 +56,13 @@ const Header = () => {
         <div id='header' className={newInvoiceForm ? 'modal-container' : null}>
           <div id='header-left'>
             <h1 className={dark ? 'dark' : undefined}>Invoices</h1>
-            {invoices ? (
+            {run && invoices ? (
               <p className={dark ? 'dark' : undefined}>
                 There are {numOfInvoices} {filterTypes}
               </p>
-            ) : (
+            ) : run ? (
               <p>There are 0 total invoices</p>
-            )}
+            ) : null}
           </div>
           <div id='header-right'>
             <div id='filter-dropdown'>

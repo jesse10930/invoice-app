@@ -489,12 +489,19 @@ const NewInvoice = () => {
       : editValidate(invoice, senderAddress, clientAddress, items);
   };
 
+  const userHashId = currentUser ? (
+    <Fragment>
+      Edit <span style={{ color: '#7E88C3' }}>#</span>
+      {currentUser.id}
+    </Fragment>
+  ) : null;
+
   // Render
   return (
     <div id='new-invoice-modal' className='back-drop'>
       <div id='tester-for-modal' className={dark ? 'dark' : undefined}>
         <p id='new-invoice-title' className={dark ? 'dark' : undefined}>
-          {currentUser ? `Edit ${currentUser.id}` : 'New Invoice'}
+          {currentUser ? userHashId : 'New Invoice'}
         </p>
         <form onSubmit={onSubmit}>
           <div id='ni-bill-from'>
@@ -790,7 +797,6 @@ const NewInvoice = () => {
                     dark ? 'form-btn discard dark' : 'form-btn discard'
                   }
                   onMouseOver={onMouseOver}
-                  formNoValidate
                 />
                 <div id='save-btns'>
                   <input
@@ -819,14 +825,12 @@ const NewInvoice = () => {
                     className='form-btn cancel'
                     onMouseEnter={onMouseEnter}
                     onMouseOut={onMouseOut}
-                    formNoValidate
                   />
                   <input
                     type='submit'
                     name='changes'
                     value='Save Changes'
                     className='form-btn change'
-                    // onMouseOver={onMouseOver}
                   />
                 </div>
               </Fragment>

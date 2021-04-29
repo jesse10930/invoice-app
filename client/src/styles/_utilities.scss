@@ -164,7 +164,7 @@ input[type='email'] {
     padding: 50px 50px 50px 150px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     overflow-y: auto;
     z-index: 5;
 
@@ -183,7 +183,6 @@ input[type='email'] {
         color: #ffffff;
       }
     }
-
     #ni-bill-from {
       display: flex;
       flex-direction: column;
@@ -404,7 +403,7 @@ input[type='email'] {
     }
 
     #ni-bot-btns {
-      // border: solid red 3px;
+      position: sticky;
       margin-bottom: -20px;
       display: flex;
       justify-content: space-between;
@@ -431,7 +430,7 @@ input[type='email'] {
         .draft {
           color: #888eb0;
           background: #373b53;
-          margin-right: 10px;
+          margin-right: 5px;
           padding: 0;
 
           &.dark {
@@ -463,11 +462,13 @@ input[type='email'] {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+
         .cancel {
           width: 100px;
           background: #f9fafe;
           color: #7e88c3;
-          margin-right: 10px;
+          margin-right: 5px;
+          padding: 0;
 
           &:hover {
             cursor: pointer;
@@ -487,9 +488,6 @@ input[type='email'] {
         }
       }
     }
-    // &.form:last-child {
-    //   border: 3px green solid;
-    // }
   }
 }
 
