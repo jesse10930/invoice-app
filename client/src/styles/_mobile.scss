@@ -60,6 +60,103 @@
   }
 }
 
-// Phones
-@media (max-width: 500) {
+// // Phones
+@media (max-width: 500px) {
+  #main-app {
+    #navbar {
+      height: 100px;
+      width: 100vw;
+      border-radius: 0;
+
+      #mode-toggle {
+        top: 40px;
+        left: 60%;
+      }
+
+      #horizontal-line {
+        height: 100px;
+        width: 1px;
+        top: 0;
+        left: 75%;
+      }
+
+      #prof-pic {
+        left: 83%;
+        top: 30px;
+      }
+    }
+
+    #header {
+      width: 98%;
+      margin-top: 140px;
+    }
+
+    // #new-invoice-modal {
+    //   height: calc(100vh + 100px);
+    //   #tester-for-modal {
+    //     padding: 50px 50px 50px 50px;
+    //     margin-top: 100px;
+    //   }
+    // }
+
+    #invoices {
+      width: 90%;
+
+      #invoice-list {
+        .invoice-item {
+          height: 120px;
+          grid-template-columns: 64%;
+          grid-template-areas:
+            'top-left top-right'
+            'bot-left bot-right';
+        }
+
+        .item-id {
+          grid-area: top-left;
+        }
+        .item-client-name {
+          padding-right: 20px;
+          justify-self: end;
+          grid-area: top-right;
+        }
+        .item-created-at {
+          padding-left: 20px;
+          height: 40px;
+          justify-self: start;
+          grid-area: bot-left;
+        }
+        .item-payment-due {
+          padding-left: 20px;
+          height: 40px;
+          justify-self: start;
+          align-items: flex-end;
+          grid-area: bot-left;
+        }
+        .colored-part-and-arrow {
+          grid-area: bot-right;
+
+          img {
+            display: none;
+          }
+        }
+      }
+    }
+
+    // #details-container {
+    //   width: 700px;
+    //   margin-top: 130px;
+
+    //   #details-card {
+    //     #details-card-items {
+    //       #dc-items-header {
+    //         grid-template-columns: 280px 85px 65px 105px;
+    //       }
+
+    //       .item-info {
+    //         grid-template-columns: 280px 85px 65px 105px;
+    //       }
+    //     }
+    //   }
+    // }
+  }
 }

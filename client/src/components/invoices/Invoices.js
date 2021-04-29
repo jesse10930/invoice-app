@@ -44,27 +44,6 @@ const Invoices = () => {
       className={newInvoiceForm ? 'modal-container' : null}
       style={newInvoiceForm ? { marginTop: '120px' } : null}
     >
-      {/* {filtered.length > 0 ? (
-        <div id='invoice-list'>
-          {filtered.map((invoice, i) => (
-            <InvoiceItem key={i} invoice={invoice} />
-          ))}
-        </div>
-      ) : (
-        <div id='empty-container'>
-          <img
-            src={require('../../images/illustration-empty.svg').default}
-            alt='emtpy-illustration'
-          />
-          <h2 className={dark ? 'dark' : undefined}>There is nothing here</h2>
-          <p className={dark ? 'dark' : undefined}>
-            Create an invoice by clicking the{' '}
-            <span style={{ fontWeight: '700' }}>New Invoice</span> button and
-            get started, or change the{' '}
-            <span style={{ fontWeight: '700' }}>Filter by Status</span>
-          </p>
-        </div>
-      )} */}
       {run && filtered.length === 0 ? (
         <div id='empty-container'>
           <img

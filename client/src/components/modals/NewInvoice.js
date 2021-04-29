@@ -3,13 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
-// import AlertContext from '../../context/alert/alertContext';
 
 const NewInvoice = () => {
   // Context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
-  // const alertContext = useContext(AlertContext);
 
   const {
     addInvoice,
@@ -19,7 +17,6 @@ const NewInvoice = () => {
     saveChangesClick,
   } = invoiceContext;
   const { dark } = darkContext;
-  // const { alert, setAlertState } = alertContext;
 
   // Set Initial State
   const [invoice, setInvoice] = useState({
