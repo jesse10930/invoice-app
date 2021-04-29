@@ -454,6 +454,7 @@ body {
       width: 80px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 15px;
       p {
         font-size: 12px;
@@ -755,3 +756,5 @@ body {
     }
   }
 }
+
+@import 'styles/mobile';
