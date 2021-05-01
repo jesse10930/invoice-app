@@ -1,6 +1,13 @@
 // Tablets
 @media (max-width: 900px) {
+  body,
+  html {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
   #main-app {
+    height: 100vh;
     #navbar {
       height: 100px;
       width: 100vw;
@@ -30,10 +37,14 @@
     }
 
     #new-invoice-modal {
-      height: calc(100vh + 100px);
       #tester-for-modal {
-        padding: 50px 50px 50px 50px;
+        padding: 20px 20px 20px 20px;
+        height: calc(100vh - 140px);
         margin-top: 100px;
+
+        #ni-bot-btns {
+          // margin-bottom: 20px;
+        }
       }
     }
 
@@ -116,7 +127,6 @@
     }
 
     #new-invoice-modal {
-      height: calc(100vh + 40px);
       width: 100vw;
       #tester-for-modal {
         margin-top: 70px;
@@ -124,6 +134,7 @@
         padding-top: 20px;
         width: 90vw;
         min-width: 300px;
+        height: calc(100vh - 110px);
 
         #ni-bill-from {
           #street-address {
