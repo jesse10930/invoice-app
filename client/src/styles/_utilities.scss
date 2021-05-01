@@ -403,56 +403,57 @@ input[type='email'] {
     }
 
     #ni-bot-btns {
-      position: sticky;
       margin-bottom: -20px;
-      display: flex;
-      justify-content: space-between;
 
-      .discard {
-        color: #7e88c3;
-        background: #f9fafe;
-        width: 100px;
-        padding: 0;
-
-        &.dark {
-          background: #f9fafe;
-        }
-
-        &:hover {
-          background: #dfe3fa;
-        }
-      }
-
-      #save-btns {
+      #ni-btns {
         display: flex;
         justify-content: space-between;
-
-        .draft {
-          color: #888eb0;
-          background: #373b53;
-          margin-right: 5px;
+        .discard {
+          color: #7e88c3;
+          background: #f9fafe;
+          width: 100px;
           padding: 0;
 
           &.dark {
-            color: #dfe3fa;
-
-            &:hover {
-              background: #1e2139;
-            }
+            background: #f9fafe;
           }
 
           &:hover {
-            background: #0c0e16;
+            background: #dfe3fa;
           }
         }
 
-        .send {
-          color: #ffffff;
-          background: #7c5dfa;
-          padding: 0;
+        #save-btns {
+          display: flex;
+          justify-content: space-between;
 
-          &:hover {
-            background: #9277ff;
+          .draft {
+            color: #888eb0;
+            background: #373b53;
+            margin-right: 5px;
+            padding: 0;
+
+            &.dark {
+              color: #dfe3fa;
+
+              &:hover {
+                background: #1e2139;
+              }
+            }
+
+            &:hover {
+              background: #0c0e16;
+            }
+          }
+
+          .send {
+            color: #ffffff;
+            background: #7c5dfa;
+            padding: 0;
+
+            &:hover {
+              background: #9277ff;
+            }
           }
         }
       }

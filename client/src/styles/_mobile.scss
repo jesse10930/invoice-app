@@ -1,5 +1,5 @@
 // Tablets
-@media (max-width: 780px) {
+@media (max-width: 900px) {
   #main-app {
     #navbar {
       height: 100px;
@@ -15,11 +15,11 @@
         height: 100px;
         width: 1px;
         top: 0;
-        left: 668px;
+        left: 87%;
       }
 
       #prof-pic {
-        left: 698px;
+        left: 91%;
         top: 30px;
       }
     }
@@ -125,6 +125,63 @@
         width: 90vw;
         min-width: 300px;
 
+        #ni-bill-from {
+          #street-address {
+            #ni-sa-input {
+              width: 96%;
+            }
+          }
+          #ni-city-zip-country {
+            display: grid;
+            grid-template-areas:
+              'top-left top-right'
+              'bottom bottom';
+
+            :last-child {
+              grid-area: bottom;
+              #ni-from-country {
+                width: 95%;
+              }
+            }
+          }
+        }
+
+        #ni-bill-to {
+          #bt-cityzipcountry {
+            display: grid;
+            grid-template-areas:
+              'top-left top-right'
+              'bottom bottom';
+
+            :last-child {
+              grid-area: bottom;
+              #ni-to-country {
+                width: 95%;
+              }
+            }
+          }
+
+          #td-date-terms {
+            display: flex;
+            flex-direction: column;
+
+            #td-date {
+              width: 106%;
+            }
+
+            #td-terms {
+              width: 99%;
+            }
+          }
+
+          #ni-proj-desc {
+            width: 96%;
+          }
+        }
+
+        #ni-item-list {
+        }
+
         #ni-bot-btns {
           display: flex;
           justify-content: center;
@@ -169,6 +226,10 @@
           grid-template-areas:
             'top-left top-right'
             'bot-left bot-right';
+
+          &:hover {
+            height: 118px;
+          }
         }
 
         .item-id {
@@ -400,9 +461,14 @@
 
     #delete-modal-container {
       #delete-modal {
+        height: 230px;
         width: 80%;
         padding: 20px;
         align-items: center;
+
+        #dm-question {
+          margin-left: 20px;
+        }
       }
     }
   }
