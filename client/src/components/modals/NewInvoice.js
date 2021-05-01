@@ -786,30 +786,34 @@ const NewInvoice = () => {
           <div id='ni-bot-btns'>
             {!currentUser ? (
               <Fragment>
-                <input
-                  type='submit'
-                  name='discard'
-                  value='Discard'
-                  className={
-                    dark ? 'form-btn discard dark' : 'form-btn discard'
-                  }
-                  onMouseOver={onMouseOver}
-                />
-                <div id='save-btns'>
+                <div id='ni-btns'>
                   <input
                     type='submit'
-                    name='draft'
-                    value='Save as Draft'
-                    className={dark ? 'form-btn draft dark' : 'form-btn draft'}
+                    name='discard'
+                    value='Discard'
+                    className={
+                      dark ? 'form-btn discard dark' : 'form-btn discard'
+                    }
                     onMouseOver={onMouseOver}
                   />
-                  <input
-                    type='submit'
-                    name='pending'
-                    value='Save & Send'
-                    className='form-btn send'
-                    onMouseOver={onMouseOver}
-                  />
+                  <div id='save-btns'>
+                    <input
+                      type='submit'
+                      name='draft'
+                      value='Save as Draft'
+                      className={
+                        dark ? 'form-btn draft dark' : 'form-btn draft'
+                      }
+                      onMouseOver={onMouseOver}
+                    />
+                    <input
+                      type='submit'
+                      name='pending'
+                      value='Save & Send'
+                      className='form-btn send'
+                      onMouseOver={onMouseOver}
+                    />
+                  </div>
                 </div>
               </Fragment>
             ) : (

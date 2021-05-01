@@ -127,7 +127,7 @@ const Details = ({ currentUser }) => {
         </div>
         <div id='details-card' className={dark ? 'dark' : undefined}>
           <div id='top-details'>
-            <div id='td-group1'>
+            <div id='td-group1' className='td-cn-group1'>
               <p id='td-id' className={dark ? 'dark td-bold' : 'td-bold'}>
                 <span style={{ color: '#7E88C3' }}>#</span>
                 {id}
@@ -139,7 +139,7 @@ const Details = ({ currentUser }) => {
                 {description}
               </p>
             </div>
-            <div id='td-group2'>
+            <div id='td-group2' className='td-cn-group2'>
               <p
                 id='td-inv-date-header'
                 className={dark ? 'dark td-beautiful' : 'td-beautiful'}
@@ -150,7 +150,7 @@ const Details = ({ currentUser }) => {
                 {day} {month} {year}
               </p>
             </div>
-            <div id='td-group3'>
+            <div id='td-group3' className='td-cn-group3'>
               <p
                 id='td-due-date-header'
                 className={dark ? 'dark td-beautiful' : 'td-beautiful'}
@@ -161,7 +161,7 @@ const Details = ({ currentUser }) => {
                 {dueDay} {dueMonth} {dueYear}
               </p>
             </div>
-            <div id='td-group4'>
+            <div id='td-group4' className='td-cn-group4'>
               <p
                 id='td-bill-to-header'
                 className={dark ? 'dark td-beautiful' : 'td-beautiful'}
@@ -184,7 +184,7 @@ const Details = ({ currentUser }) => {
                 <p id='client-country'>{clientAddress.country}</p>
               </div>
             </div>
-            <div id='td-group5'>
+            <div id='td-group5' className='td-cn-group5'>
               <p
                 id='td-sent-to-header'
                 className={dark ? 'dark td-beautiful' : 'td-beautiful'}
@@ -198,26 +198,18 @@ const Details = ({ currentUser }) => {
                 {clientEmail}
               </p>
             </div>
-            <div id='td-group6'>
+            <div id='td-group6' className='td-cn-group6'>
               <div
                 id='td-sender-address'
                 className={dark ? 'dark td-beautiful' : 'td-beautiful'}
               >
-                <p id='client-street' style={{ float: 'right' }}>
-                  {senderAddress.street}
-                </p>
+                <p id='client-street'>{senderAddress.street}</p>
                 <br></br>
-                <p id='client-city' style={{ float: 'right' }}>
-                  {senderAddress.city}
-                </p>
+                <p id='client-city'>{senderAddress.city}</p>
                 <br></br>
-                <p id='client-zip' style={{ float: 'right' }}>
-                  {senderAddress.postCode}
-                </p>
+                <p id='client-zip'>{senderAddress.postCode}</p>
                 <br></br>
-                <p id='client-country' style={{ float: 'right' }}>
-                  {senderAddress.country}
-                </p>
+                <p id='client-country'>{senderAddress.country}</p>
               </div>
             </div>
           </div>
@@ -265,12 +257,16 @@ const Details = ({ currentUser }) => {
                   >
                     ${(item.quantity * item.price).toFixed(2)}
                   </p>
+                  <p id='random-x' className={dark ? 'dark' : undefined}>
+                    x
+                  </p>
                 </div>
               );
             })}
           </div>
           <div id='details-card-total' className={dark ? 'dark' : undefined}>
             <p id='amount-due'>Amount Due</p>
+            <p id='grand-total'>Grand Total</p>
             <div id='dc-total'>
               $
               {total
@@ -278,6 +274,30 @@ const Details = ({ currentUser }) => {
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
+          </div>
+        </div>
+        <div id='mobile-footer' className={dark ? 'dark' : undefined}>
+          <div
+            id='edit'
+            className={dark ? 'form-btn dark' : 'form-btn'}
+            onClick={editButtonClick}
+          >
+            <p>Edit</p>
+          </div>
+          <div id='delete' className='form-btn' onClick={deleteButtonClick}>
+            <p>Delete</p>
+          </div>
+          <div
+            id='mark-as-paid'
+            className='form-btn'
+            onClick={() => onMarkAsPaidClick(status)}
+            style={status === 'draft' ? { display: 'none' } : { display: '' }}
+          >
+            {status === 'pending' ? (
+              <p>Mark as Paid</p>
+            ) : (
+              <p>Mark as Pending</p>
+            )}
           </div>
         </div>
       </div>

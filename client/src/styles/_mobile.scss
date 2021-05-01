@@ -64,17 +64,41 @@
 @media (max-width: 500px) {
   #main-app {
     #navbar {
-      height: 100px;
+      position: fixed;
+      height: 70px;
       width: 100vw;
       border-radius: 0;
 
+      #home-icon {
+        height: 70px;
+        width: 70px;
+
+        #home-icon-bot {
+          height: 35px;
+          width: 70px;
+          top: 35px;
+        }
+
+        #home-icon-circle {
+          left: 20px;
+          top: 20px;
+          height: 30px;
+          width: 30px;
+        }
+
+        #home-icon-triangle {
+          left: 25px;
+          top: 15px;
+        }
+      }
+
       #mode-toggle {
-        top: 40px;
-        left: 60%;
+        top: 25px;
+        left: 63%;
       }
 
       #horizontal-line {
-        height: 100px;
+        height: 70px;
         width: 1px;
         top: 0;
         left: 75%;
@@ -82,22 +106,58 @@
 
       #prof-pic {
         left: 83%;
-        top: 30px;
+        top: 15px;
       }
     }
 
     #header {
       width: 98%;
-      margin-top: 140px;
+      margin-top: 110px;
     }
 
-    // #new-invoice-modal {
-    //   height: calc(100vh + 100px);
-    //   #tester-for-modal {
-    //     padding: 50px 50px 50px 50px;
-    //     margin-top: 100px;
-    //   }
-    // }
+    #new-invoice-modal {
+      height: calc(100vh + 40px);
+      width: 100vw;
+      #tester-for-modal {
+        margin-top: 70px;
+        padding-left: 20px;
+        padding-top: 20px;
+        width: 90vw;
+        min-width: 300px;
+
+        #ni-bot-btns {
+          display: flex;
+          justify-content: center;
+
+          #ni-btns {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .discard {
+              width: 100px;
+            }
+
+            #save-btns {
+              width: 65%;
+              .draft {
+                width: 100px;
+                margin: 0;
+              }
+              .send {
+                width: 100px;
+              }
+            }
+          }
+
+          #change-btns {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+          }
+        }
+      }
+    }
 
     #invoices {
       width: 90%;
@@ -142,21 +202,208 @@
       }
     }
 
-    // #details-container {
-    //   width: 700px;
-    //   margin-top: 130px;
+    #details-container {
+      width: 90%;
+      margin-top: 110px;
+      margin-bottom: 40px;
 
-    //   #details-card {
-    //     #details-card-items {
-    //       #dc-items-header {
-    //         grid-template-columns: 280px 85px 65px 105px;
-    //       }
+      #details-header {
+        padding-left: 20px;
+        padding-right: 20px;
+        #dh-status {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+        }
+        #dh-options {
+          width: 0px;
+          display: none;
+          #edit {
+            display: none;
+          }
+          #delete {
+            display: none;
+          }
+          #mark-as-paid {
+            display: none;
+          }
+        }
+      }
 
-    //       .item-info {
-    //         grid-template-columns: 280px 85px 65px 105px;
-    //       }
-    //     }
-    //   }
-    // }
+      #details-card {
+        padding: 20px;
+        #top-details {
+          height: 470px;
+          #td-group2 {
+            top: 230px;
+            right: 0;
+          }
+          #td-group3 {
+            top: 310px;
+            right: 0;
+          }
+          #td-group4 {
+            top: 220px;
+            left: 150px;
+          }
+          #td-group5 {
+            top: 390px;
+            left: 0;
+          }
+          #td-group6 {
+            width: 200px;
+            top: 80px;
+            left: 0;
+            #td-sender-address {
+              p {
+                float: left;
+              }
+            }
+          }
+        }
+
+        #details-card-items {
+          padding: 20px 20px 0 20px;
+          #dc-items-header {
+            display: none;
+          }
+          .item-info {
+            grid-template-areas: 'leftside rightside';
+            grid-template-columns: 50%;
+
+            .item-info-name {
+              height: 40px;
+              grid-area: leftside;
+            }
+            .item-info-quantity {
+              height: 20px;
+              grid-area: leftside;
+              margin-left: 0;
+              padding-top: 20px;
+
+              &.dark {
+                color: #888eb0;
+              }
+            }
+            .item-info-price {
+              height: 20px;
+              grid-area: leftside;
+              justify-content: flex-start;
+              margin-left: 0;
+              padding-top: 20px;
+              padding-left: 45px;
+
+              &.dark {
+                color: #888eb0;
+              }
+            }
+            .item-info-total {
+              height: 35px;
+              grid-area: rightside;
+              font-size: 16px;
+              padding-top: 5px;
+            }
+            #random-x {
+              display: block;
+              height: 20px;
+              grid-area: leftside;
+              padding-top: 16px;
+              padding-left: 25px;
+
+              &.dark {
+                color: #888eb0;
+              }
+            }
+          }
+        }
+
+        #details-card-total {
+          #amount-due {
+            display: none;
+          }
+          #grand-total {
+            display: block;
+          }
+        }
+      }
+
+      #mobile-footer {
+        position: fixed;
+        z-index: 999999;
+        bottom: 0;
+        left: 0;
+        height: 70px;
+        width: 100vw;
+        background: #ffffff;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+
+        &.dark {
+          background: #1e2139;
+        }
+
+        #edit {
+          width: 75px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #f9fafe;
+          color: #7e88c3;
+
+          &.dark {
+            background: #252945;
+            color: #ffffff;
+
+            &:hover {
+              color: #7e88c3;
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+            background: #dfe3fa;
+          }
+        }
+
+        #delete {
+          width: 90px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #ec5757;
+          color: #ffffff;
+
+          &:hover {
+            cursor: pointer;
+            background: #ff9797;
+          }
+        }
+
+        #mark-as-paid {
+          width: 135px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #7c5dfa;
+          color: #ffffff;
+
+          &:hover {
+            cursor: pointer;
+            background: #9277ff;
+          }
+        }
+      }
+    }
+
+    #delete-modal-container {
+      #delete-modal {
+        width: 80%;
+        padding: 20px;
+        align-items: center;
+      }
+    }
   }
 }
