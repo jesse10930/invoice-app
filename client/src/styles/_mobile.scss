@@ -1,13 +1,8 @@
 // Tablets
 @media (max-width: 900px) {
-  body,
-  html {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
   #main-app {
     height: 100vh;
+    // justify-content: flex-start;
     #navbar {
       height: 100px;
       width: 100vw;
@@ -74,6 +69,7 @@
 // // Phones
 @media (max-width: 500px) {
   #main-app {
+    // justify-content: flex-start;
     #navbar {
       position: fixed;
       height: 70px;
@@ -122,8 +118,53 @@
     }
 
     #header {
-      width: 98%;
+      width: 90%;
       margin-top: 110px;
+      #header-left {
+        #header-title {
+          display: none;
+        }
+        #mobile-title {
+          display: inline;
+        }
+        #header-numInvoices {
+          display: none;
+        }
+        #mobile-numInvoices {
+          display: inline;
+        }
+        #header-noInvoices {
+          display: none;
+        }
+        #mobile-noInvoices {
+          display: inline;
+        }
+      }
+
+      #header-right {
+        width: 55%;
+        #filter-dropdown {
+          width: 80px;
+          margin-right: 20px;
+          #heading-arrow {
+            #filter-title {
+              display: none;
+            }
+            #mobile-filter {
+              display: inline;
+            }
+          }
+        }
+        #new-invoice-container {
+          width: 90px;
+          #new-invoice-btn-words {
+            display: none;
+          }
+          #mobile-new-invoice-btn-words {
+            display: inline;
+          }
+        }
+      }
     }
 
     #new-invoice-modal {

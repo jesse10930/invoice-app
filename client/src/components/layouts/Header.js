@@ -55,13 +55,32 @@ const Header = () => {
       <Fragment>
         <div id='header' className={newInvoiceForm ? 'modal-container' : null}>
           <div id='header-left'>
-            <h1 className={dark ? 'dark' : undefined}>Invoices</h1>
+            <h1 id='header-title' className={dark ? 'dark' : undefined}>
+              Invoices
+            </h1>
+            <h1 id='mobile-title' className={dark ? 'dark' : undefined}>
+              Invoices
+            </h1>
             {run && invoices ? (
-              <p className={dark ? 'dark' : undefined}>
-                There are {numOfInvoices} {filterTypes}
-              </p>
+              <Fragment>
+                <p
+                  id='header-numInvoices'
+                  className={dark ? 'dark' : undefined}
+                >
+                  There are {numOfInvoices} {filterTypes}
+                </p>
+                <p
+                  id='mobile-numInvoices'
+                  className={dark ? 'dark' : undefined}
+                >
+                  {numOfInvoices} {filterTypes}
+                </p>
+              </Fragment>
             ) : run ? (
-              <p>There are 0 total invoices</p>
+              <Fragment>
+                <p id='header-noInvoices'>There are 0 total invoices</p>
+                <p id='mobile-noInvoices'>0 total invoices</p>
+              </Fragment>
             ) : null}
           </div>
           <div id='header-right'>
@@ -69,6 +88,9 @@ const Header = () => {
               <div id='heading-arrow'>
                 <p id='filter-title' className={dark ? 'dark' : undefined}>
                   Filter by Status
+                </p>
+                <p id='mobile-filter' className={dark ? 'dark' : undefined}>
+                  Filter
                 </p>
                 <img
                   src={require('../../images/icon-arrow-down.svg').default}
@@ -121,7 +143,8 @@ const Header = () => {
                   alt='icon-plus'
                 />
               </div>
-              <p>New Invoice</p>
+              <p id='new-invoice-btn-words'>New Invoice</p>
+              <p id='mobile-new-invoice-btn-words'>New</p>
             </div>
           </div>
         </div>

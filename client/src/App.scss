@@ -21,7 +21,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   #navbar {
     position: fixed;
@@ -119,7 +119,7 @@ body {
       display: flex;
       flex-direction: column;
 
-      h1 {
+      #header-title {
         font-size: 32px;
 
         &.dark {
@@ -127,7 +127,42 @@ body {
         }
       }
 
-      p {
+      #mobile-title {
+        display: none;
+        font-size: 20px;
+
+        &.dark {
+          color: #ffffff;
+        }
+      }
+
+      #header-numInvoices {
+        font-size: 12px;
+
+        &.dark {
+          color: #ffffff;
+        }
+      }
+
+      #mobile-numInvoices {
+        display: none;
+        font-size: 12px;
+
+        &.dark {
+          color: #ffffff;
+        }
+      }
+
+      #header-noInvoices {
+        font-size: 12px;
+
+        &.dark {
+          color: #ffffff;
+        }
+      }
+
+      #mobile-noInvoices {
+        display: none;
         font-size: 12px;
 
         &.dark {
@@ -152,7 +187,17 @@ body {
           align-items: center;
           padding-right: 10px;
 
-          p {
+          #filter-title {
+            font-size: 12px;
+            font-weight: 700;
+
+            &.dark {
+              color: #ffffff;
+            }
+          }
+
+          #mobile-filter {
+            display: none;
             font-size: 12px;
             font-weight: 700;
 
@@ -291,7 +336,13 @@ body {
           }
         }
 
-        p {
+        #new-invoice-btn-words {
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        #mobile-new-invoice-btn-words {
+          display: none;
           font-size: 12px;
           font-weight: 700;
         }
