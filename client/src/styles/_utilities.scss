@@ -348,19 +348,31 @@ input[type='email'] {
         align-items: center;
         margin-bottom: 20px;
 
-        #item-name-input {
+        [id^='item-name-title-'] {
+          display: none;
+        }
+        [id^='item-name-input-'] {
           width: 215px;
         }
 
-        #qty-input {
+        [id^='qty-title-'] {
+          display: none;
+        }
+        [id^='qty-input-'] {
           width: 50px;
         }
 
-        #price-input {
+        [id^='price-title-'] {
+          display: none;
+        }
+        [id^='price-input-'] {
           width: 50px;
         }
 
-        p {
+        [id^='total-title-'] {
+          display: none;
+        }
+        [id^='total-input-'] {
           width: 80px;
           text-align: center;
           font-weight: 700;

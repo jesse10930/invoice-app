@@ -266,7 +266,6 @@ const Details = ({ currentUser }) => {
           </div>
           <div id='details-card-total' className={dark ? 'dark' : undefined}>
             <p id='amount-due'>Amount Due</p>
-            <p id='grand-total'>Grand Total</p>
             <div id='dc-total'>
               $
               {total

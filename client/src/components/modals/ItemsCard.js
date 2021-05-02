@@ -53,45 +53,72 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
 
   return (
     <div id={'modal-item-list-inputs-' + itemId}>
+      <p
+        id={'item-name-title-' + itemId}
+        className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+      >
+        Item Name
+      </p>
       <input
         className={dark ? 'dark' : undefined}
         type='text'
         id={'item-name-input-' + itemId}
-        style={{ width: '215px' }}
+        // style={{ width: '215px' }}
         name='name'
         autoComplete='off'
         value={thisItem.name}
         onChange={onThisItemChange}
       />
+      <p
+        id={'qty-title-' + itemId}
+        className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+      >
+        Qty.
+      </p>
       <input
         className={dark ? 'dark' : undefined}
         type='number'
         min='1'
         id={'qty-input-' + itemId}
-        style={{ width: '50px' }}
+        // style={{ width: '50px' }}
         name='quantity'
         autoComplete='off'
         value={thisItem.quantity}
         onChange={onThisItemChange}
       />
+      <p
+        id={'price-title-' + itemId}
+        className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+      >
+        Price
+      </p>
       <input
         className={dark ? 'dark' : undefined}
         type='number'
         min='0.01'
         step='0.01'
         id={'price-input-' + itemId}
-        style={{ width: '50px' }}
+        // style={{ width: '50px' }}
         name='price'
         autoComplete='off'
         value={thisItem.price}
         onChange={onThisItemChange}
       />
-      <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
+      <p
+        id={'total-title-' + itemId}
+        className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+      >
+        Total
+      </p>
+      <p
+        id={'total-input-' + itemId}
+        className={dark ? 'dark td-beautiful' : 'td-beautiful'}
+      >
         {thisItem.quantity > 0 && thisItem.price > 0
           ? (thisItem.quantity * thisItem.price).toFixed(2)
           : 0.0}
       </p>
-      <div id={itemId} onClick={onThisItemDelBtnClick}>
+      <div id={'svg-' + itemId} onClick={onThisItemDelBtnClick}>
         <svg width='13' height='16' xmlns='http://www.w3.org/2000/svg'>
           <path
             d='M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z'

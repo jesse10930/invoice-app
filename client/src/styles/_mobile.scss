@@ -36,10 +36,6 @@
         padding: 20px 20px 20px 20px;
         height: calc(100vh - 140px);
         margin-top: 100px;
-
-        #ni-bot-btns {
-          // margin-bottom: 20px;
-        }
       }
     }
 
@@ -232,6 +228,61 @@
         }
 
         #ni-item-list {
+          #modal-item-list-header {
+            display: none;
+          }
+
+          [id^='modal-item-list-inputs-'] {
+            display: grid;
+            grid-template-areas:
+              'top top top top'
+              'bot-left bot-mid-left bot-mid-right bot-right';
+
+            [id^='item-name-title-'] {
+              display: flex;
+              grid-area: top;
+              align-self: flex-start;
+              margin-top: 10px;
+            }
+            [id^='item-name-input-'] {
+              grid-area: top;
+              width: 96%;
+              margin-top: 30px;
+            }
+            [id^='qty-title-'] {
+              display: flex;
+              grid-area: bot-left;
+              align-self: flex-start;
+            }
+            [id^='qty-input-'] {
+              grid-area: bot-left;
+              margin-top: 20px;
+            }
+            [id^='price-title-'] {
+              display: flex;
+              grid-area: bot-mid-left;
+              align-self: flex-start;
+            }
+            [id^='price-input-'] {
+              grid-area: bot-mid-left;
+              margin-top: 20px;
+            }
+            [id^='total-title-'] {
+              display: flex;
+              grid-area: bot-mid-right;
+              align-self: flex-start;
+            }
+            [id^='total-input-'] {
+              grid-area: bot-mid-right;
+              margin-top: 20px;
+              display: flex;
+              justify-self: flex-start;
+            }
+            [id^='svg-'] {
+              grid-area: bot-right;
+              padding-right: 10px;
+            }
+          }
         }
 
         #ni-bot-btns {
@@ -428,15 +479,6 @@
                 color: #888eb0;
               }
             }
-          }
-        }
-
-        #details-card-total {
-          #amount-due {
-            display: none;
-          }
-          #grand-total {
-            display: block;
           }
         }
       }

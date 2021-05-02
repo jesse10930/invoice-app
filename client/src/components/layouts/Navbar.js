@@ -26,7 +26,13 @@ const Navbar = () => {
         )}
       </div>
       <div id='horizontal-line'></div>
-      <div id='prof-pic'></div>
+      <a
+        style={{ display: 'table-cell' }}
+        href='https://www.codebyronda.com/'
+        target='_blank'
+      >
+        <div id='prof-pic'></div>
+      </a>
     </div>
   );
 };

@@ -221,11 +221,11 @@ const NewInvoice = () => {
   };
 
   // Cancel Button
-  const onMouseEnter = (e) => {
-    setSave(false);
-  };
   const onMouseOut = (e) => {
     setSave(true);
+  };
+  const onCancelOver = (e) => {
+    setSave(false);
   };
 
   // New Invoice Validation
@@ -824,8 +824,8 @@ const NewInvoice = () => {
                     name='cancel'
                     value='Cancel'
                     className='form-btn cancel'
-                    onMouseEnter={onMouseEnter}
                     onMouseOut={onMouseOut}
+                    onMouseOver={onCancelOver}
                   />
                   <input
                     type='submit'
