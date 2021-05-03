@@ -30,6 +30,7 @@ const Navbar = () => {
         style={{ display: 'table-cell' }}
         href='https://www.codebyronda.com/'
         target='_blank'
+        rel='noreferrer'
       >
         <div id='prof-pic'></div>
       </a>

@@ -153,15 +153,16 @@ input[type='email'] {
 // New/Edit Invoice Modal
 #new-invoice-modal {
   #tester-for-modal {
-    position: absolute;
-    height: calc(100vh - 100px);
+    // position: absolute;
+    position: relative;
+    height: calc(100vh - 150px);
     width: 35vw;
     min-width: 380px;
     top: 0;
     left: 0;
     background: #ffffff;
-    border-radius: 0px 20px 20px 0px;
-    padding: 50px 50px 50px 150px;
+    border-radius: 0px 20px 0px 0px;
+    padding: 50px 50px 20px 150px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -414,7 +415,125 @@ input[type='email'] {
       }
     }
 
+    // #ni-bot-btns {
+    //   // border: solid 2px red;
+    //   // position: absolute;
+    //   // bottom: 0;
+    //   // width: 72%;
+
+    //   #ni-btns {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     .discard {
+    //       color: #7e88c3;
+    //       background: #f9fafe;
+    //       width: 100px;
+    //       padding: 0;
+
+    //       &.dark {
+    //         background: #f9fafe;
+    //       }
+
+    //       &:hover {
+    //         background: #dfe3fa;
+    //       }
+    //     }
+
+    //     #save-btns {
+    //       display: flex;
+    //       justify-content: space-between;
+
+    //       .draft {
+    //         color: #888eb0;
+    //         background: #373b53;
+    //         margin-right: 5px;
+    //         padding: 0;
+
+    //         &.dark {
+    //           color: #dfe3fa;
+
+    //           &:hover {
+    //             background: #1e2139;
+    //           }
+    //         }
+
+    //         &:hover {
+    //           background: #0c0e16;
+    //         }
+    //       }
+
+    //       .send {
+    //         color: #ffffff;
+    //         background: #7c5dfa;
+    //         padding: 0;
+
+    //         &:hover {
+    //           background: #9277ff;
+    //         }
+    //       }
+    //     }
+    //   }
+
+    //   #change-btns {
+    //     width: 100%;
+    //     display: flex;
+    //     flex-direction: row;
+    //     justify-content: flex-end;
+
+    //     .cancel {
+    //       width: 100px;
+    //       background: #f9fafe;
+    //       color: #7e88c3;
+    //       margin-right: 5px;
+    //       padding: 0;
+
+    //       &:hover {
+    //         cursor: pointer;
+    //         background: #dfe3fa;
+    //       }
+    //     }
+
+    //     .change {
+    //       width: 140px;
+    //       color: #ffffff;
+    //       background: #7c5dfa;
+    //       padding: 0;
+
+    //       &:hover {
+    //         background: #9277ff;
+    //       }
+    //     }
+    //   }
+    // }
+  }
+
+  #tester {
+    position: relative;
+    height: 50px;
+    width: 35vw;
+    min-width: 380px;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    // border-radius: 0px 20px 20px 0px;
+    padding: 20px 50px 20px 150px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-start;
+    // overflow-y: auto;
+    z-index: 5;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 20px 0px;
+
+    &.dark {
+      background: #141625;
+    }
     #ni-bot-btns {
+      // border: solid 2px red;
+      // position: absolute;
+      // bottom: 0;
+      // width: 72%;
+
       #ni-btns {
         display: flex;
         justify-content: space-between;
