@@ -37,15 +37,44 @@
         height: calc(100vh - 225px);
         margin-top: 100px;
         border-radius: 0px 20px 0px 0px;
+        margin-bottom: -2.5px;
       }
 
       #tester {
-        padding-left: 20px;
-        padding-top: 20px;
-        width: 50vw;
-        min-width: 300px;
-        height: 50px;
+        padding: 20px 20px 20px 20px;
         border-radius: 0px 0px 20px 0px;
+
+        #ni-bot-btns {
+          display: flex;
+          justify-content: center;
+
+          #ni-btns {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .discard {
+              width: 100px;
+            }
+
+            #save-btns {
+              width: 62.5%;
+              .draft {
+                width: 100px;
+                margin: 0;
+              }
+              .send {
+                width: 100px;
+              }
+            }
+          }
+
+          #change-btns {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+          }
+        }
       }
     }
 
@@ -55,7 +84,7 @@
 
     #details-container {
       width: 700px;
-      margin-top: 130px;
+      margin-top: 160px;
 
       #details-card {
         #details-card-items {
@@ -176,6 +205,7 @@
     #new-invoice-modal {
       width: 100vw;
       #tester-for-modal {
+        margin-bottom: 0;
         margin-top: 70px;
         padding-left: 20px;
         padding-top: 20px;
@@ -300,11 +330,13 @@
         padding-top: 20px;
         width: 90vw;
         min-width: 300px;
-        height: 50px;
+        height: 45px;
+        border-radius: 0;
 
         #ni-bot-btns {
           display: flex;
           justify-content: center;
+          margin-top: -2.5px;
 
           #ni-btns {
             width: 100%;
@@ -330,7 +362,7 @@
           #change-btns {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-evenly;
           }
         }
       }
@@ -386,7 +418,7 @@
     #details-container {
       width: 90%;
       margin-top: 110px;
-      margin-bottom: 40px;
+      // margin-bottom: 40px;
 
       #details-header {
         padding-left: 20px;
@@ -413,7 +445,7 @@
       }
 
       #details-card {
-        margin-bottom: 80px;
+        margin-bottom: 100px;
         padding: 20px;
         #top-details {
           height: 470px;
@@ -506,7 +538,7 @@
         z-index: 999999;
         bottom: 0;
         left: 0;
-        height: 70px;
+        height: 85px;
         width: 100vw;
         background: #ffffff;
         display: flex;

@@ -1,5 +1,29 @@
 // Utilities
 
+.fade-appear {
+  opacity: 0;
+}
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
+.fade-exit {
+  opacity: 0;
+}
+.fade-exit.fade-exit-active {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
 // Paid Label
 #paid {
   background: rgba(51, 214, 159, 0.06);
@@ -111,7 +135,6 @@ input {
   top: 0;
   left: 0;
   position: absolute;
-  transition: all 1.3s;
   overflow: hidden;
   z-index: 4;
 }
@@ -155,7 +178,7 @@ input[type='email'] {
   #tester-for-modal {
     // position: absolute;
     position: relative;
-    height: calc(100vh - 150px);
+    height: calc(100vh - 160px);
     width: 35vw;
     min-width: 380px;
     top: 0;
@@ -172,7 +195,6 @@ input[type='email'] {
     &.dark {
       background: #141625;
     }
-
     #new-invoice-title {
       font-size: 24px;
       line-height: 32px;
@@ -206,7 +228,6 @@ input[type='email'] {
         }
       }
     }
-
     #ni-bill-to {
       display: flex;
       flex-direction: column;
@@ -317,7 +338,6 @@ input[type='email'] {
         }
       }
     }
-
     #ni-item-list {
       display: flex;
       flex-direction: column;
@@ -414,97 +434,6 @@ input[type='email'] {
         }
       }
     }
-
-    // #ni-bot-btns {
-    //   // border: solid 2px red;
-    //   // position: absolute;
-    //   // bottom: 0;
-    //   // width: 72%;
-
-    //   #ni-btns {
-    //     display: flex;
-    //     justify-content: space-between;
-    //     .discard {
-    //       color: #7e88c3;
-    //       background: #f9fafe;
-    //       width: 100px;
-    //       padding: 0;
-
-    //       &.dark {
-    //         background: #f9fafe;
-    //       }
-
-    //       &:hover {
-    //         background: #dfe3fa;
-    //       }
-    //     }
-
-    //     #save-btns {
-    //       display: flex;
-    //       justify-content: space-between;
-
-    //       .draft {
-    //         color: #888eb0;
-    //         background: #373b53;
-    //         margin-right: 5px;
-    //         padding: 0;
-
-    //         &.dark {
-    //           color: #dfe3fa;
-
-    //           &:hover {
-    //             background: #1e2139;
-    //           }
-    //         }
-
-    //         &:hover {
-    //           background: #0c0e16;
-    //         }
-    //       }
-
-    //       .send {
-    //         color: #ffffff;
-    //         background: #7c5dfa;
-    //         padding: 0;
-
-    //         &:hover {
-    //           background: #9277ff;
-    //         }
-    //       }
-    //     }
-    //   }
-
-    //   #change-btns {
-    //     width: 100%;
-    //     display: flex;
-    //     flex-direction: row;
-    //     justify-content: flex-end;
-
-    //     .cancel {
-    //       width: 100px;
-    //       background: #f9fafe;
-    //       color: #7e88c3;
-    //       margin-right: 5px;
-    //       padding: 0;
-
-    //       &:hover {
-    //         cursor: pointer;
-    //         background: #dfe3fa;
-    //       }
-    //     }
-
-    //     .change {
-    //       width: 140px;
-    //       color: #ffffff;
-    //       background: #7c5dfa;
-    //       padding: 0;
-
-    //       &:hover {
-    //         background: #9277ff;
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   #tester {

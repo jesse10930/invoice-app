@@ -3,6 +3,7 @@ import InvoiceItem from './InvoiceItem';
 import Details from './Details';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
+import { CSSTransition } from 'react-transition-group';
 
 const Invoices = () => {
   const [run, setRun] = useState(false);
@@ -39,35 +40,39 @@ const Invoices = () => {
   let filtered = invoices.filter((invoice) => filters.includes(invoice.status));
 
   return !invoiceDetails ? (
-    <div
-      id='invoices'
-      className={newInvoiceForm ? 'modal-container' : null}
-      style={newInvoiceForm ? { marginTop: '120px' } : null}
-    >
-      {run && filtered.length === 0 ? (
-        <div id='empty-container'>
-          <img
-            src={require('../../images/illustration-empty.svg').default}
-            alt='emtpy-illustration'
-          />
-          <h2 className={dark ? 'dark' : undefined}>There is nothing here</h2>
-          <p className={dark ? 'dark' : undefined}>
-            Create an invoice by clicking the{' '}
-            <span style={{ fontWeight: '700' }}>New Invoice</span> button and
-            get started, or change the{' '}
-            <span style={{ fontWeight: '700' }}>Filter by Status</span>
-          </p>
-        </div>
-      ) : (
-        <div id='invoice-list'>
-          {filtered.map((invoice, i) => (
-            <InvoiceItem key={i} invoice={invoice} />
-          ))}
-        </div>
-      )}
-    </div>
+    <CSSTransition in={true} timeout={300} classNames='fade'>
+      <div
+        id='invoices'
+        className={newInvoiceForm ? 'modal-container' : null}
+        style={newInvoiceForm ? { marginTop: '120px' } : null}
+      >
+        {run && filtered.length === 0 ? (
+          <div id='empty-container'>
+            <img
+              src={require('../../images/illustration-empty.svg').default}
+              alt='emtpy-illustration'
+            />
+            <h2 className={dark ? 'dark' : undefined}>There is nothing here</h2>
+            <p className={dark ? 'dark' : undefined}>
+              Create an invoice by clicking the{' '}
+              <span style={{ fontWeight: '700' }}>New Invoice</span> button and
+              get started, or change the{' '}
+              <span style={{ fontWeight: '700' }}>Filter by Status</span>
+            </p>
+          </div>
+        ) : (
+          <div id='invoice-list'>
+            {filtered.map((invoice, i) => (
+              <InvoiceItem key={i} invoice={invoice} />
+            ))}
+          </div>
+        )}
+      </div>
+    </CSSTransition>
   ) : (
-    <Details currentUser={currentUser} />
+    <CSSTransition timeout={300} classNames='fade'>
+      <Details currentUser={currentUser} />
+    </CSSTransition>
   );
 };
 

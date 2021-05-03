@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
+import { CSSTransition } from 'react-transition-group';
 
 const NewInvoice = () => {
   // Context
@@ -46,6 +47,7 @@ const NewInvoice = () => {
   const [save, setSave] = useState(true);
   const [inputAlert, setInputAlert] = useState(false);
   const [itemAlert, setItemAlert] = useState(false);
+  // const [show, setShow] = useState(true);
 
   // Destructure State
   const {
@@ -342,6 +344,7 @@ const NewInvoice = () => {
       setInputAlert(tempInputAlertState);
       setItemAlert(tempItemAlertState);
     } else {
+      // setShow(false);
       addInvoice(invoice, senderAddress, clientAddress, items);
     }
   };
@@ -461,6 +464,7 @@ const NewInvoice = () => {
       setInputAlert(tempInputAlertState);
       setItemAlert(tempItemAlertState);
     } else {
+      // setShow(false);
       let tempTotal = 0;
       items.forEach((item) => (tempTotal += parseFloat(item.total)));
 
@@ -472,6 +476,15 @@ const NewInvoice = () => {
       saveChangesClick(currentUser, invoice);
     }
   };
+
+  // const setShowDiscard = () => {
+  //   setShow(false);
+  //   discardClick();
+  // };
+  // const setShowCancel = () => {
+  //   setShow(false);
+  //   cancelEditClick();
+  // };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -495,6 +508,7 @@ const NewInvoice = () => {
 
   // Render
   return (
+    // <CSSTransition in={show} timeout={1000} classNames='fade'>
     <div id='new-invoice-modal' className='back-drop'>
       <form onSubmit={onSubmit}>
         <div id='tester-for-modal' className={dark ? 'dark' : undefined}>
@@ -897,6 +911,7 @@ const NewInvoice = () => {
         </div>
       </form>
     </div>
+    // </CSSTransition>
   );
 };
 
