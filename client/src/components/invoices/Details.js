@@ -87,7 +87,7 @@ const Details = ({ currentUser }) => {
             <p id='status-word' className={dark ? 'dark' : undefined}>
               Status
             </p>
-            <div id={status} className='item-status-container'>
+            <div id={status + '--' + id} className='item-status-container'>
               <div className={dark ? 'dark dot' : 'dot'}></div>
               <p className={dark ? 'dark item-status' : 'item-status'}>
                 {status.charAt(0).toUpperCase() + status.slice(1)}

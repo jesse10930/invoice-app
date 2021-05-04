@@ -34,6 +34,8 @@ const Navbar = () => {
         href='https://www.codebyronda.com/'
         target='_blank'
         rel='noreferrer'
+        name='portfolio-link'
+        id='portfolio-link'
       >
         <div id='prof-pic'></div>
       </a>
