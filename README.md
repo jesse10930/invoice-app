@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/fullstack-mern-app-using-sass-hooks-and-context-api-84TdefWXi](https://www.frontendmentor.io/solutions/fullstack-mern-app-using-sass-hooks-and-context-api-84TdefWXi)
+- Live Site URL: [https://afternoon-retreat-02971.herokuapp.com/](https://afternoon-retreat-02971.herokuapp.com/)
 
 ## My process
 
