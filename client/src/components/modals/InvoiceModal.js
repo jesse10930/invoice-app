@@ -3,19 +3,19 @@ import { v4 as uuidv4 } from 'uuid';
 import ItemsCard from './ItemsCard';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
-import { CSSTransition } from 'react-transition-group';
 
-const NewInvoice = () => {
-  // Context
+const InvoiceModal = () => {
+  // Declare and destructure context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
-
   const {
     addInvoice,
     discardClick,
     currentUser,
     cancelEditClick,
     saveChangesClick,
+    newInvoiceForm,
+    editInvoiceForm,
   } = invoiceContext;
   const { dark } = darkContext;
 
@@ -47,7 +47,6 @@ const NewInvoice = () => {
   const [save, setSave] = useState(true);
   const [inputAlert, setInputAlert] = useState(false);
   const [itemAlert, setItemAlert] = useState(false);
-  // const [show, setShow] = useState(true);
 
   // Destructure State
   const {
@@ -78,7 +77,7 @@ const NewInvoice = () => {
     // eslint-disable-next-line
   }, []);
 
-  // effect to Set State if CurrentUser
+  // Effect to set state if CurrentUser
   useEffect(() => {
     if (currentUser) {
       setInvoice({
@@ -107,11 +106,18 @@ const NewInvoice = () => {
     // eslint-disable-next-line
   }, []);
 
+  // Effect to fade in/out modal
+  useEffect(() => {
+    setTimeout(() => {
+      if (newInvoiceForm || editInvoiceForm) {
+        document.getElementById('invoice-modal').classList.add('fade-in');
+      }
+    }, 100);
+    // eslint-disable-next-line
+  }, []);
+
   // Bill From
   const onSenderAddressChange = (e) => {
-    // if (e.target.value.length > 0) {
-    //   console.log(e.target.id);
-    // }
     setSenderAddress({
       ...senderAddress,
       [e.target.name]: e.target.value,
@@ -122,12 +128,12 @@ const NewInvoice = () => {
   const onInvoiceChange = (e) => {
     setInvoice({ ...invoice, [e.target.name]: e.target.value });
   };
-
-  const onClientAddressChange = (e) =>
+  const onClientAddressChange = (e) => {
     setClientAddress({
       ...clientAddress,
       [e.target.name]: e.target.value,
     });
+  };
 
   // Payment Terms and Date
   const onTermsClick = (e) => {
@@ -148,7 +154,6 @@ const NewInvoice = () => {
       paymentDue: tempPaymentDue,
     });
   };
-
   const onDateChange = (e) => {
     const tempPaymentDue = incrementDate(e.target.value, paymentTerms + 1);
 
@@ -158,7 +163,6 @@ const NewInvoice = () => {
       paymentDue: tempPaymentDue,
     });
   };
-
   const incrementDate = (date, amount) => {
     let months = {
       Jan: '01',
@@ -344,7 +348,6 @@ const NewInvoice = () => {
       setInputAlert(tempInputAlertState);
       setItemAlert(tempItemAlertState);
     } else {
-      // setShow(false);
       addInvoice(invoice, senderAddress, clientAddress, items);
     }
   };
@@ -464,7 +467,6 @@ const NewInvoice = () => {
       setInputAlert(tempInputAlertState);
       setItemAlert(tempItemAlertState);
     } else {
-      // setShow(false);
       let tempTotal = 0;
       items.forEach((item) => (tempTotal += parseFloat(item.total)));
 
@@ -477,15 +479,7 @@ const NewInvoice = () => {
     }
   };
 
-  // const setShowDiscard = () => {
-  //   setShow(false);
-  //   discardClick();
-  // };
-  // const setShowCancel = () => {
-  //   setShow(false);
-  //   cancelEditClick();
-  // };
-
+  // Form Submit
   const onSubmit = (e) => {
     e.preventDefault();
     !currentUser
@@ -508,21 +502,17 @@ const NewInvoice = () => {
 
   // Render
   return (
-    // <CSSTransition in={show} timeout={1000} classNames='fade'>
-    <div id='new-invoice-modal' className='back-drop'>
+    <div id='invoice-modal' className='back-drop'>
       <form onSubmit={onSubmit}>
-        <div id='tester-for-modal' className={dark ? 'dark' : undefined}>
-          <p id='new-invoice-title' className={dark ? 'dark' : undefined}>
+        <div id='invoice-modal-form' className={dark ? 'dark' : undefined}>
+          <p id='invoice-modal-title' className={dark ? 'dark' : undefined}>
             {currentUser ? userHashId : 'New Invoice'}
           </p>
 
           <div id='ni-bill-from'>
             <p className='modal-sec-title'>Bill From</p>
             <div id='street-address'>
-              <p
-                id='sa-red-words'
-                className={dark ? 'dark td-beautiful' : 'td-beautiful'}
-              >
+              <p className={dark ? 'dark td-beautiful' : 'td-beautiful'}>
                 Street Address
               </p>
               <input
@@ -764,6 +754,7 @@ const NewInvoice = () => {
               </p>
               <p id='header5'></p>
             </div>
+            {/* Returns if items entered */}
             {items.length > 0
               ? items.map((item) => (
                   <ItemsCard
@@ -798,63 +789,13 @@ const NewInvoice = () => {
               </div>
             ) : null}
           </div>
-          {/* <div id='ni-bot-btns'>
-            {!currentUser ? (
-              <Fragment>
-                <div id='ni-btns'>
-                  <input
-                    type='submit'
-                    name='discard'
-                    value='Discard'
-                    className={
-                      dark ? 'form-btn discard dark' : 'form-btn discard'
-                    }
-                    onMouseOver={onMouseOver}
-                  />
-                  <div id='save-btns'>
-                    <input
-                      type='submit'
-                      name='draft'
-                      value='Save as Draft'
-                      className={
-                        dark ? 'form-btn draft dark' : 'form-btn draft'
-                      }
-                      onMouseOver={onMouseOver}
-                    />
-                    <input
-                      type='submit'
-                      name='pending'
-                      value='Save & Send'
-                      className='form-btn send'
-                      onMouseOver={onMouseOver}
-                    />
-                  </div>
-                </div>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <div id='change-btns'>
-                  <input
-                    type='submit'
-                    name='cancel'
-                    value='Cancel'
-                    className='form-btn cancel'
-                    onMouseOut={onMouseOut}
-                    onMouseOver={onCancelOver}
-                  />
-                  <input
-                    type='submit'
-                    name='changes'
-                    value='Save Changes'
-                    className='form-btn change'
-                  />
-                </div>
-              </Fragment>
-            )}
-          </div> */}
         </div>
-        <div id='tester' className={dark ? 'dark' : undefined}>
+        <div
+          id='invoice-modal-submit-btns'
+          className={dark ? 'dark' : undefined}
+        >
           <div id='ni-bot-btns'>
+            {/* Returns new invoice or edit invoice buttons */}
             {!currentUser ? (
               <Fragment>
                 <div id='ni-btns'>
@@ -911,8 +852,7 @@ const NewInvoice = () => {
         </div>
       </form>
     </div>
-    // </CSSTransition>
   );
 };
 
-export default NewInvoice;
+export default InvoiceModal;

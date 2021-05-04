@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext, Fragment } from 'react';
-import NewInvoice from '../modals/NewInvoice';
+import InvoiceModal from '../modals/InvoiceModal';
 import DeleteModal from '../modals/DeleteModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
 
 const Details = ({ currentUser }) => {
+  // Declare and destructure context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
-
   const {
     deleteConfirmation,
     editInvoiceForm,
@@ -18,6 +18,7 @@ const Details = ({ currentUser }) => {
   } = invoiceContext;
   const { dark } = darkContext;
 
+  // Declare component level state
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
@@ -25,10 +26,12 @@ const Details = ({ currentUser }) => {
   const [dueMonth, setDueMonth] = useState('');
   const [dueDay, setDueDay] = useState('');
 
+  // Effect to push window to top on load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Effect to set date/payment due on change state
   useEffect(() => {
     const year = createdAt.substring(0, 4);
     const month = parseInt(createdAt.substring(5, 7)) - 1;
@@ -48,6 +51,7 @@ const Details = ({ currentUser }) => {
     // eslint-disable-next-line
   }, [currentUser.createdAt, currentUser.paymentDue]);
 
+  // Destructure currentUser
   const {
     status,
     total,
@@ -64,6 +68,7 @@ const Details = ({ currentUser }) => {
 
   return (
     <Fragment>
+      {/* Fixed position if modal active */}
       <div
         id='details-container'
         className={
@@ -228,6 +233,7 @@ const Details = ({ currentUser }) => {
                 Total
               </p>
             </div>
+            {/* Map through items, return for each one */}
             {items.map((item, i) => {
               return (
                 <div key={i} className='item-info'>
@@ -275,6 +281,7 @@ const Details = ({ currentUser }) => {
             </div>
           </div>
         </div>
+        {/* Returns if on mobile screen */}
         <div id='mobile-footer' className={dark ? 'dark' : undefined}>
           <div
             id='edit'
@@ -300,7 +307,9 @@ const Details = ({ currentUser }) => {
           </div>
         </div>
       </div>
-      {editInvoiceForm && <NewInvoice />}
+      {/* Return if edit button clicked */}
+      {editInvoiceForm && <InvoiceModal />}
+      {/* Return if delete button clicked */}
       {deleteConfirmation && <DeleteModal />}
     </Fragment>
   );

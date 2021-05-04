@@ -3,19 +3,21 @@ import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
 
 const InvoiceItem = ({ invoice }) => {
+  // Declare and destructure context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
-
   const { dark } = darkContext;
-
   const { invoiceDetailsClick } = invoiceContext;
 
+  // Declare state
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
 
+  // Destructure props
   const { id, paymentDue, total, clientName, status } = invoice;
 
+  // Effect to set initial date/payment due
   useEffect(() => {
     const year = paymentDue.substring(0, 4);
     const month = parseInt(paymentDue.substring(5, 7)) - 1;

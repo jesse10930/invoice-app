@@ -21,6 +21,7 @@ import {
 } from '../types';
 
 const InvoiceState = (props) => {
+  // Set initial state
   const initialState = {
     invoices: [],
     newInvoiceForm: false,

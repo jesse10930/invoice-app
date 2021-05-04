@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import DarkContext from '../../context/dark/darkContext';
 
 const Navbar = () => {
+  // Context
   const darkContext = useContext(DarkContext);
   const { dark, toggleDarkMode } = darkContext;
 
@@ -13,6 +14,7 @@ const Navbar = () => {
         <div id='home-icon-triangle'></div>
       </div>
       <div id='mode-toggle' onClick={toggleDarkMode}>
+        {/* Change toggle image if in dark mode */}
         {dark ? (
           <img
             src={require('../../images/icon-sun.svg').default}
@@ -26,6 +28,7 @@ const Navbar = () => {
         )}
       </div>
       <div id='horizontal-line'></div>
+      {/* Link to my portfolio */}
       <a
         style={{ display: 'table-cell' }}
         href='https://www.codebyronda.com/'

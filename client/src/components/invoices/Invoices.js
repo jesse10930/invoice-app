@@ -6,13 +6,13 @@ import DarkContext from '../../context/dark/darkContext';
 import { CSSTransition } from 'react-transition-group';
 
 const Invoices = () => {
+  // Component level state
   const [run, setRun] = useState(false);
 
+  // Declare and destructure context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
-
   const { dark } = darkContext;
-
   const {
     invoices,
     currentUser,
@@ -22,30 +22,37 @@ const Invoices = () => {
     getInvoices,
   } = invoiceContext;
 
+  // Effect to get invoices on intial load
   useEffect(() => {
     getInvoices();
     // eslint-disable-next-line
   }, []);
 
+  // Effect to position screen at top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Effect to load invoices before no invoices image flashes
   useEffect(() => {
     setTimeout(() => {
       setRun(true);
     }, 500);
   }, []);
 
+  // Declare invoices that include checked statuses
   let filtered = invoices.filter((invoice) => filters.includes(invoice.status));
 
+  // Returns if no invoice has been clicked
   return !invoiceDetails ? (
+    // Fade in/out
     <CSSTransition in={true} timeout={300} classNames='fade'>
       <div
         id='invoices'
-        className={newInvoiceForm ? 'modal-container' : null}
-        style={newInvoiceForm ? { marginTop: '120px' } : null}
+        className={newInvoiceForm ? 'new-invoice-modal-container' : null}
+        // style={newInvoiceForm ? { marginTop: '120px' } : null}
       >
+        {/* Returns if no invoices match filters */}
         {run && filtered.length === 0 ? (
           <div id='empty-container'>
             <img
@@ -61,6 +68,7 @@ const Invoices = () => {
             </p>
           </div>
         ) : (
+          // Returns if at least 1 filtered invoice
           <div id='invoice-list'>
             {filtered.map((invoice, i) => (
               <InvoiceItem key={i} invoice={invoice} />
@@ -70,6 +78,7 @@ const Invoices = () => {
       </div>
     </CSSTransition>
   ) : (
+    // Returns if an invoice is clicked
     <CSSTransition timeout={300} classNames='fade'>
       <Details currentUser={currentUser} />
     </CSSTransition>

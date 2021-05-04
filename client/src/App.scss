@@ -17,6 +17,7 @@ body {
   background: $light-mode-background;
 }
 
+// Entire app
 #main-app {
   display: flex;
   flex-direction: column;
@@ -181,7 +182,7 @@ body {
         margin-right: 20px;
         position: relative;
 
-        #heading-arrow {
+        #header-arrow {
           display: flex;
           justify-content: space-between;
           align-items: center;

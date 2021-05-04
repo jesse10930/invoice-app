@@ -1,11 +1,13 @@
 import React, { useState, useEffect, Fragment, useContext } from 'react';
-import NewInvoice from '../modals/NewInvoice';
+import InvoiceModal from '../modals/InvoiceModal';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
 
 const Header = () => {
+  // Component Level State
   const [run, setRun] = useState(false);
 
+  // Declare and destructure context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
   const { dark } = darkContext;
@@ -18,20 +20,24 @@ const Header = () => {
     filters,
   } = invoiceContext;
 
+  // Allows items to load before no items image flashes
   useEffect(() => {
     setTimeout(() => {
       setRun(true);
     }, 500);
   });
 
+  // Filter by status
   const onCheck = (e) => {
     filterCheck(e.target.value);
   };
 
+  // Returns items that are checked
   const filtered = invoices.filter((invoice) =>
     filters.includes(invoice.status)
   );
 
+  // Unique title message based on number of invoices and filters selected
   let numOfInvoices = filtered.length;
   let filterTypes;
   let numOfFilters = filters.length;
@@ -51,16 +57,20 @@ const Header = () => {
   }
 
   return (
+    // Return if no specific invoice has been clicked
     !invoiceDetails && (
       <Fragment>
+        {/* Fix header if invoice modal is clicked */}
         <div id='header' className={newInvoiceForm ? 'modal-container' : null}>
           <div id='header-left'>
             <h1 id='header-title' className={dark ? 'dark' : undefined}>
               Invoices
             </h1>
+            {/* Title shown if on mobile device */}
             <h1 id='mobile-title' className={dark ? 'dark' : undefined}>
               Invoices
             </h1>
+            {/* Returns if there are invoices */}
             {run && invoices ? (
               <Fragment>
                 <p
@@ -77,6 +87,7 @@ const Header = () => {
                 </p>
               </Fragment>
             ) : run ? (
+              // Returns if no invoices
               <Fragment>
                 <p id='header-noInvoices'>There are 0 total invoices</p>
                 <p id='mobile-noInvoices'>0 total invoices</p>
@@ -85,10 +96,11 @@ const Header = () => {
           </div>
           <div id='header-right'>
             <div id='filter-dropdown'>
-              <div id='heading-arrow'>
+              <div id='header-arrow'>
                 <p id='filter-title' className={dark ? 'dark' : undefined}>
                   Filter by Status
                 </p>
+                {/* Returns on mobile device */}
                 <p id='mobile-filter' className={dark ? 'dark' : undefined}>
                   Filter
                 </p>
@@ -97,6 +109,7 @@ const Header = () => {
                   alt='icon-arrow-down'
                 />
               </div>
+              {/* Filter checkbox dropdown */}
               <div id='filter-choices' className={dark ? 'dark' : undefined}>
                 <label className={dark ? 'dark container' : 'container'}>
                   Draft
@@ -144,11 +157,13 @@ const Header = () => {
                 />
               </div>
               <p id='new-invoice-btn-words'>New Invoice</p>
+              {/* Returns on mobile */}
               <p id='mobile-new-invoice-btn-words'>New</p>
             </div>
           </div>
         </div>
-        {newInvoiceForm && <NewInvoice />}
+        {/* Returns if new invoice button clicked */}
+        {newInvoiceForm && <InvoiceModal />}
       </Fragment>
     )
   );

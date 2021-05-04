@@ -8,8 +8,9 @@ import { CSSTransition } from 'react-transition-group';
 import './App.scss';
 
 const App = () => {
-  const [appearContent, setAppearContent] = useState(true);
+  const [appearContent] = useState(true);
   return (
+    // Fade in on initial load
     <CSSTransition
       in={appearContent}
       appear={true}

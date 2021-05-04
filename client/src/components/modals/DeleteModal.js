@@ -1,18 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import InvoiceContext from '../../context/invoice/invoiceContext';
 import DarkContext from '../../context/dark/darkContext';
 
 const DeleteModal = () => {
+  // Declare and destructure context
   const invoiceContext = useContext(InvoiceContext);
   const darkContext = useContext(DarkContext);
-
   const { dark } = darkContext;
-
   const {
     cancelDeleteClick,
     onConfirmDeleteClick,
     currentUser,
   } = invoiceContext;
+
+  // Effect to fade in/out modal
+  useEffect(() => {
+    setTimeout(() => {
+      document
+        .getElementById('delete-modal-container')
+        .classList.add('fade-in');
+    }, 100);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div id='delete-modal-container' className='back-drop'>

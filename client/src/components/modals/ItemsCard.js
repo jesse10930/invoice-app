@@ -2,11 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import DarkContext from '../../context/dark/darkContext';
 
 const ItemsCard = ({ item, deleteItem, updateItems }) => {
+  // Declare and destructure context
   const darkContext = useContext(DarkContext);
   const { dark } = darkContext;
 
+  // Destructure props
   const { name, quantity, price, total, itemId } = item;
 
+  // Component level state
   const [thisItem, setThisItem] = useState({
     name: name,
     quantity: quantity,
@@ -14,19 +17,21 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
     total: total,
     itemId: itemId,
   });
-
   const [delState, setDelState] = useState(false);
 
+  // Effect to update state when thisItem changes
   useEffect(() => {
     updateItems(thisItem);
     // eslint-disable-next-line
   }, [thisItem]);
 
+  // Effect to updated state when delState changes
   useEffect(() => {
     deleteItem(delState, thisItem);
     // eslint-disable-next-line
   }, [delState]);
 
+  // Change in item input
   const onThisItemChange = (e) => {
     let tempTot;
     if (e.target.name === 'quantity' && thisItem.price > 0) {
@@ -47,6 +52,7 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
     });
   };
 
+  // Delete icon clicked
   const onThisItemDelBtnClick = (e) => {
     setDelState(true);
   };
@@ -63,7 +69,6 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         className={dark ? 'dark' : undefined}
         type='text'
         id={'item-name-input-' + itemId}
-        // style={{ width: '215px' }}
         name='name'
         autoComplete='off'
         value={thisItem.name}
@@ -80,7 +85,6 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         type='number'
         min='1'
         id={'qty-input-' + itemId}
-        // style={{ width: '50px' }}
         name='quantity'
         autoComplete='off'
         value={thisItem.quantity}
@@ -98,7 +102,6 @@ const ItemsCard = ({ item, deleteItem, updateItems }) => {
         min='0.01'
         step='0.01'
         id={'price-input-' + itemId}
-        // style={{ width: '50px' }}
         name='price'
         autoComplete='off'
         value={thisItem.price}

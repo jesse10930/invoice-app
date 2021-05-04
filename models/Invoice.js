@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Define invoice schema for MongoDB
 const InvoiceSchema = mongoose.Schema({
   id: {
     type: String,
