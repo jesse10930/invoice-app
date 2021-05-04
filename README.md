@@ -11,10 +11,8 @@ This is a solution to the [Invoice app challenge on Frontend Mentor](https://www
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
+  - [Continued learning](#continued-learning)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -44,50 +42,46 @@ Users should be able to:
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+- HTML5, CSS3, JSX, and Sass for layout
+- React, JavaScript, Hooks, and UUID for functionality
+- Context API for state management
+- Express, Node, and Config for backend
+- MongoDB and Mongoose for storage
+- Media queries to make responsive app
+- Figma for design files
+- CSSTransition for smooth transitions
+- Axios to make requests
+- Nodemon and Concurrently for development
+- Heroku for deployment
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I came into this challenge wanting to tackle a big project, and that's exactly what this turned out to be. I liked that it was fullstack, had a Figma file to imitate a professional work atmosphere, and allowed users a plethora of options to make the app very functional.
 
-To see how you can add code snippets, see below:
+One thing I learned is to really break down the project into bite size pieces. This project was quite overwhelming in the beginning. There are a lot of files and instructions in this project, and taking the time to plan everything out was quite helpful.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+Another thing that stood out with this project was the amount of time that I spent on the media queries to make the app responsive for mobile devices. I learned a lot about what works and what doesn't work, and how little changes here will affect something elsewhere if it isn't planned out properly.
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+Other little things that gave me problems included how to make the body background toggle in dark mode, how to properly use keys when mapping over an object, and how to get a div to be fixed inside another div that has scroll functionality.
+
+This function, although simple in the end, brought sweet relief to issue that stumped me on and off for several days.
 
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉');
+const toggleDarkMode = () => {
+  let newMode = !state.dark;
+  newMode
+    ? (document.body.style.backgroundColor = '#141625')
+    : (document.body.style.backgroundColor = '#f8f8f8');
+  dispatch({ type: DARK, payload: newMode });
 };
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+### Continued learning
 
-### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+Mostly what I'd like to improve on future projects is the file/folder structure for my applications. I would like to be more consistent with where I put specific file types and what types of code goes in each of those files in order to give my projects a more professional feel. This is particularly true for Context API with State and Reducer.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- LinkedIn - [@yourusername](https://www.linkedin.com/yourusername)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- [Jesse's Portfolio Website](https://www.codebyronda.com)
+- [Jesse's LinkedIn Profile](https://www.linkedin.com/in/jesse-ronda-46a6a1205)
+- [Jesse's Frontend Mentor Profile](https://www.frontendmentor.io/profile/jesse10930)
