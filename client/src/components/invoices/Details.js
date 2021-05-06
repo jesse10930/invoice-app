@@ -110,6 +110,13 @@ const Details = ({ currentUser }) => {
               id='edit'
               className={dark ? 'form-btn dark' : 'form-btn'}
               onClick={editButtonClick}
+              style={
+                status === 'draft'
+                  ? {
+                      marginRight: '5px',
+                    }
+                  : undefined
+              }
             >
               <p>Edit</p>
             </div>
