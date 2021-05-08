@@ -106,7 +106,7 @@ const Details = ({ currentUser }) => {
                 : { display: 'flex' }
             }
           >
-            <div
+            <button
               id='edit'
               className={dark ? 'form-btn dark' : 'form-btn'}
               onClick={editButtonClick}
@@ -119,11 +119,15 @@ const Details = ({ currentUser }) => {
               }
             >
               <p>Edit</p>
-            </div>
-            <div id='delete' className='form-btn' onClick={deleteButtonClick}>
+            </button>
+            <button
+              id='delete'
+              className='form-btn'
+              onClick={deleteButtonClick}
+            >
               <p>Delete</p>
-            </div>
-            <div
+            </button>
+            <button
               id='mark-as-paid'
               className='form-btn'
               onClick={() => onMarkAsPaidClick(status)}
@@ -134,7 +138,7 @@ const Details = ({ currentUser }) => {
               ) : (
                 <p>Mark as Pending</p>
               )}
-            </div>
+            </button>
           </div>
         </div>
         <div id='details-card' className={dark ? 'dark' : undefined}>

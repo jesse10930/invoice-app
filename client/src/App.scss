@@ -17,6 +17,10 @@ body {
   background: $light-mode-background;
 }
 
+button {
+  border: none;
+}
+
 // Entire app
 #main-app {
   display: flex;
@@ -338,6 +342,7 @@ body {
         }
 
         #new-invoice-btn-words {
+          font-family: 'Spartan', sans-serif;
           font-size: 12px;
           font-weight: 700;
         }

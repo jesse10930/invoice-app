@@ -192,6 +192,7 @@ const InvoiceModal = () => {
 
   // Items List and Add Item Btn
   const onAddItemClick = (e) => {
+    e.preventDefault();
     let tempId = uuidv4();
 
     setItems(
@@ -765,7 +766,7 @@ const InvoiceModal = () => {
                   />
                 ))
               : null}
-            <div
+            <button
               id='modal-add-new-item'
               onClick={onAddItemClick}
               className={dark ? 'dark' : undefined}
@@ -775,7 +776,7 @@ const InvoiceModal = () => {
                 alt='icon-plus'
               />
               <p style={{ marginLeft: '5px' }}>Add New Item</p>
-            </div>
+            </button>
           </div>
           <div id='alert-messages'>
             {inputAlert ? (

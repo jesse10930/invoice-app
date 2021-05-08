@@ -151,6 +151,7 @@ input {
 
 // Buttons on Form
 .form-btn {
+  font-family: 'Spartan', sans-serif;
   font-size: 12px;
   font-weight: 700;
   border-radius: 24px;
@@ -427,6 +428,10 @@ input[type='email'] {
         background: #f9fafe;
         border-radius: 24px;
         color: #7e88c3;
+
+        p {
+          font-size: 20px;
+        }
 
         &.dark {
           background: #252945;

@@ -149,7 +149,8 @@ const Header = () => {
                 </label>
               </div>
             </div>
-            <div id='new-invoice-container' onClick={newInvoiceClick}>
+            {/* <div id='new-invoice-container' onClick={newInvoiceClick}> */}
+            <button id='new-invoice-container' onClick={newInvoiceClick}>
               <div id='new-invoice-icon'>
                 <img
                   src={require('../../images/icon-plus.svg').default}
@@ -159,7 +160,8 @@ const Header = () => {
               <p id='new-invoice-btn-words'>New Invoice</p>
               {/* Returns on mobile */}
               <p id='mobile-new-invoice-btn-words'>New</p>
-            </div>
+            </button>
+            {/* </div> */}
           </div>
         </div>
         {/* Returns if new invoice button clicked */}

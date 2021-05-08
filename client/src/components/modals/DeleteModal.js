@@ -35,7 +35,7 @@ const DeleteModal = () => {
           {currentUser.id}? This action cannot be undone.
         </p>
         <div id='dm-btns'>
-          <div
+          <button
             id='dm-cancel'
             className={dark ? 'dark form-btn' : 'form-btn'}
             onClick={cancelDeleteClick}
@@ -43,14 +43,14 @@ const DeleteModal = () => {
             <p id='cancel' className={dark ? 'dark' : undefined}>
               Cancel
             </p>
-          </div>
-          <div
+          </button>
+          <button
             id='dm-delete'
-            className='form.btn'
+            className='form-btn'
             onClick={() => onConfirmDeleteClick(currentUser)}
           >
             <p id='delete'>Delete</p>
-          </div>
+          </button>
         </div>
       </div>
     </div>
