@@ -17,7 +17,7 @@ const App = () => {
       timeout={300}
       classNames='fade'
     >
-      <div id='main-app'>
+      <main id='main-app'>
         <InvoiceState>
           <DarkState>
             <Navbar />
@@ -25,7 +25,7 @@ const App = () => {
             <Invoices />
           </DarkState>
         </InvoiceState>
-      </div>
+      </main>
     </CSSTransition>
   );
 };

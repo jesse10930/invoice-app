@@ -61,7 +61,10 @@ const Header = () => {
     !invoiceDetails && (
       <Fragment>
         {/* Fix header if invoice modal is clicked */}
-        <div id='header' className={newInvoiceForm ? 'modal-container' : null}>
+        <header
+          id='header'
+          className={newInvoiceForm ? 'modal-container' : null}
+        >
           <div id='header-left'>
             <h1 id='header-title' className={dark ? 'dark' : undefined}>
               Invoices
@@ -149,7 +152,6 @@ const Header = () => {
                 </label>
               </div>
             </div>
-            {/* <div id='new-invoice-container' onClick={newInvoiceClick}> */}
             <button id='new-invoice-container' onClick={newInvoiceClick}>
               <div id='new-invoice-icon'>
                 <img
@@ -161,9 +163,8 @@ const Header = () => {
               {/* Returns on mobile */}
               <p id='mobile-new-invoice-btn-words'>New</p>
             </button>
-            {/* </div> */}
           </div>
-        </div>
+        </header>
         {/* Returns if new invoice button clicked */}
         {newInvoiceForm && <InvoiceModal />}
       </Fragment>

@@ -47,7 +47,7 @@ const Invoices = () => {
   return !invoiceDetails ? (
     // Fade in/out
     <CSSTransition in={true} timeout={300} classNames='fade'>
-      <div
+      <section
         id='invoices'
         className={newInvoiceForm ? 'new-invoice-modal-container' : null}
         // style={newInvoiceForm ? { marginTop: '120px' } : null}
@@ -75,7 +75,7 @@ const Invoices = () => {
             ))}
           </div>
         )}
-      </div>
+      </section>
     </CSSTransition>
   ) : (
     // Returns if an invoice is clicked

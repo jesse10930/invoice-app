@@ -82,7 +82,7 @@ const Details = ({ currentUser }) => {
           />
           <p className={dark ? 'dark' : undefined}>Go Back</p>
         </div>
-        <div id='details-header' className={dark ? 'dark' : undefined}>
+        <header id='details-header' className={dark ? 'dark' : undefined}>
           <div id='dh-status'>
             <p id='status-word' className={dark ? 'dark' : undefined}>
               Status
@@ -140,8 +140,9 @@ const Details = ({ currentUser }) => {
               )}
             </button>
           </div>
-        </div>
-        <div id='details-card' className={dark ? 'dark' : undefined}>
+        </header>
+
+        <section id='details-card' className={dark ? 'dark' : undefined}>
           <div id='top-details'>
             <div id='td-group1' className='td-cn-group1'>
               <p id='td-id' className={dark ? 'dark td-bold' : 'td-bold'}>
@@ -291,9 +292,9 @@ const Details = ({ currentUser }) => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
           </div>
-        </div>
+        </section>
         {/* Returns if on mobile screen */}
-        <div id='mobile-footer' className={dark ? 'dark' : undefined}>
+        <footer id='mobile-footer' className={dark ? 'dark' : undefined}>
           <div
             id='edit'
             className={dark ? 'form-btn dark' : 'form-btn'}
@@ -316,7 +317,7 @@ const Details = ({ currentUser }) => {
               <p>Mark as Pending</p>
             )}
           </div>
-        </div>
+        </footer>
       </div>
       {/* Return if edit button clicked */}
       {editInvoiceForm && <InvoiceModal />}
