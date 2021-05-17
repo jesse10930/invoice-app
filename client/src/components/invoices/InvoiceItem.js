@@ -52,7 +52,12 @@ const InvoiceItem = ({ invoice }) => {
           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </h3>
       <div className='colored-part-and-arrow'>
-        <div id={status + '--' + id} className='item-status-container'>
+        <div
+          id={status + '--' + id}
+          className={
+            dark ? 'dark item-status-container' : 'item-status-container'
+          }
+        >
           <div className={dark ? 'dark dot' : 'dot'}></div>
           <p className={dark ? 'dark item-status' : 'item-status'}>
             {status.charAt(0).toUpperCase() + status.slice(1)}
