@@ -221,7 +221,7 @@
         padding-top: 20px;
         width: 90vw;
         min-width: 300px;
-        height: calc(100vh - 194px);
+        height: calc(100vh - 284px);
 
         #ni-bill-from {
           #street-address {
@@ -392,6 +392,7 @@
 
           &:hover {
             height: 118px;
+            border: none;
           }
         }
 
