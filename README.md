@@ -52,7 +52,7 @@ Users should be able to:
 - CSSTransition for smooth transitions
 - Axios to make requests
 - Nodemon and Concurrently for development
-- Heroku for deployment
+- Railway for deployment
 
 ### What I learned
 
